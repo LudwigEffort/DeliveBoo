@@ -1,0 +1,13 @@
+{
+    "/js/back.js": "/js/back.js",
+    "/js/front.js": "/js/front.js",
+    "/css/app.css": "/css/app.css",
+    "/dist/fonts/font-awesome/fa-brands-400.ttf": "/dist/fonts/font-awesome/fa-brands-400.ttf",
+    "/dist/fonts/font-awesome/fa-brands-400.woff2": "/dist/fonts/font-awesome/fa-brands-400.woff2",
+    "/dist/fonts/font-awesome/fa-regular-400.ttf": "/dist/fonts/font-awesome/fa-regular-400.ttf",
+    "/dist/fonts/font-awesome/fa-regular-400.woff2": "/dist/fonts/font-awesome/fa-regular-400.woff2",
+    "/dist/fonts/font-awesome/fa-solid-900.ttf": "/dist/fonts/font-awesome/fa-solid-900.ttf",
+    "/dist/fonts/font-awesome/fa-solid-900.woff2": "/dist/fonts/font-awesome/fa-solid-900.woff2",
+    "/dist/fonts/font-awesome/fa-v4compatibility.ttf": "/dist/fonts/font-awesome/fa-v4compatibility.ttf",
+    "/dist/fonts/font-awesome/fa-v4compatibility.woff2": "/dist/fonts/font-awesome/fa-v4compatibility.woff2"
+}
