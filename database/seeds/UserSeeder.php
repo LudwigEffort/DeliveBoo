@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
         $users = [
             [
                 'name'      => 'Kebab Halal',
-                'email'     => 'qwer@qwer.qwer',
+                'email'     => 'qwerqwerqwer@qwer.qwer',
                 'password'  =>  Hash::make('qwer'),
                 'slug'      => 'ciao0',
                 'vat_number'=> 'ciao9',
