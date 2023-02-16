@@ -90,7 +90,7 @@
                     <a href="https://laravel-news.com">Dario</a>
                     <a href="https://blog.laravel.com">Matteo</a>
                     <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
+                    <a href="https://forge.laravel.com">Camillo</a>
                     <a href="https://vapor.laravel.com">Vapor</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
