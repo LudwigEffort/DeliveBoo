@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
                 'is_opened'=> 0
             ],
             [
-                'name'      => 'Sushi Zen',
+                'name'      => 'SushIO Zen',
                 'email'     => 'zxcv@zxcv.zxcv',
                 'password'  =>  Hash::make('zxcv'),
                 'slug'      => 'ciao2',
