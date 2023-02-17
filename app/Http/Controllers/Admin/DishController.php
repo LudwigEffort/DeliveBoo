@@ -17,9 +17,9 @@ class DishController extends Controller
     {
         $dishes = Dish::all();
 
-        dd($dishes);
+        // dd($dishes);
 
-        return view('admin.posts.index', [
+        return view('admin.dishes.index', [
             'dishes' => $dishes,
         ]);
     }
