@@ -1,0 +1,63 @@
+{   // Peackock
+    "workbench.colorCustomizations": {
+        "activityBar.activeBackground": "#292c74",
+        "activityBar.background": "#292c74",
+        "activityBar.foreground": "#e7e7e7",
+        "activityBar.inactiveForeground": "#e7e7e799",
+        "activityBarBadge.background": "#bc4347",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "commandCenter.border": "#e7e7e799",
+        "sash.hoverBorder": "#292c74",
+        "statusBar.background": "#1c1e4e",
+        "statusBar.foreground": "#e7e7e7",
+        "statusBarItem.hoverBackground": "#292c74",
+        "statusBarItem.remoteBackground": "#1c1e4e",
+        "statusBarItem.remoteForeground": "#e7e7e7",
+        "titleBar.activeBackground": "#1c1e4e",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveBackground": "#1c1e4e99",
+        "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.color": "#1c1e4e", // Colore Bordi
+    // Restore Terminals
+    "restoreTerminals.runOnStartup": true, // Impostando questo comando di sotto su true si avvieranno questi terminali sotto all'avvio di questa repo.
+    "restoreTerminals.terminals": [
+        {
+            "splitTerminals": [
+                {
+                    "icon": "serve",
+                    "shouldRunCommands": false, //completate le installazioni cambia su true
+                    "name": "Server",
+                    "commands": [
+                        "php -S localhost:8000 -t public",
+                    ]
+                },
+                {
+                    "shouldRunCommands": false, //completate le installazioni cambia su true
+                    "name": "Laramix Watch",
+                    "commands": [
+                        "npm run watch",
+                    ]
+                }
+            ]
+        },
+        {
+            "splitTerminals": [
+                {
+                    "shouldRunCommands": false, //completate le installazioni cambia su true
+                    "name": "Route List",
+                    "commands": [
+                        "php artisan route:list --columns=method,uri,name,action",
+                    ]
+                }
+            ]
+        },
+        {
+            "splitTerminals": [
+                {
+                    "name": "Terminal", // Terminale dove scriverai
+                }
+            ]
+        },
+    ]
+}
