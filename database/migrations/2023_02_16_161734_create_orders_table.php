@@ -18,6 +18,8 @@ class CreateOrdersTable extends Migration
             $table->string('f_name', 50);
             $table->string('l_name', 50);
             $table->string('email')->unique();
+            $table->string('phone_number', 20);
+            $table->string('address', 100);
             $table->dateTime('order_date');
             $table->dateTime('pickup_date');
             $table->dateTime('payment_date');

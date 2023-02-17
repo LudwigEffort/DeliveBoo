@@ -17,7 +17,7 @@ class DishSeeder extends Seeder
             'Pizza',
             'Pasta allo scoglio',
             'Kebab',
-            'user_id' =>
+            'user_id',
             'Pulled pork',
             'Hamburger',
         ];
