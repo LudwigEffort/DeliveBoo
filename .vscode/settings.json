@@ -5,14 +5,14 @@
             "splitTerminals": [
                 {
                     "icon": "serve",
-                    "shouldRunCommands": false, //completate le installazioni cambia su true
+                    "shouldRunCommands": true, //completate le installazioni cambia su true
                     "name": "Server",
                     "commands": [
                         "php -S localhost:8000 -t public",
                     ]
                 },
                 {
-                    "shouldRunCommands": false, //completate le installazioni cambia su true
+                    "shouldRunCommands": true, //completate le installazioni cambia su true
                     "name": "Laramix Watch",
                     "commands": [
                         "npm run watch",
@@ -23,7 +23,7 @@
         {
             "splitTerminals": [
                 {
-                    "shouldRunCommands": false, //completate le installazioni cambia su true
+                    "shouldRunCommands": true, //completate le installazioni cambia su true
                     "name": "Route List",
                     "commands": [
                         "php artisan route:list --columns=method,uri,name,action",
