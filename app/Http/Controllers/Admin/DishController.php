@@ -15,7 +15,13 @@ class DishController extends Controller
      */
     public function index()
     {
-        //
+        $dishes = Dish::all();
+
+        dd($dishes);
+
+        return view('admin.posts.index', [
+            'dishes' => $dishes,
+        ]);
     }
 
     /**
