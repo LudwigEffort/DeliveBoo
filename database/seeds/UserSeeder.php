@@ -15,34 +15,34 @@ class UserSeeder extends Seeder
     {
         $users = [
             [
-                'name'      => 'Kebab Halal',
-                'email'     => 'qwerqwerqwer@qwer.qwer',
-                'password'  =>  Hash::make('qwer'),
-                'slug'      => 'ciao0',
-                'vat_number'=> 'ciao9',
-                'opening_time'=> '12:05:43',
-                'closing_time'=> '12:05:43',
-                'is_opened'=> 1
+                'name'          => 'Kebab Halal',
+                'email'         => 'qwerqwerqwer@qwer.qwer',
+                'password'      =>  Hash::make('qwer'),
+                'slug'          =>  User::getSlug('Kebab Halal'),
+                'vat_number'    => 'ciao9',
+                'opening_time'  => '12:05:43',
+                'closing_time'  => '12:05:43',
+                'is_opened'     => 1
             ],
             [
-                'name'      => 'Pizzeria Napoletana',
-                'email'     => 'asdf@asdf.asdf',
-                'password'  =>  Hash::make('asdf'),
-                'slug'      => 'ciao1',
-                'vat_number'=> 'ciao4',
-                'opening_time'=> '12:05:43',
-                'closing_time'=> '12:05:43',
-                'is_opened'=> 0
+                'name'          => 'Pizzeria Napoletana',
+                'email'         => 'asdf@asdf.asdf',
+                'password'      =>  Hash::make('asdf'),
+                'slug'          =>  User::getSlug('Pizzeria Napoletana'),
+                'vat_number'    => 'ciao4',
+                'opening_time'  => '12:05:43',
+                'closing_time'  => '12:05:43',
+                'is_opened'     => 0
             ],
             [
-                'name'      => 'SushIO Zen',
-                'email'     => 'zxcv@zxcv.zxcv',
-                'password'  =>  Hash::make('zxcv'),
-                'slug'      => 'ciao2',
-                'vat_number'=> 'ciao6',
-                'opening_time'=> '12:05:43',
-                'closing_time'=> '12:05:43',
-                'is_opened'=> 1
+                'name'          => 'Sushi Zen',
+                'email'         => 'zxcv@zxcv.zxcv',
+                'password'      =>  Hash::make('zxcv'),
+                'slug'          =>  User::getSlug('Sushi Zen'),
+                'vat_number'    => 'ciao6',
+                'opening_time'  => '12:05:43',
+                'closing_time'  => '12:05:43',
+                'is_opened'     => 1
             ],
         ];
 

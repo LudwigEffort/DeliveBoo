@@ -2,13 +2,15 @@
 
 namespace App;
 
+use App\Traits\Slugger;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use Slugger;
 
     public function dishes() {
         return $this->hasMany('App\Dish');
