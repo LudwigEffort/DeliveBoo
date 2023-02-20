@@ -40,6 +40,16 @@
                             <button class="btn btn-danger btn-delete-me">Elimina</button>
                         </form>
                     </td>
+                    <td>
+                        <form action="{{ route('admin.dishes.edit', ['dish' => $dish]) }}" method="get">
+                            <button class="btn btn-danger btn-delete-me">Edit</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="{{ route('admin.dishes.show', ['dish' => $dish]) }}" method="get">
+                            <button class="btn btn-danger btn-delete-me">Show</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
