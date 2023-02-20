@@ -108,7 +108,20 @@ class DishController extends Controller
      */
     public function update(Request $request, Dish $dish)
     {
-        //
+        $this->validations['slug'][] = 'unique:dishes';
+        $request->validate($this->validations);
+
+        $data = $request->all();
+
+        $dish->slug             = $data['slug'];
+        $dish->name             = $data['name'];
+        $dish->description      = $data['description'];
+        $dish->price            = $data['price'];
+        $dish->available        = $data['available'];
+        $dish->is_visible       = $data['is_visible'];
+        $dish->update();
+
+        return redirect()->route('admin.dishes.show', ['dish' => $dish]);
     }
 
     /**
