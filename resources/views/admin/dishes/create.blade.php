@@ -61,8 +61,8 @@
             </div>
 
             <div class="mb-3">
-                <label for="available" class="form-label">Available</label>
-                <input type="checkbox" class="form-control @error('available') is-invalid @enderror" id="available" name="available" value="{{ old('available') }}">
+                <label for="available" class="form-check-label">Available</label>
+                <input type="checkbox" class="form-check-input @error('available') is-invalid @enderror" id="available" name="available" value="{{ old('available') }}">
                 <div class="invalid-feedback">
                     @error('available')
                         <ul>
@@ -75,8 +75,8 @@
             </div>
 
             <div class="mb-3">
-                <label for="is_visible" class="form-label">is_visible</label>
-                <input type="checkbox" @error('is_visible') is-invalid @enderror" id="is_visible" name="is_visible" value="{{ old('is_visible') }}">
+                <label for="is_visible" class="form-check-label">is_visible</label>
+                <input type="checkbox" class="form-check-input @error('is_visible') is-invalid @enderror" id="is_visible" name="is_visible" value="{{ old('is_visible') }}">
                 <div class="invalid-feedback">
                     @error('is_visible')
                         <ul>
@@ -93,3 +93,10 @@
         </form>
     </div>
 @endsection
+
+{{-- <div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+  <label class="form-check-label" for="flexCheckDefault">
+    Default checkbox
+  </label>
+</div> --}}
