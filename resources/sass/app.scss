@@ -4,6 +4,9 @@
 // Variables
 @import 'variables';
 
+// Back scss
+@import 'back';
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
@@ -17,3 +20,8 @@ $fa-font-path: "./fonts/font-awesome" !default;
 @import "~@fortawesome/fontawesome-free/scss/solid";
 
 @import "~@fortawesome/fontawesome-free/scss/brands";
+
+
+body {
+    background-color: salmon;
+}
