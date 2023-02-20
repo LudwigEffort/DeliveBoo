@@ -15,10 +15,10 @@ class UserSeeder extends Seeder
     {
         $users = [
             [
-                'name'          => 'Kebab Halal',
-                'email'         => 'qwerqwerqwer@qwer.qwer',
-                'password'      =>  Hash::make('qwer'),
-                'slug'          =>  User::getSlug('Kebab Halal'),
+                'name'          => 'Kebab Hallah',
+                'email'         => 'kebabhallah@gmail.com',
+                'password'      =>  Hash::make('123'),
+                'slug'          =>  User::getSlug('Kebab Hallah'),
                 'vat_number'    => 'ciao9',
                 'opening_time'  => '12:05:43',
                 'closing_time'  => '12:05:43',
@@ -26,8 +26,8 @@ class UserSeeder extends Seeder
             ],
             [
                 'name'          => 'Pizzeria Napoletana',
-                'email'         => 'asdf@asdf.asdf',
-                'password'      =>  Hash::make('asdf'),
+                'email'         => 'pizzerianapoletan@gmail.com',
+                'password'      =>  Hash::make('123'),
                 'slug'          =>  User::getSlug('Pizzeria Napoletana'),
                 'vat_number'    => 'ciao4',
                 'opening_time'  => '12:05:43',
@@ -36,7 +36,27 @@ class UserSeeder extends Seeder
             ],
             [
                 'name'          => 'Sushi Zen',
-                'email'         => 'zxcv@zxcv.zxcv',
+                'email'         => 'sushizen@gmail.com',
+                'password'      =>  Hash::make('zxcv'),
+                'slug'          =>  User::getSlug('Sushi Zen'),
+                'vat_number'    => 'ciao6',
+                'opening_time'  => '12:05:43',
+                'closing_time'  => '12:05:43',
+                'is_opened'     => 1
+            ],
+            [
+                'name'          => 'Mario Poke',
+                'email'         => 'sushizen@gmail.com',
+                'password'      =>  Hash::make('zxcv'),
+                'slug'          =>  User::getSlug('Sushi Zen'),
+                'vat_number'    => 'ciao6',
+                'opening_time'  => '12:05:43',
+                'closing_time'  => '12:05:43',
+                'is_opened'     => 1
+            ],
+            [
+                'name'          => 'Sushi Zen',
+                'email'         => 'sushizen@gmail.com',
                 'password'      =>  Hash::make('zxcv'),
                 'slug'          =>  User::getSlug('Sushi Zen'),
                 'vat_number'    => 'ciao6',
