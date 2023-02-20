@@ -27,7 +27,9 @@ class DishController extends Controller
      */
     public function index()
     {
-        $dishes = Dish::all();
+        $user = auth()->user();
+
+        $dishes = $user->dishes;
 
         // dd($dishes);
 
@@ -43,7 +45,9 @@ class DishController extends Controller
      */
     public function create()
     {
-        $dishes = Dish::all();
+        $user = auth()->user();
+
+        $dishes = $user->dishes;
 
         return view('admin.dishes.create', [
             'dishes'    => $dishes,
