@@ -33,6 +33,13 @@
                     <td>{{ $dish->name }}</td>
                     <td>{{ $dish->available}}</td>
                     <td>{{ $dish->is_visible}}</td>
+                    <td>
+                        <form action="{{ route('admin.dishes.destroy', ['dish' => $dish]) }}" method="post">
+                            @method('DELETE')
+                            @csrf
+                            <button class="btn btn-danger btn-delete-me">Elimina</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
