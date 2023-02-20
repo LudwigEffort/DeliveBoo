@@ -18,13 +18,15 @@ class CategorySeeder extends Seeder
             'Italiano',
             'Arabo',
             'Francese',
+            'Cucina internazionale',
+            'Koreano',
         ];
 
         foreach ($categories as $category) {
             Category::create([
                 'slug'          => Category::getSlug($category),
                 'name'          => $category,
-                'description'   => "lorem ipsum blablablablablabla",
+                'description'   => "lorem ipsum blablablablablabla", //da sistemare
             ]);
     }
 }

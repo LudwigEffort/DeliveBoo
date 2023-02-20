@@ -19,6 +19,10 @@ class DishSeeder extends Seeder
             'Kebab',
             'Pulled pork',
             'Hamburger',
+            'Spaghetti alla carbonara',
+            'Bistecca',
+            'Salmone alla griglia',
+            'Agnello arrosto',
         ];
 
         foreach ($dishes as $dish) {
@@ -26,7 +30,7 @@ class DishSeeder extends Seeder
                 'user_id'       => rand(1, 3), //da sistemare con faker
                 'slug'          => Dish::getSlug($dish),
                 'name'          => $dish,
-                'description'   => "lorem ipsum blablablablablabla",
+                'description'   => "lorem ipsum blablablablablabla", //da sistemare
                 'price'         => 1000,
                 'available'     => rand(0, 1),
                 'is_visible'    => rand(0, 1), //da definire

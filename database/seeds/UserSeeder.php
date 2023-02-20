@@ -14,6 +14,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         $users = [
+            //kebab
             [
                 'name'          => 'Kebab Hallah',
                 'email'         => 'kebabhallah@gmail.com',
@@ -24,6 +25,7 @@ class UserSeeder extends Seeder
                 'closing_time'  => '12:05:43',
                 'is_opened'     => 1
             ],
+            // pizza
             [
                 'name'          => 'Pizzeria Napoletana',
                 'email'         => 'pizzerianapoletan@gmail.com',
@@ -34,6 +36,7 @@ class UserSeeder extends Seeder
                 'closing_time'  => '12:05:43',
                 'is_opened'     => 0
             ],
+            // sushi
             [
                 'name'          => 'Sushi Zen',
                 'email'         => 'sushizen@gmail.com',
@@ -44,9 +47,10 @@ class UserSeeder extends Seeder
                 'closing_time'  => '12:05:43',
                 'is_opened'     => 1
             ],
+            // poke
             [
                 'name'          => 'Mario Poke',
-                'email'         => 'sushizen@gmail.com',
+                'email'         => 'mariopoke@gmail.com',
                 'password'      =>  Hash::make('zxcv'),
                 'slug'          =>  User::getSlug('Sushi Zen'),
                 'vat_number'    => 'ciao6',
@@ -54,9 +58,10 @@ class UserSeeder extends Seeder
                 'closing_time'  => '12:05:43',
                 'is_opened'     => 1
             ],
+            // grill e pasta 
             [
-                'name'          => 'Sushi Zen',
-                'email'         => 'sushizen@gmail.com',
+                'name'          => 'Grill & Pasta',
+                'email'         => 'grillpasta@gmail.com',
                 'password'      =>  Hash::make('zxcv'),
                 'slug'          =>  User::getSlug('Sushi Zen'),
                 'vat_number'    => 'ciao6',
