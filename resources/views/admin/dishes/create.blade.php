@@ -61,12 +61,12 @@
             </div>
 
             <div class="mb-3">
-                <label for="available" class="form-check-label">Available</label>
-                <input type="checkbox" class="form-check-input" id="available" name="available">
+                <label for="is_available" class="form-check-label">Available</label>
+                <input type="checkbox" class="form-check-input" id="is_available" name="is_available">
                 <div class="invalid-feedback">
-                    @error('available')
+                    @error('is_available')
                         <ul>
-                            @foreach ($errors->get('available') as $error)
+                            @foreach ($errors->get('is_available') as $error)
                                 <li>{{ $error }}</li>
                             @endforeach
                         </ul>
@@ -94,9 +94,3 @@
     </div>
 @endsection
 
-{{-- <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    Default checkbox
-  </label>
-</div> --}}
