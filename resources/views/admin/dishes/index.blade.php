@@ -2,9 +2,10 @@
 
 @section('content')
 <div class="container">
+
     @if (session('success_delete'))
         <div class="alert alert-warning" role="alert">
-            Post with id {{ session('success_delete')->id }} was delite!
+            Post with id {{ session('success_delete')->id }} was delete!
         </div>
     @endif
 
@@ -27,10 +28,10 @@
                     <th scope="row">{{ $dish->id }}</th>
                     <td>{{ $dish->slug }}</td>
                     <td>{{ $dish->name }}</td>
-                    <td>{{ $dish->description }}</td>
+                    <td>{{ $dish->description}}</td>
                     <td>{{ $dish->price }}</td>
                     <td>{{ $dish->name }}</td>
-                    <td>{{ $dish->available }}</td>
+                    <td>{{ $dish->available}}</td>
                     <td>{{ $dish->is_visible}}</td>
                 </tr>
             @endforeach

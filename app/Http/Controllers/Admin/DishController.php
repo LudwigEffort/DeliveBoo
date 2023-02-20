@@ -8,6 +8,18 @@ use Illuminate\Http\Request;
 
 class DishController extends Controller
 {
+    private $validations = [
+        'slug'          => [
+            'required',
+            'string',
+            'max:100',
+        ],
+        'name'          => 'required|string|max:50',
+        'description'   => 'required|string',
+        'price'         => 'required|integer',
+        'available'     => 'required|boolean',
+        'is_visible'    => 'required|boolean|',
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -31,7 +43,7 @@ class DishController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**

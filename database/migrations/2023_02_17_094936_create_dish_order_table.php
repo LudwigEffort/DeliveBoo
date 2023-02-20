@@ -12,7 +12,6 @@ class CreateDishOrderTable extends Migration
         Schema::create('dish_order', function (Blueprint $table) {
             $table->foreignId('dish_id')->constrained();
             $table->foreignId('order_id')->constrained();
-
         });
     }
 
