@@ -43,7 +43,11 @@ class DishController extends Controller
      */
     public function create()
     {
+        $dishes = Dish::all();
 
+        return view('admin.dishes.create', [
+            'dishes'    => $dishes,
+        ]);
     }
 
     /**
@@ -54,7 +58,21 @@ class DishController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validations['slug'][] = 'unique:dishes';
+        $request->validate($this->validations);
+
+        $data = $request->all();
+
+        $dish = new Dish;
+        $dish->slug             = $data['slug'];
+        $dish->name             = $data['name'];
+        $dish->description      = $data['description'];
+        $dish->price            = $data['price'];
+        $dish->available        = $data['available'];
+        $dish->is_visible       = $data['is_visible'];
+        $dish->save();
+
+        return redirect()->route('admin.dishes.show', ['dish' => $dish]);
     }
 
     /**
