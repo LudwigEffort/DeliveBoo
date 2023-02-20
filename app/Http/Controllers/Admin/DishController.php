@@ -17,8 +17,6 @@ class DishController extends Controller
         'name'          => 'required|string|max:50',
         'description'   => 'required|string',
         'price'         => 'required|integer',
-        'available'     => 'required|boolean',
-        'is_visible'    => 'required|boolean|',
     ];
     /**
      * Display a listing of the resource.
@@ -47,11 +45,7 @@ class DishController extends Controller
     {
         $user = auth()->user();
 
-        $dishes = $user->dishes;
-
-        return view('admin.dishes.create', [
-            'dishes'    => $dishes,
-        ]);
+        return view('admin.dishes.create', compact($user));
     }
 
     /**
@@ -63,17 +57,19 @@ class DishController extends Controller
     public function store(Request $request)
     {
         $this->validations['slug'][] = 'unique:dishes';
+
         $request->validate($this->validations);
 
         $data = $request->all();
 
         $dish = new Dish;
         $dish->slug             = $data['slug'];
+        $dish->user_id          = $request->user()->id;
         $dish->name             = $data['name'];
         $dish->description      = $data['description'];
         $dish->price            = $data['price'];
-        $dish->available        = $data['available'];
-        $dish->is_visible       = $data['is_visible'];
+        $dish->available        = isset($request->$dish->available) ? $request->$dish->available : false;
+        $dish->is_visible       = isset($request->$dish->is_visible   ) ? $request->$dish->is_visible : false;
         $dish->save();
 
         return redirect()->route('admin.dishes.show', ['dish' => $dish]);

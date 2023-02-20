@@ -28,3 +28,5 @@ Route::middleware('auth') //approfondire il middleware
         Route::get('/', 'PageController@dashboard')->name('dashboard');
         Route::resource('dishes', 'DishController');
     });
+
+

@@ -19,8 +19,8 @@ class CreateDishesTable extends Migration
             $table->string('name', 50);
             $table->text('description');
             $table->mediumInteger('price')->unsigned();
-            $table->boolean('available');
-            $table->boolean('is_visible');
+            $table->tinyInteger('available')->unsigned()->default(0);
+            $table->tinyInteger('is_visible')->unsigned()->default(0);
             $table->timestamps();
         });
     }
