@@ -8,6 +8,16 @@
             Post with id {{ session('success_delete')->id }} was delete!
         </div>
     @endif
+    @if (session('unable_show'))
+        <div class="alert alert-warning" role="alert">
+            You are not able to see the post with id {{ session('unable_show')->id }}
+        </div>
+    @endif
+    @if (session('unable_edit'))
+    <div class="alert alert-warning" role="alert">
+        You are not able to edit the post with id {{ session('unable_edit')->id }}
+    </div>
+@endif
 
      <table class="table table-striped">
         <thead>

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Dish;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class DishController extends Controller
 {
@@ -83,7 +84,11 @@ class DishController extends Controller
      */
     public function show(Dish $dish)
     {
-        return view('admin.dishes.show', ['dish' => $dish]);
+        if (Auth::check() && Auth::user()->id == $dish->user_id) {
+            return view('admin.dishes.show', ['dish' => $dish]);
+        } else {
+            return redirect()->route('admin.dishes.index')->with('unable_show', $dish);
+        }
     }
 
     /**
@@ -94,9 +99,11 @@ class DishController extends Controller
      */
     public function edit(Dish $dish)
     {
-        return view('admin.dishes.edit', [
-            'dish' => $dish,
-        ]);
+        if (Auth::check() && Auth::user()->id == $dish->user_id) {
+            return view('admin.dishes.edit', ['dish' => $dish]);
+        } else {
+            return redirect()->route('admin.dishes.index')->with('unable_edit', $dish);
+        }
     }
 
     /**
