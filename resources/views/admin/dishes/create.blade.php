@@ -18,6 +18,22 @@
                 </div>
             </div>
 
+            {{-- uploader_img --}}
+            <div class="mb-3">
+                <label for="uploaded_img" class="form-label">Image</label>
+                <input class="form-control @error('uploaded_img') is-invalid @enderror"
+                type="file" id="uploaded_img" name="uploaded_img">
+                <div class="invalid-feedback">
+                    @error('uploaded_img')
+                        <ul>
+                            @foreach ($errors->get('uploaded_img') as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    @enderror
+                </div>
+            </div>
+
             <div class="mb-3">
                 <label for="slug" class="form-label">Slug</label>
                 <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" value="{{ old('slug') }}">
