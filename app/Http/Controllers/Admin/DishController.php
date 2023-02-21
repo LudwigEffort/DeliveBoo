@@ -69,7 +69,7 @@ class DishController extends Controller
         $dish->description      = $data['description'];
         $dish->price            = $data['price'];
         $dish->available        = isset($request->$dish->available) ? $request->$dish->available : false;
-        $dish->is_visible       = isset($request->$dish->is_visible   ) ? $request->$dish->is_visible : false;
+        $dish->is_visible       = isset($request->$dish->is_visible) ? $request->$dish->is_visible : false;
         $dish->save();
 
         return redirect()->route('admin.dishes.show', ['dish' => $dish]);
