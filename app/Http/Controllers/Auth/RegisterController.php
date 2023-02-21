@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -66,11 +67,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $img_path = isset($data['uploaded_img']) ? Storage::put('uploads', $data['uploaded_img']) : null;
         return User::create([
             'name' => $data['name'],
             'vat_number' => $data['vat_number'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'uploaded_img' => $img_path,
         ]);
     }
 }

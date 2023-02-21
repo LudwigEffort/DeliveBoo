@@ -19,6 +19,7 @@ class UpdateUsersTable extends Migration
             $table->time('opening_time')->nullable();
             $table->time('closing_time')->nullable();
             $table->tinyInteger('is_opened')->unsigned();
+            $table->string('uploaded_img', 100)->nullable();
         });
     }
 

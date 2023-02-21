@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
@@ -22,6 +22,21 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="uploaded_img" class="form-label">Upload Image</label>
+                            <input class="form-control @error('uploaded_img') is-invalid @enderror"
+                            type="file" id="uploaded_img" name="uploaded_img">
+                            <div class="invalid-feedback">
+                                @error('uploaded_img')
+                                    <ul>
+                                        @foreach ($errors->get('uploaded_img') as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                    @enderror
                             </div>
                         </div>
 
