@@ -27,6 +27,7 @@ Route::middleware('auth') //approfondire il middleware
     ->group(function(){
         Route::get('/', 'PageController@dashboard')->name('dashboard');
         Route::resource('dishes', 'DishController');
+        Route::resource('orders', 'OrderController');
     });
 
 
