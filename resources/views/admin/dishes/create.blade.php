@@ -30,7 +30,7 @@
                                 <li>{{ $error }}</li>
                             @endforeach
                         </ul>
-                    @enderror
+                        @enderror
                 </div>
             </div>
 
