@@ -2,8 +2,9 @@
 
 @section('content')
     <div class="container">
-        <form action="{{ route('admin.dishes.store') }}" method="post" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate>
+        <form action="{{ route('admin.dishes.update', ['dish' => $dish]) }}"" method="post" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate>
             @csrf
+            @method('PUT')
             <div class="mb-3">
                 <label for="title" class="form-label">Name</label>
                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="title" name="name" value="{{ old('name', $dish->name) }}">
@@ -81,12 +82,12 @@
             </div>
 
             <div class="mb-3">
-                <label for="is_available" class="form-check-label">Available</label>
-                <input type="checkbox" class="form-check-input" id="is_available" name="is_available" value="{{ old('is_available', $dish->is_available) }}">
+                <label for="available" class="form-check-label">Available</label>
+                <input type="checkbox" class="form-check-input" id="available" name="available" value="{{ old('available', $dish->available) }}">
                 <div class="invalid-feedback">
-                    @error('is_available')
+                    @error('available')
                         <ul>
-                            @foreach ($errors->get('is_available') as $error)
+                            @foreach ($errors->get('available') as $error)
                                 <li>{{ $error }}</li>
                             @endforeach
                         </ul>
@@ -108,7 +109,7 @@
                 </div>
             </div>
             <div class="col-12">
-                <button class="btn btn-primary" type="submit">Crea</button>
+                <button class="btn btn-primary" type="submit">Modifica</button>
             </div>
         </form>
     </div>
