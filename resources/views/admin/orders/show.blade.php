@@ -3,16 +3,17 @@
 @section('content')
     <div class="container">
         <ul>
-            <li scope="row">{{ $order->id }}</li>
-            <li>{{ $order->f_name }}</li>
-            <li>{{ $order->l_name }}</li>
-            <li>{{ $order->email}}</li>
-            <li>{{ $order->phone_number }}</li>
-            <li>{{ $order->address }}</li>
-            <li>{{ $order->order_date}}</li>
-            <li>{{ $order->pickup_date}}</li>
-            <li>{{ $order->payment_date}}</li>
-            <li>{{ $order->amount}}</li>
+            <li class="show-text">Order ID : {{ $order->id }}</li>
+            <li class="show-text">First Name : {{ $order->f_name }}</li>
+            <li class="show-text">Last Name : {{ $order->l_name }}</li>
+            <li class="show-text">Email : {{ $order->email}}</li>
+            <li class="show-text">Phone Number : {{ $order->phone_number }}</li>
+            <li class="show-text">Address : {{ $order->address }}</li>
+            <li class="show-text">Order Date : {{ $order->order_date}}</li>
+            <li class="show-text">Pickup Date : {{ $order->pickup_date}}</li>
+            <li class="show-text">Payment Date : {{ $order->payment_date}}</li>
+            <li class="show-text">Amount : {{ $order->amount }}€</li>
+            {{-- !L'amount é da aggiornare traformandolo in decimali--}}
         </ul>
     </div>
 @endsection
