@@ -6,6 +6,7 @@ use App\Dish;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class DishController extends Controller
 {
@@ -16,6 +17,7 @@ class DishController extends Controller
             'max:100',
         ],
         'name'          => 'required|string|max:50',
+        'uploaded_img'  => 'nullable|image|max:1024',
         'description'   => 'required|string',
         'price'         => 'required|integer',
     ];
@@ -63,10 +65,14 @@ class DishController extends Controller
 
         $data = $request->all();
 
+        // store upoloader img
+        $img_path = isset($data['uploaded_img']) ? Storage::put('uploads', $data['uploaded_img']) : null;
+
         $dish = new Dish;
         $dish->slug             = $data['slug'];
         $dish->user_id          = $request->user()->id;
         $dish->name             = $data['name'];
+        $dish->uploaded_img     = $img_path;
         $dish->description      = $data['description'];
         $dish->price            = $data['price'];
         $dish->available        = isset($request->$dish->available) ? $request->$dish->available : false;
@@ -120,8 +126,16 @@ class DishController extends Controller
 
         $data = $request->all();
 
+        if (isset($data['uploaded_img'])) {
+            $img_path = Storage::put('uploads', $data['uploaded_img']);
+            Storage::delete($post->uploaded_img);
+        } else {
+            $img_path = $post->uploaded_img;
+        }
+
         $dish->slug             = $data['slug'];
         $dish->name             = $data['name'];
+        $dish->uploaded_img     = $img_path;
         $dish->description      = $data['description'];
         $dish->price            = $data['price'];
         $dish->available        = $data['available'];
