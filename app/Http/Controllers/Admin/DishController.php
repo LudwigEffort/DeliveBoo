@@ -95,7 +95,7 @@ class DishController extends Controller
     public function edit(Dish $dish)
     {
         return view('admin.dishes.edit', [
-            'dish'          => $dish,
+            'dish' => $dish,
         ]);
     }
 

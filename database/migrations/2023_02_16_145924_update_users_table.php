@@ -14,10 +14,10 @@ class UpdateUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('slug', 100)->unique();
+            $table->string('slug', 100)->unique()->nullable(); //da sistemare prossimamente
             $table->string('vat_number', 11)->unique();
-            $table->time('opening_time')->nullale();
-            $table->time('closing_time')->nullale();
+            $table->time('opening_time')->nullable();
+            $table->time('closing_time')->nullable();
             $table->tinyInteger('is_opened')->unsigned();
         });
     }

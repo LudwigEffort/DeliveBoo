@@ -37,6 +37,18 @@
                                     </span>
                                 @enderror
                             </div>
+
+                            <label for="vat_number" class="col-md-4 col-form-label text-md-right">{{ __('vat_number') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="vat_number" type="text" class="form-control @error('vat_number') is-invalid @enderror" name="vat_number" value="{{ old('vat_number') }}">
+
+                                @error('vat_number')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                         </div>
 
                         <div class="form-group row">
