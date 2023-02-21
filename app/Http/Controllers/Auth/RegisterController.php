@@ -54,6 +54,7 @@ class RegisterController extends Controller
             'vat_number' => ['required', 'string', 'numeric','digits:11'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'uploaded_img'  => 'nullable|image|max:1024',
         ]);
     }
 
