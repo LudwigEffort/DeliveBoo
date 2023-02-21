@@ -128,9 +128,9 @@ class DishController extends Controller
 
         if (isset($data['uploaded_img'])) {
             $img_path = Storage::put('uploads', $data['uploaded_img']);
-            Storage::delete($post->uploaded_img);
+            Storage::delete($dish->uploaded_img);
         } else {
-            $img_path = $post->uploaded_img;
+            $img_path = $dish->uploaded_img;
         }
 
         $dish->slug             = $data['slug'];
