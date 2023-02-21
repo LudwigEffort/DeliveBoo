@@ -1,4 +1,4 @@
-@extends('layouts.app');
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -9,7 +9,7 @@
         </div>
     @endif --}}
 
-     <table class="table table-striped">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">Order ID</th>
@@ -37,18 +37,6 @@
                     <td>{{ $order->pickup_date}}</td>
                     <td>{{ $order->payment_date}}</td>
                     <td>{{ $order->amount}}</td>
-                    <td>
-                        <form action="{{ route('admin.orders.destroy', ['order' => $order]) }}" method="post">
-                            @method('DELETE')
-                            @csrf
-                            <button class="btn btn-danger btn-delete-me">Elimina</button>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="{{ route('admin.orders.edit', ['order' => $order]) }}" method="get">
-                            <button class="btn btn-danger btn-delete-me">Edit</button>
-                        </form>
-                    </td>
                     <td>
                         <form action="{{ route('admin.orders.show', ['order' => $order]) }}" method="get">
                             <button class="btn btn-danger btn-delete-me">Show</button>
