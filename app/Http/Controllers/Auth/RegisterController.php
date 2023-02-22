@@ -57,7 +57,7 @@ class RegisterController extends Controller
             'vat_number' => ['required', 'string', 'numeric','digits:11'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'uploaded_img'  => 'nullable|image|max:1024',
+            'uploaded_img'  => ['nullable', 'image'],
         ]);
     }
 
@@ -88,11 +88,10 @@ class RegisterController extends Controller
             'uploaded_img' => $img_path,
         ]);
 
-        $categories = $data['category_id'];
-
         if (isset($data['category_id'])) {
             $categories = $data['category_id'];
         }
+
         $user->categories()->attach($categories);
 
         return $user;

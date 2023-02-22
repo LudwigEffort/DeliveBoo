@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <form action="{{ route('admin.dishes.update', ['dish' => $dish]) }}"" method="post" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate>
+        <form action="{{ route('admin.dishes.update', ['dish' => $dish]) }}" method="post" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate>
             @csrf
             @method('PUT')
             <div class="mb-3">

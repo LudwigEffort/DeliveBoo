@@ -37,6 +37,7 @@ class UpdateUsersTable extends Migration
             $table->dropColumn('closing_time');
             $table->dropColumn('is_opened');
             $table->dropForeign(['category_id']);
+            $table->dropColumn('uploaded_img');
         });
     }
 }
