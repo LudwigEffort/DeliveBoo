@@ -12,6 +12,13 @@
         @endforeach
         <div>{{$user->opening_time}}</div>
         <div>{{$user->closing_time}}</div>
+
+        <td>
+            <a href="{{ route('admin.dishes.index', ['dishes' => $dishes]) }}" class="btn btn-primary">Menu</a>
+        </td>
+        <td>
+            <a href="{{ route('admin.orders.index', ['orders' => $orders]) }}" class="btn btn-warning">Ordini</a>
+        </td>
 </div>
 @endsection
 
