@@ -20,7 +20,7 @@ class UpdateUsersTable extends Migration
             $table->time('closing_time')->nullable();
             $table->tinyInteger('is_opened')->unsigned();
             $table->string('uploaded_img', 100)->nullable();
-        });
+            });
     }
 
     /**
@@ -36,6 +36,7 @@ class UpdateUsersTable extends Migration
             $table->dropColumn('opening_time');
             $table->dropColumn('closing_time');
             $table->dropColumn('is_opened');
+            $table->dropForeign(['category_id']);
         });
     }
 }

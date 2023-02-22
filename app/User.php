@@ -25,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'vat_number', 'email', 'password' , 'uploaded_img'
+        'name', 'vat_number', 'email', 'password' , 'uploaded_img', 'category_id'
     ];
 
     protected $attributes = [
@@ -52,3 +52,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 }
+

@@ -25,6 +25,24 @@
                             </div>
                         </div>
 
+                        <div class="mb-3">
+                            <label for="category_id" class="form-label">Categoria</label>
+                            <select multiple class="form-select @error('category_id') is-invalid @enderror" id="category_id" name="category_id[]" @if(is_array(old('category_id')) && in_array($category->id, old('category_id'))) checked @endif>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}" @if ($category->id == old('category_id')) selected @endif>{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                            <div class="invalid-feedback">
+                                @error('category_id')
+                                    <ul>
+                                        @foreach ($errors->get('category_id') as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                @enderror
+                            </div>
+                        </div>
+
                         <div class="form-group row">
                             <label for="uploaded_img" class="form-label">Upload Image</label>
                             <input class="form-control @error('uploaded_img') is-invalid @enderror"
