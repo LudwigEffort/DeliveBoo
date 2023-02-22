@@ -18,4 +18,4 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get('/posts', 'Api\PostController@index')->name('posts.index');
+Route::get('/dishes', 'Api\DishController@index')->name('dishes.index');

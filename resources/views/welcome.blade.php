@@ -9,6 +9,8 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
 
+        <script src="{{ asset('js/front.js') }}" defer></script>
+
         <!-- Styles -->
         <style>
             html, body {
@@ -79,26 +81,10 @@
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
                         @endif
+                        <div id="root"></div>
                     @endauth
                 </div>
             @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Queto è il Develop di Ludovico
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Ludovico</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">Dario</a>
-                    <a href="https://blog.laravel.com">Matteo</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Camillo</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
         </div>
     </body>
 </html>
