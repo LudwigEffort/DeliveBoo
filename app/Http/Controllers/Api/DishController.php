@@ -15,10 +15,9 @@ class DishController extends Controller
      */
     public function index()
     {
-        $dishes = Dish::paginate();
 
-
-
+        //! sarebbe all() per prendere tutti i dati, non paginate, probabile errore in App.Vue (API)
+        $dishes = Dish::paginate(21);
         return response()->json([
             'success' => true,
             'results' => $dishes,

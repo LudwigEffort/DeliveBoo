@@ -13,7 +13,6 @@ class Category extends Model
     public function users() {
         return $this->belongsToMany('App\User');
     }
-
 }
 
 
