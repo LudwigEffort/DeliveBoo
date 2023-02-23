@@ -24,7 +24,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $user = User::where('slug', $user)->with('category')->first();
+        //Al momento disattivo questo
+        //$user = User::where('slug', $user)->with('category')->first();
         return response()->json([
             'success' => true,
             'results' => $user,

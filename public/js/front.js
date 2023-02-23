@@ -5057,19 +5057,6 @@ __webpack_require__.r(__webpack_exports__);
     Navbar: _components_Navbar_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     Footer: _components_Footer_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
-  /* data() {
-        return {
-            arrUsers: null,
-        }
-    },
-    methods: {
-        getUsers() {
-            axios.get('/api/users').then(response => this.arrUsers = response.data.results);
-        },
-     },
-    created() {
-        this.getUsers();
-    } */
 });
 
 /***/ }),
@@ -5178,23 +5165,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _Page404_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Page404.vue */ "./resources/js/pages/Page404.vue");
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    Page404: _Page404_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   props: ['slug'],
   data: function data() {
     return {
-      objUser: null
+      objUser: null,
+      is404: false
     };
   },
-  methods: {
-    getUsers: function getUsers() {
-      var _this = this;
-      axios.get('/api/users/' + this.slug).then(function (response) {
-        return _this.objUser = response.data.results;
-      });
-    }
-  },
   created: function created() {
-    this.getUsers();
+    var _this = this;
+    axios.get('/api/users/' + this.slug).then(function (response) {
+      if (response.data.success) {
+        _this.objUser = response.data.results;
+      } else {
+        _this.is404 = true;
+      }
+    });
   }
 });
 
@@ -5469,9 +5461,7 @@ var render = function render() {
       staticClass: "card-title"
     }, [_vm._v(_vm._s(user.closing_time))]), _vm._v(" "), _c("h5", {
       staticClass: "card-title"
-    }, [_vm._v(_vm._s(user.is_opened))]), _vm._v(" "), _c("p", {
-      staticClass: "card-text flex-grow-1"
-    }, [_vm._v(_vm._s(user.descripion))])])])])], 1);
+    }, [_vm._v(_vm._s(user.is_opened))])])])])], 1);
   }), 0)]) : _vm._e();
 };
 var staticRenderFns = [];
@@ -5495,7 +5485,29 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("h1", [_vm._v(_vm._s(_vm.$route.params.name))]), _vm._v(" "), _c("h2")]);
+  return _c("div", [_vm.is404 ? _c("Page404") : _vm.objUser ? _c("div", {
+    staticClass: "container-fluid post-div"
+  }, [_c("img", {
+    staticClass: "card-img-top",
+    attrs: {
+      src: "storage/" + _vm.objUser.uploaded_img,
+      alt: _vm.objUser.name
+    }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "card-body d-flex flex-column"
+  }, [_c("h5", {
+    staticClass: "card-title"
+  }, [_vm._v("Name: " + _vm._s(_vm.objUser.name))]), _vm._v(" "), _c("h5", {
+    staticClass: "card-title"
+  }, [_vm._v("Email: " + _vm._s(_vm.objUser.email))]), _vm._v(" "), _c("h5", {
+    staticClass: "card-title"
+  }, [_vm._v("Vat Number: " + _vm._s(_vm.objUser.vat_number))]), _vm._v(" "), _c("h5", {
+    staticClass: "card-title"
+  }, [_vm._v("Opening Time: " + _vm._s(_vm.objUser.opening_time))]), _vm._v(" "), _c("h5", {
+    staticClass: "card-title"
+  }, [_vm._v("Closing Time: " + _vm._s(_vm.objUser.closing_time))]), _vm._v(" "), _c("h5", {
+    staticClass: "card-title"
+  }, [_vm._v("Opened now: " + _vm._s(_vm.objUser.is_opened))])])]) : _c("div", [_vm._v("Loading... " + _vm._s(_vm.objUser.name))])], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -27281,17 +27293,17 @@ var routes = [{
   name: 'home',
   component: _pages_UserIndex_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
 }, {
-  path: '/about',
-  name: 'about',
-  component: _pages_About_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
-}, {
   path: '/:slug',
   name: 'UserShow',
   component: _pages_UserShow__WEBPACK_IMPORTED_MODULE_2__["default"],
   props: true
 }, {
-  path: "*",
-  name: "page404",
+  path: '/about',
+  name: 'about',
+  component: _pages_About_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+}, {
+  path: ".*",
+  name: 'Page404',
   component: _pages_Page404_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
 } //LASCIATELA PER ULTIMA
 ];

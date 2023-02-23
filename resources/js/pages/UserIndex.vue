@@ -13,7 +13,6 @@
                         <h5 class="card-title">{{ user.opening_time }}</h5>
                         <h5 class="card-title">{{ user.closing_time }}</h5>
                         <h5 class="card-title">{{ user.is_opened }}</h5>
-                        <p class="card-text flex-grow-1">{{ user.descripion }}</p>
                     </div>
                 </div>
             </router-link>

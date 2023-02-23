@@ -13,9 +13,9 @@ Vue.use(VueRouter);
 
 const routes = [
     { path: '/', name: 'home', component: UserIndex},
-    { path: '/about', name: 'about', component: About},
     { path: '/:slug', name: 'UserShow', component:UserShow, props: true},
-    { path: "*", name: "page404", component: Page404 }, //LASCIATELA PER ULTIMA
+    { path: '/about', name: 'about', component: About},
+    { path: ".*", name: 'Page404', component: Page404 }, //LASCIATELA PER ULTIMA
 ];
 
 // personalizzazione del vue-router
