@@ -15,5 +15,14 @@
             <li class="show-text">Amount : {{ $order->amount }}€</li>
             {{-- !L'amount é da aggiornare traformandolo in decimali--}}
         </ul>
+        <h2>Piatti ordinati</h2>
+        <ul>
+            @foreach ($order->dishes as $dish)
+            <li>{{$dish->name}} - {{$dish->price}}$</li>
+            @endforeach
+        </ul>
+
+        <h2>Totale: {{$order->amount}}</h2>
+
     </div>
 @endsection

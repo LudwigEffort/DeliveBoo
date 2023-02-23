@@ -17,10 +17,23 @@ class OrderSeeder extends Seeder
     {
         $last_user_id = User::max('id');
 
+        $orders = Order::all();
+
         for ($i = 0; $i < 20; $i++) {
 
             $user_id = rand(1, $last_user_id);
             $dish_ids = Dish::where('user_id', $user_id)->pluck('id')->toArray();
+
+            // $amount = 0;
+
+            // foreach ($selected_dishes as $dish_id) {
+            //         $dish = Dish::find($dish_id);
+            //         $amount += $dish->price;
+            //         $order->dishes()->attach($dish);
+            //      }
+
+
+
             $order = Order::create([
                 'f_name' => $faker->firstName(),
                 'l_name' => $faker->lastName(),
@@ -30,7 +43,7 @@ class OrderSeeder extends Seeder
                 'order_date' => $faker->dateTimeBetween('-1 hour', 'now'),
                 'pickup_date' => $faker->dateTimeBetween('now', '+2 hours'),
                 'payment_date' => $faker->dateTimeBetween('-1 hour', 'now'),
-                'amount' => $faker->numberBetween(10, 100),
+                'amount' => $amount,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

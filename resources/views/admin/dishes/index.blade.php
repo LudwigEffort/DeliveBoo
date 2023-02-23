@@ -51,14 +51,10 @@
                         </form>
                     </td>
                     <td>
-                        <form action="{{ route('admin.dishes.edit', ['dish' => $dish]) }}" method="get">
-                            <button class="btn btn-danger btn-delete-me">Edit</button>
-                        </form>
+                        <a href="{{ route('admin.dishes.edit', ['dish' => $dish]) }}" class="btn btn-danger btn-delete-me">Edit</a>
                     </td>
                     <td>
-                        <form action="{{ route('admin.dishes.show', ['dish' => $dish]) }}" method="get">
-                            <button class="btn btn-danger btn-delete-me">Show</button>
-                        </form>
+                      <a href="{{ route('admin.dishes.show', ['dish' => $dish]) }}" class="btn btn-danger btn-delete-me">Show</a>
                     </td>
                 </tr>
             @endforeach

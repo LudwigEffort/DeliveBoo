@@ -161,4 +161,16 @@ class DishController extends Controller
 
         return redirect()->route('admin.dishes.index')->with('success_delete', $dish);
     }
+
+    public function slug(Request $request) {
+
+        $name = $request->query('name');
+
+        $slug = Dish::getSlug($name);
+
+        return response()->json([
+            'name'  => $slug,
+        ]);
+    }
+
 }

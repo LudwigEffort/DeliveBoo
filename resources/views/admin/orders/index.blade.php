@@ -42,9 +42,7 @@
                     <td>{{ $order->payment_date}}</td>
                     <td>{{ $order->amount}}</td>
                     <td>
-                        <form action="{{ route('admin.orders.show', ['order' => $order]) }}" method="get">
-                            <button class="btn btn-danger btn-delete-me">Show</button>
-                        </form>
+                        <a href="{{ route('admin.orders.show', ['order' => $order]) }}" class="btn btn-danger btn-delete-me">Show</a>
                     </td>
                 </tr>
             @endforeach
