@@ -30,4 +30,7 @@ Route::middleware('auth') //approfondire il middleware
         Route::resource('orders', 'OrderController');
     });
 
-
+// Gestione di tutte le altre richieste non corrispondenti a nessuna rotta creata
+Route::get('{any?}', function () {
+    return view('welcome');
+})->where('any', '.*')->name('welcome');

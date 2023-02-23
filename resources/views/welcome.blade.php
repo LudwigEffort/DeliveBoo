@@ -68,6 +68,7 @@
     <body>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
+            {{-- TOGLIERE QUESTA CLASSE TOP-RIGHT --}}
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>

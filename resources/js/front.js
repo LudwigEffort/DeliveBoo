@@ -2,19 +2,20 @@ require('./common');
 
 import Vue from 'vue';
 import App from './App';
+import UserIndex from './pages/UserIndex.vue';
 import UserShow from './pages/UserShow';
 import VueRouter from 'vue-router';
+import About from './pages/About.vue';
+import Page404 from './pages/Page404.vue';
 
 
 Vue.use(VueRouter);
 
 const routes = [
-    {   path: '/', name: 'home', component: App,},
-    {   path: '/:slug', name: 'UserShow', component:UserShow, props: true},
-    /* {   path: '/', name: 'home', component: App,},
-
-    {   path: '/', name: 'home', component: App,},
-    {   path: '/', name: 'home', component: App,}, */
+    { path: '/', name: 'home', component: UserIndex},
+    { path: '/about', name: 'about', component: About},
+    { path: '/:slug', name: 'UserShow', component:UserShow, props: true},
+    { path: "*", name: "page404", component: Page404 }, //LASCIATELA PER ULTIMA
 ];
 
 // personalizzazione del vue-router
