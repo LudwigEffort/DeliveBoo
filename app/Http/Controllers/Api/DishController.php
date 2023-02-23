@@ -15,10 +15,10 @@ class DishController extends Controller
      */
     public function index()
     {
-        $dishes = Dish::all();
+        $dish = Dish::all();
         return response()->json([
             'success' => true,
-            'results' => $dishes,
+            'results' => $dish,
         ]);
     }
     /**
@@ -29,6 +29,11 @@ class DishController extends Controller
      */
     public function show(Dish $dish)
     {
-        //
+
+        //Al momento disattivo questo
+        return response()->json([
+            'success' => true,
+            'results' => $dish,
+        ]);
     }
 }
