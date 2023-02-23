@@ -15,7 +15,8 @@ class DishController extends Controller
      */
     public function index()
     {
-        $dish = Dish::all();
+        $dish = Dish::where('id', 'user_id'); //?COME RICHIEDERE TUTTI I PIATTI DI UN SINGOLO RISTORANTE
+        //! NON TUTTI DAL DATABASE
         return response()->json([
             'success' => true,
             'results' => $dish,
