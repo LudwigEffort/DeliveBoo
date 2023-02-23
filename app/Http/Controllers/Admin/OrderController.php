@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Dish;
+use App\User;
 use App\Order;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -15,11 +18,24 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::paginate(10);
-        return view('admin.orders.index', [
-            'orders' => $orders,
-        ]);
+        $amount = 0;
+        $user = auth()->user();
+        $orders = Order::whereHas('dishes.user',
+        function ($query) use ($user) {
+                                $query->where('id', $user->id);
+        })->get();
+
+        foreach ($orders as $order) {
+            foreach ($order->dishes as $dish) {
+                $amount += $dish->price;
+            }
+        }
+            return view('admin.orders.index', [
+                'orders' => $orders,
+                'amount' => $amount,
+            ]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -50,7 +66,13 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        return view('admin.orders.show', ['order' => $order]);
+        $dishes = Dish::findOrFail('user_id');
+
+        if (Auth::check() && Auth::user()->id == $dishes->user_id) {
+            return view('admin.orders.show', ['order' => $order]);
+        } else {
+            return redirect()->route('admin.orders.index')->with('unable_show', $order);
+        }
     }
 
     /**
