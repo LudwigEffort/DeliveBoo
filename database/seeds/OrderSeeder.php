@@ -43,7 +43,7 @@ class OrderSeeder extends Seeder
                 'order_date' => $faker->dateTimeBetween('-1 hour', 'now'),
                 'pickup_date' => $faker->dateTimeBetween('now', '+2 hours'),
                 'payment_date' => $faker->dateTimeBetween('-1 hour', 'now'),
-                'amount' => $amount,
+                'amount' => 100000,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
