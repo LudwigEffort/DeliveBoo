@@ -10,10 +10,10 @@ class UserController extends Controller
 {
     public function index()
     {
-        $User = User::all();
+        $user = User::all();
         return response()->json([
             'success' => true,
-            'results' => $User,
+            'results' => $user,
         ]);
     }
     /**
@@ -24,6 +24,10 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        $user = User::where('slug', $user)->with('category')->first();
+        return response()->json([
+            'success' => true,
+            'results' => $user,
+        ]);
     }
 }
