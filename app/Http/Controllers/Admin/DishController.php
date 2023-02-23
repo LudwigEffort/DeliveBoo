@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Dish;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -20,6 +21,8 @@ class DishController extends Controller
         'uploaded_img'  => 'nullable|image|max:1024',
         'description'   => 'required|string',
         'price'         => 'required|integer',
+        'available' => 'nullable|boolean',
+        'is_visible' => 'nullable|boolean',
     ];
     /**
      * Display a listing of the resource.
@@ -75,11 +78,12 @@ class DishController extends Controller
         $dish->uploaded_img     = $img_path;
         $dish->description      = $data['description'];
         $dish->price            = $data['price'];
-        $dish->available        = isset($request->$dish->available) ? $request->$dish->available : false;
-        $dish->is_visible       = isset($request->$dish->is_visible) ? $request->$dish->is_visible : false;
+        $dish->available        = $request->has('available') ? true : false;
+        $dish->is_visible       = $request->has('is_visible') ? true : false;
         $dish->save();
 
         return redirect()->route('admin.dishes.show', ['dish' => $dish]);
+
     }
 
     /**
@@ -121,7 +125,7 @@ class DishController extends Controller
      */
     public function update(Request $request, Dish $dish)
     {
-        $this->validations['slug'][] = 'unique:dishes';
+        $this->validations['slug'][] = Rule::unique('dishes')->ignore($dish);
         $request->validate($this->validations);
 
         $data = $request->all();
@@ -138,8 +142,8 @@ class DishController extends Controller
         $dish->uploaded_img     = $img_path;
         $dish->description      = $data['description'];
         $dish->price            = $data['price'];
-        $dish->available        = $data['available'];
-        $dish->is_visible       = $data['is_visible'];
+        $dish->available        = $request->has('available') ? true : false;
+        $dish->is_visible       = $request->has('is_visible') ? true : false;
         $dish->update();
 
         return redirect()->route('admin.dishes.show', ['dish' => $dish]);

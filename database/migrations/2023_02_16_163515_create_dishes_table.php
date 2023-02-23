@@ -20,8 +20,8 @@ class CreateDishesTable extends Migration
             $table->string('uploaded_img', 100)->nullable();
             $table->text('description');
             $table->mediumInteger('price')->unsigned();
-            $table->tinyInteger('available')->unsigned()->default(0);
-            $table->tinyInteger('is_visible')->unsigned()->default(0);
+            $table->boolean('available')->nullable();
+            $table->boolean('is_visible')->nullable();
             $table->timestamps();
         });
     }

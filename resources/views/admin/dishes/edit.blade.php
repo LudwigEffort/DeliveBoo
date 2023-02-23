@@ -69,7 +69,7 @@
 
             <div class="mb-3">
                 <label for="price" class="form-label">Price</label>
-                <input type="number" class="form-control @error('name') is-invalid @enderror" id="price" name="price" value="{{ old('price', $dish->price) }}">
+                <input type="number" class="form-control @error('name') is-invalid @enderror" id="price" name="price" value="{{ old('price', $dish->price)}}">
                 <div class="invalid-feedback">
                     @error('price')
                         <ul>
@@ -83,7 +83,7 @@
 
             <div class="mb-3">
                 <label for="available" class="form-check-label">Available</label>
-                <input type="checkbox" class="form-check-input" id="available" name="available" value="{{ old('available', $dish->available) }}">
+                <input type="checkbox" class="form-check-input" id="available" name="available" value="1" {{ $dish->available ? 'checked' : ''}}>
                 <div class="invalid-feedback">
                     @error('available')
                         <ul>
@@ -97,7 +97,7 @@
 
             <div class="mb-3">
                 <label for="is_visible" class="form-check-label">is_visible</label>
-                <input type="checkbox" class="form-check-input" id="is_visible" name="is_visible" value="{{ old('is_visible', $dish->is_visible) }}">
+                <input type="checkbox" class="form-check-input" id="is_visible" name="is_visible" value="1" {{ $dish->is_visible ? 'checked' : ''}}>
                 <div class="invalid-feedback">
                     @error('is_visible')
                         <ul>

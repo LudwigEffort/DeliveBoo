@@ -13,7 +13,7 @@ class User extends Authenticatable
     use Slugger;
 
     public function dishes() {
-        return $this->hasMany('App\Dish');
+        return $this->hasMany(Dish::class);
     }
 
     public function categories() {

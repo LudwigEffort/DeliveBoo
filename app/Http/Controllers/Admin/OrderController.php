@@ -20,10 +20,9 @@ class OrderController extends Controller
     {
         $amount = 0;
         $user = auth()->user();
-        $orders = Order::whereHas('dishes.user',
-        function ($query) use ($user) {
-                                $query->where('id', $user->id);
-        })->get();
+        $orders = Order::whereHas('dishes.user', function ($query) use ($user) {
+                           $query->where('id', $user->id);
+                            })->get();
 
         foreach ($orders as $order) {
             foreach ($order->dishes as $dish) {
@@ -66,9 +65,13 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        $dishes = Dish::findOrFail('user_id');
+        $user = Auth::user();
 
-        if (Auth::check() && Auth::user()->id == $dishes->user_id) {
+        $dishes = $user->dishes();
+
+        if ($dishes->whereHas('orders', function ($q) use ($order) {
+            $q->where('order_id', $order->id);
+        })->exists()) {
             return view('admin.orders.show', ['order' => $order]);
         } else {
             return redirect()->route('admin.orders.index')->with('unable_show', $order);
