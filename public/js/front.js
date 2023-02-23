@@ -5052,20 +5052,19 @@ __webpack_require__.r(__webpack_exports__);
   components: {},
   data: function data() {
     return {
-      results: null,
-      query: ""
+      arrUsers: null
     };
   },
   methods: {
-    getDishes: function getDishes() {
+    getUsers: function getUsers() {
       var _this = this;
-      axios.get('/api/dishes').then(function (response) {
-        return _this.results = response.data.results;
+      axios.get('/api/users').then(function (response) {
+        return _this.arrUsers = response.data.results;
       });
     }
   },
   created: function created() {
-    this.getDishes();
+    this.getUsers();
   }
 });
 
@@ -5088,28 +5087,38 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("div", {
     staticClass: "container"
-  }, [_c("div", [_c("h1", [_vm._v("Index dei post")]), _vm._v(" "), _vm.results ? _c("div", [_c("div", {
+  }, [_c("h1", [_vm._v("Index dei restaurants")]), _vm._v(" "), _vm.arrUsers ? _c("div", [_c("div", {
     staticClass: "row g-3"
-  }, _vm._l(_vm.results.data, function (dish) {
+  }, _vm._l(_vm.arrUsers, function (user) {
     return _c("div", {
-      key: dish.id,
+      key: user.id,
       staticClass: "col-sm-6 col-md-4"
     }, [_c("div", {
       staticClass: "card h-100"
     }, [_c("img", {
       staticClass: "card-img-top",
       attrs: {
-        src: "storage/" + dish.uploaded_img,
-        alt: dish.name
+        src: "storage/" + user.uploaded_img,
+        alt: user.name
       }
     }), _vm._v(" "), _c("div", {
       staticClass: "card-body d-flex flex-column"
     }, [_c("h5", {
       staticClass: "card-title"
-    }, [_vm._v(_vm._s(dish.name))]), _vm._v(" "), _c("p", {
+    }, [_vm._v(_vm._s(user.name))]), _vm._v(" "), _c("h5", {
+      staticClass: "card-title"
+    }, [_vm._v(_vm._s(user.email))]), _vm._v(" "), _c("h5", {
+      staticClass: "card-title"
+    }, [_vm._v(_vm._s(user.vat_number))]), _vm._v(" "), _c("h5", {
+      staticClass: "card-title"
+    }, [_vm._v(_vm._s(user.opening_time))]), _vm._v(" "), _c("h5", {
+      staticClass: "card-title"
+    }, [_vm._v(_vm._s(user.closing_time))]), _vm._v(" "), _c("h5", {
+      staticClass: "card-title"
+    }, [_vm._v(_vm._s(user.is_opened))]), _vm._v(" "), _c("p", {
       staticClass: "card-text flex-grow-1"
-    }, [_vm._v(_vm._s(dish.description))])])])]);
-  }), 0)]) : _vm._e()])]);
+    }, [_vm._v(_vm._s(user.descripion))])])])]);
+  }), 0)]) : _vm._e()]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -26385,7 +26394,10 @@ var routes = [{
   path: '/',
   name: 'home',
   component: _App__WEBPACK_IMPORTED_MODULE_0__["default"]
-}];
+}
+/* {   path: '/', name: 'home', component: App,},
+ {   path: '/', name: 'home', component: App,},
+{   path: '/', name: 'home', component: App,}, */];
 
 // personalizzazione del vue-router
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({

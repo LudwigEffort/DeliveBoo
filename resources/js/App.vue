@@ -1,21 +1,25 @@
 <template>
     <div class="container">
-        <div>
-        <h1>Index dei post</h1>
-        <div v-if="results">
+        <h1>Index dei restaurants</h1>
+        <div v-if="arrUsers">
             <div class="row g-3">
-                <div v-for="dish in results.data" :key="dish.id" class="col-sm-6 col-md-4">
+                <!--CONTROLLARE DATI IN ARRIVO-->
+                <div v-for="user in arrUsers" :key="user.id" class="col-sm-6 col-md-4">
                     <div class="card h-100">
-                        <img :src="'storage/' + dish.uploaded_img" class="card-img-top" :alt="dish.name">
+                        <img :src="'storage/' + user.uploaded_img" class="card-img-top" :alt="user.name">
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">{{ dish.name }}</h5>
-                            <p class="card-text flex-grow-1">{{ dish.description }}</p>
+                            <h5 class="card-title">{{ user.name }}</h5>
+                            <h5 class="card-title">{{ user.email }}</h5>
+                            <h5 class="card-title">{{ user.vat_number }}</h5>
+                            <h5 class="card-title">{{ user.opening_time }}</h5>
+                            <h5 class="card-title">{{ user.closing_time }}</h5>
+                            <h5 class="card-title">{{ user.is_opened }}</h5>
+                            <p class="card-text flex-grow-1">{{ user.descripion }}</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </template>
 
@@ -30,19 +34,17 @@ export default {
   },
   data() {
         return {
-            results: null,
-            query: "",
+            arrUsers: null,
         }
     },
     methods: {
-        getDishes() {
-            axios.get('/api/dishes')
-                .then(response => this.results = response.data.results);
+        getUsers() {
+            axios.get('/api/users').then(response => this.arrUsers = response.data.results);
         },
 
     },
     created() {
-        this.getDishes();
+        this.getUsers();
     }
 }
 </script>

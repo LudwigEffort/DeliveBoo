@@ -8,11 +8,11 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 const routes = [
-    {
-        path: '/',
-        name: 'home',
-        component: App,
-    },
+    {   path: '/', name: 'home', component: App,},
+    /* {   path: '/', name: 'home', component: App,},
+
+    {   path: '/', name: 'home', component: App,},
+    {   path: '/', name: 'home', component: App,}, */
 ];
 
 // personalizzazione del vue-router
