@@ -1,11 +1,12 @@
 <template>
     <div>
+          <!--  -->
         <!--<Page404 v-if="is404" />-->
         <div v-if="objUser" class="container-fluid post-div">
             <img :src="'storage/' + objUser.uploaded_img" class="card-img-top" :alt="objUser.name">
             <div class="card-body d-flex flex-column">
 
-                <!--todo DEVONO ESSERE ASSOCIATE, AL MOMENTO L'ARRAY É VUOTO-->
+                <!--todo LE CATEGORIES DEVONO ESSERE ASSOCIATE ALLO USER, AL MOMENTO L'ARRAY É VUOTO-->
                 <!--<h4 v-if="objUser.categories">Categories: {{ objUser.categories.name }}</h4> -->
                 <h5 class="card-title">Name: {{ objUser.name }}</h5>
                 <h5 class="card-title">Email: {{ objUser.email }}</h5>
@@ -14,16 +15,26 @@
                 <h5 class="card-title">Closing Time: {{ objUser.closing_time }}</h5>
                 <h5 class="card-title">Opened now: {{ objUser.is_opened }}</h5>
 
+                <!-- * TEST PER VEDERE SE ARRIVANO I DATI DEI DISHES, PS SI. ESSENDO DISHES UN ARRAY VUOLE L'INDICE-->
+                                {{ objUser.dishes }}
+                                {{ objUser.dishes[0].id }}
+                                {{ objUser.dishes[0].name }}
+
+
                 <!--TODO: QUI VANNO RENDERIZZATI TUTTI I PIATTI DEL SINGOLO RISTORANTE -->
                 <!--<DishIndex />-->
 
                 <!--? OPPURE MOSTRARE I PIATTI DIRETTAMENTE QUI SENZA CREARE IL COMPONENTE DishIndex?-->
                 <div class="dish-index">
                     <div class="dish-card" v-for="dish in objUser.dishes" :key="dish.id">
-                        <!--<router-link :to="{name: 'Dish', params:{slug: user.slug, dish: dish.slug}}">       </router-link>-->
+
+                        <!--* QUESTO É IL LINK DEL SINGOLO PIATTO DEL SINGOLO RISTORANTE, ORA FUNZIONA -->
+                        <router-link
+                        :to="{name: 'Dish', params:{slug: dish.slug}}">
                             <img :src="'storage/' + dish.uploaded_img" :alt="dish.name">
                             <h3>{{ dish.name }}</h3>
                             <span>Price: {{ dish.price }}€</span>
+                        </router-link>
                     </div>
                 </div>
 
@@ -37,12 +48,16 @@
 <script>
 //import Page404 from './Page404.vue'
 //import DishIndex from './dishes/DishIndex.vue'
+import DishShow from './dishes/DishShow.vue'
 export default {
     components:{
         //Page404,
-        //DishIndex
+        DishShow
     },
-    props:['slug', 'dish'],
+    props:[
+        'slug',
+        'dish'
+    ],
     data() {
         return {
             objUser: null,

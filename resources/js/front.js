@@ -12,17 +12,21 @@ import About from './pages/About.vue';
 import Page404 from './pages/Page404.vue';
 
 
-
-//*TUTTE LE ROTTE
 const routes = [
-    { path: '/', name: 'home', component: UserIndex}, //*HOMEPAGE CON TUTTI I RISTORANTI
-    { path: '/:slug', name: 'UserShow', component:UserShow, props: true}, //*SHOW DEL SINGOLO RISTORANTE CHE CONTIENE GIÁ L'INDEX DI TUTTI I SUOI PIATTI
+//*HOMEPAGE CON TUTTI I RISTORANTI
+    { path: '/', name: 'home', component: UserIndex },
 
-    //TODO MODIFICARE QUESTA ROTTA
-    { path: '/:slug/:dish', name: 'Dish', component:DishShow, props: true}, //*SINGOLO DISH DEL SINGOLO RISTORANTE
+ //*SHOW DEL SINGOLO RISTORANTE CHE CONTIENE GIÁ L'INDEX DI TUTTI I SUOI PIATTI
+    { path: '/:slug', name: 'UserShow', component: UserShow, props: true },
 
-    { path: '/about', name: 'about', component: About}, //*ABOUT
-    //{ path: "*", name: 'Page404', component: Page404 }, //!LASCIATELA PER ULTIMA
+//TODO MODIFICARE QUESTA ROTTA (FORSE)
+    { path: '/:slug/:dish', name: 'Dish', component: DishShow, props: true }, //*SINGOLO DISH DEL SINGOLO RISTORANTE
+
+//*ABOUT
+    { path: '/about', name: 'about', component: About },
+
+//!LASCIATELA PER ULTIMA. TUTTE LE ALTRE ROTTE
+    { path: "*", component: UserIndex },
 ];
 
 // Personalizzazione del vue-router
