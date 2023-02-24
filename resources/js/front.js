@@ -16,11 +16,10 @@ import Page404 from './pages/Page404.vue';
 //*TUTTE LE ROTTE
 const routes = [
     { path: '/', name: 'home', component: UserIndex}, //*HOMEPAGE CON TUTTI I RISTORANTI
-    { path: '/:slug', name: 'UserShow', component:UserShow, props: true}, //*SHOW DEL SINGOLO RISTORANTE
+    { path: '/:slug', name: 'UserShow', component:UserShow, props: true}, //*SHOW DEL SINGOLO RISTORANTE CHE CONTIENE GIÁ L'INDEX DI TUTTI I SUOI PIATTI
 
-    //TODO MODIFICARE QUESTE 2 ROTTE
-    { path: '/:user', name: 'DishIndex', component: DishIndex, props: true}, //*INDEX DEI DISHES DEL SINGOLO RISTORANTE
-    { path: '/:user/:slug', name: 'DishShow', component:DishShow, props: true}, //*SINGOLO DISH DEL SINGOLO RISTORANTE
+    //TODO MODIFICARE QUESTA ROTTA
+    { path: '/:user/:dish', name: 'Dish', component:DishShow, props: true}, //*SINGOLO DISH DEL SINGOLO RISTORANTE
 
     { path: '/about', name: 'about', component: About}, //*ABOUT
     //{ path: "*", name: 'Page404', component: Page404 }, //!LASCIATELA PER ULTIMA

@@ -23,7 +23,7 @@ export default {
     components:{
         //Page404
     },
-    props:['slug'],
+ /*    props:['user','dish'],
     data() {
         return {
             objDish: null,
@@ -31,13 +31,13 @@ export default {
         }
     },
     created() {
-            axios.get(`/api/users/${this.slug}/${this.slug}`).then(response => {
+            axios.get(`/api/users/${this.user}/${this.dish}`).then(response => {
                 if(response.data.success) {
                     this.objDish = response.data.results;
                 } else {
                     this.is404 = true;
                 }
-        });},
+        });}, */
 }
 </script>
 

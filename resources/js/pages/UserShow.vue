@@ -4,6 +4,9 @@
         <div v-if="objUser" class="container-fluid post-div">
             <img :src="'storage/' + objUser.uploaded_img" class="card-img-top" :alt="objUser.name">
             <div class="card-body d-flex flex-column">
+
+                <!--todo DEVONO ESSERE ASSOCIATE, AL MOMENTO L'ARRAY É VUOTO-->
+                <!--<h4 v-if="objUser.categories">Categories: {{ objUser.categories.name }}</h4> -->
                 <h5 class="card-title">Name: {{ objUser.name }}</h5>
                 <h5 class="card-title">Email: {{ objUser.email }}</h5>
                 <h5 class="card-title">Vat Number: {{ objUser.vat_number }}</h5>
@@ -12,20 +15,33 @@
                 <h5 class="card-title">Opened now: {{ objUser.is_opened }}</h5>
 
                 <!--TODO: QUI VANNO RENDERIZZATI TUTTI I PIATTI DEL SINGOLO RISTORANTE -->
-                <DishIndex />
+                <!--<DishIndex />-->
+
+                <!--? OPPURE MOSTRARE I PIATTI DIRETTAMENTE QUI SENZA CREARE IL COMPONENTE DishIndex?-->
+                <div class="dish-index">
+                    <div class="dish-card" v-for="dish in objUser.dishes" :key="dish.id">
+                        <router-link :to="{name: 'Dish', params:{dish: dish.slug}}">
+                            <img :src="'storage/' + dish.uploaded_img" :alt="dish.name">
+                            <h3>{{ dish.name }}</h3>
+                            <span>Price: {{ dish.price }}€</span>
+                        </router-link>
+                    </div>
+                </div>
+
+
             </div>
         </div>
-        <div v-else>Loading... {{ objUser.name }}</div>
+        <!--<div v-else>Loading... {{ objUser.name }}</div>-->
     </div>
 </template>
 
 <script>
-// import Page404 from './Page404.vue'
-import DishIndex from './dishes/DishIndex.vue'
+//import Page404 from './Page404.vue'
+//import DishIndex from './dishes/DishIndex.vue'
 export default {
     components:{
         //Page404,
-        DishIndex
+        //DishIndex
     },
     props:['slug'],
     data() {

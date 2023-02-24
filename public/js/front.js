@@ -5165,13 +5165,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _dishes_DishIndex_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dishes/DishIndex.vue */ "./resources/js/pages/dishes/DishIndex.vue");
-// import Page404 from './Page404.vue'
-
+//import Page404 from './Page404.vue'
+//import DishIndex from './dishes/DishIndex.vue'
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     //Page404,
-    DishIndex: _dishes_DishIndex_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    //DishIndex
   },
   props: ['slug'],
   data: function data() {
@@ -5206,25 +5205,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'DishIndex',
-  props: ['name'],
-  data: function data() {
-    return {
-      arrDishes: null
-    };
+  name: 'DishIndex'
+  /* props:['user', 'dish'],
+   data() {
+      return {
+          arrDishes: null,
+      }
   },
   methods: {
-    getDishes: function getDishes() {
-      var _this = this;
-      axios.get("/api/users/".concat(this.name, "/dishes")).then(function (response) {
-        return _this.arrDishes = response.data.results;
-      });
-      console.log(arrDishes);
-    }
-  },
-  created: function created() {
-    this.getDishes();
-  }
+      getDishes() {
+          axios.get('/api/users/' + this.user + '/' + this.dish).then(response => this.arrDishes = response.data.results);
+      },
+   },
+  created() {
+      this.getDishes();
+  } */
 });
 
 /***/ }),
@@ -5244,24 +5239,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     //Page404
-  },
-  props: ['slug'],
-  data: function data() {
-    return {
-      objDish: null,
-      is404: false
-    };
-  },
-  created: function created() {
-    var _this = this;
-    axios.get("/api/users/".concat(this.slug, "/").concat(this.slug)).then(function (response) {
-      if (response.data.success) {
-        _this.objDish = response.data.results;
-      } else {
-        _this.is404 = true;
-      }
-    });
   }
+  /*    props:['user','dish'],
+     data() {
+         return {
+             objDish: null,
+             is404: false,
+         }
+     },
+     created() {
+             axios.get(`/api/users/${this.user}/${this.dish}`).then(response => {
+                 if(response.data.success) {
+                     this.objDish = response.data.results;
+                 } else {
+                     this.is404 = true;
+                 }
+         });}, */
 });
 
 /***/ }),
@@ -5581,7 +5574,28 @@ var render = function render() {
     staticClass: "card-title"
   }, [_vm._v("Closing Time: " + _vm._s(_vm.objUser.closing_time))]), _vm._v(" "), _c("h5", {
     staticClass: "card-title"
-  }, [_vm._v("Opened now: " + _vm._s(_vm.objUser.is_opened))]), _vm._v(" "), _c("DishIndex")], 1)]) : _c("div", [_vm._v("Loading... " + _vm._s(_vm.objUser.name))])]);
+  }, [_vm._v("Opened now: " + _vm._s(_vm.objUser.is_opened))]), _vm._v(" "), _c("div", {
+    staticClass: "dish-index"
+  }, _vm._l(_vm.objUser.dishes, function (dish) {
+    return _c("div", {
+      key: dish.id,
+      staticClass: "dish-card"
+    }, [_c("router-link", {
+      attrs: {
+        to: {
+          name: "Dish",
+          params: {
+            dish: dish.slug
+          }
+        }
+      }
+    }, [_c("img", {
+      attrs: {
+        src: "storage/" + dish.uploaded_img,
+        alt: dish.name
+      }
+    }), _vm._v(" "), _c("h3", [_vm._v(_vm._s(dish.name))]), _vm._v(" "), _c("span", [_vm._v("Price: " + _vm._s(dish.price) + "€")])])], 1);
+  }), 0)])]) : _vm._e()]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -5604,7 +5618,7 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _vm.arrDishes ? _c("div", [_c("div", {
+  return _c("div", [_c("div", {
     staticClass: "row g-3"
   }, _vm._l(_vm.arrDishes, function (dish) {
     return _c("div", {
@@ -5614,7 +5628,7 @@ var render = function render() {
       staticClass: "dish-card",
       attrs: {
         to: {
-          name: "dishShow",
+          name: "DishShow",
           params: {
             slug: dish.slug
           }
@@ -5634,12 +5648,10 @@ var render = function render() {
       staticClass: "card-title"
     }, [_vm._v(_vm._s(dish.name))]), _vm._v(" "), _c("h5", {
       staticClass: "card-title"
-    }, [_vm._v("Description: " + _vm._s(dish.description))]), _vm._v(" "), _c("h5", {
-      staticClass: "card-title"
     }, [_vm._v("Price " + _vm._s(dish.price) + "€")]), _vm._v(" "), _c("h5", {
       staticClass: "card-title"
     }, [_vm._v("Available: " + _vm._s(dish.available))])])])])], 1);
-  }), 0)]) : _vm._e();
+  }), 0)]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -27631,19 +27643,12 @@ var routes = [{
   component: _pages_UserShow__WEBPACK_IMPORTED_MODULE_4__["default"],
   props: true
 },
-//*SHOW DEL SINGOLO RISTORANTE
+//*SHOW DEL SINGOLO RISTORANTE CHE CONTIENE GIÁ L'INDEX DI TUTTI I SUOI PIATTI
 
-//TODO MODIFICARE QUESTE 2 ROTTE
+//TODO MODIFICARE QUESTA ROTTA
 {
-  path: '/:user',
-  name: 'DishIndex',
-  component: _pages_dishes_DishIndex_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
-  props: true
-},
-//*INDEX DEI DISHES DEL SINGOLO RISTORANTE
-{
-  path: '/:user/:slug',
-  name: 'DishShow',
+  path: '/:user/:dish',
+  name: 'Dish',
   component: _pages_dishes_DishShow__WEBPACK_IMPORTED_MODULE_6__["default"],
   props: true
 },

@@ -1,13 +1,12 @@
 <template>
-<div v-if="arrDishes">
+<div>
     <div class="row g-3">
         <div v-for="dish in arrDishes" :key="dish.id" class="col-sm-6 col-md-4">
-            <router-link :to="{name: 'dishShow', params:{slug: dish.slug}}" class="dish-card">
+            <router-link :to="{name: 'DishShow', params:{slug: dish.slug}}" class="dish-card">
                 <div class="card h-100">
                     <img :src="'storage/' + dish.uploaded_img" class="card-img-top" :alt="dish.name">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">{{ dish.name }}</h5>
-                        <h5 class="card-title">Description: {{ dish.description }}</h5>
                         <h5 class="card-title">Price {{ dish.price }}€</h5>
                         <h5 class="card-title">Available: {{ dish.available }}</h5>
                     </div>
@@ -21,22 +20,21 @@
 <script>
 export default {
     name: 'DishIndex',
-    props:['name'],
-    data() {
+    /* props:['user', 'dish'],
+     data() {
         return {
             arrDishes: null,
         }
     },
     methods: {
         getDishes() {
-            axios.get(`/api/users/${this.name}/dishes`).then(response => this.arrDishes = response.data.results);
-            console.log(arrDishes);
+            axios.get('/api/users/' + this.user + '/' + this.dish).then(response => this.arrDishes = response.data.results);
         },
 
     },
     created() {
         this.getDishes();
-    }
+    } */
 }
 </script>
 
