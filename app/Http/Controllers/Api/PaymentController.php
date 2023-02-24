@@ -7,5 +7,12 @@ use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
-    //
+    public function generate(Request $request){
+        return  'generate';
+    }
+
+    public function makePayment(Request $request){
+        return  'make payment';
+    }
+
 }
