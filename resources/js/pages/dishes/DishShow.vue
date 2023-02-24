@@ -23,7 +23,7 @@ export default {
     components:{
         //Page404
     },
- /*    props:['user','dish'],
+   /*  props:['slug'],
     data() {
         return {
             objDish: null,
@@ -31,7 +31,7 @@ export default {
         }
     },
     created() {
-            axios.get(`/api/users/${this.user}/${this.dish}`).then(response => {
+            axios.get(`/api/users/${this.slug}/${this.slug}`).then(response => {
                 if(response.data.success) {
                     this.objDish = response.data.results;
                 } else {

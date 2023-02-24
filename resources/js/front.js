@@ -19,7 +19,7 @@ const routes = [
     { path: '/:slug', name: 'UserShow', component:UserShow, props: true}, //*SHOW DEL SINGOLO RISTORANTE CHE CONTIENE GIÁ L'INDEX DI TUTTI I SUOI PIATTI
 
     //TODO MODIFICARE QUESTA ROTTA
-    { path: '/:user/:dish', name: 'Dish', component:DishShow, props: true}, //*SINGOLO DISH DEL SINGOLO RISTORANTE
+    { path: '/:slug/:dish', name: 'Dish', component:DishShow, props: true}, //*SINGOLO DISH DEL SINGOLO RISTORANTE
 
     { path: '/about', name: 'about', component: About}, //*ABOUT
     //{ path: "*", name: 'Page404', component: Page404 }, //!LASCIATELA PER ULTIMA

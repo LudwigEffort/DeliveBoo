@@ -20,11 +20,10 @@
                 <!--? OPPURE MOSTRARE I PIATTI DIRETTAMENTE QUI SENZA CREARE IL COMPONENTE DishIndex?-->
                 <div class="dish-index">
                     <div class="dish-card" v-for="dish in objUser.dishes" :key="dish.id">
-                        <router-link :to="{name: 'Dish', params:{dish: dish.slug}}">
+                        <!--<router-link :to="{name: 'Dish', params:{slug: user.slug, dish: dish.slug}}">       </router-link>-->
                             <img :src="'storage/' + dish.uploaded_img" :alt="dish.name">
                             <h3>{{ dish.name }}</h3>
                             <span>Price: {{ dish.price }}€</span>
-                        </router-link>
                     </div>
                 </div>
 
@@ -43,7 +42,7 @@ export default {
         //Page404,
         //DishIndex
     },
-    props:['slug'],
+    props:['slug', 'dish'],
     data() {
         return {
             objUser: null,

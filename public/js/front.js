@@ -5172,7 +5172,7 @@ __webpack_require__.r(__webpack_exports__);
     //Page404,
     //DishIndex
   },
-  props: ['slug'],
+  props: ['slug', 'dish'],
   data: function data() {
     return {
       objUser: null,
@@ -5240,21 +5240,21 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     //Page404
   }
-  /*    props:['user','dish'],
-     data() {
-         return {
-             objDish: null,
-             is404: false,
-         }
-     },
-     created() {
-             axios.get(`/api/users/${this.user}/${this.dish}`).then(response => {
-                 if(response.data.success) {
-                     this.objDish = response.data.results;
-                 } else {
-                     this.is404 = true;
-                 }
-         });}, */
+  /*  props:['slug'],
+   data() {
+       return {
+           objDish: null,
+           is404: false,
+       }
+   },
+   created() {
+           axios.get(`/api/users/${this.slug}/${this.slug}`).then(response => {
+               if(response.data.success) {
+                   this.objDish = response.data.results;
+               } else {
+                   this.is404 = true;
+               }
+       });}, */
 });
 
 /***/ }),
@@ -5580,21 +5580,12 @@ var render = function render() {
     return _c("div", {
       key: dish.id,
       staticClass: "dish-card"
-    }, [_c("router-link", {
-      attrs: {
-        to: {
-          name: "Dish",
-          params: {
-            dish: dish.slug
-          }
-        }
-      }
     }, [_c("img", {
       attrs: {
         src: "storage/" + dish.uploaded_img,
         alt: dish.name
       }
-    }), _vm._v(" "), _c("h3", [_vm._v(_vm._s(dish.name))]), _vm._v(" "), _c("span", [_vm._v("Price: " + _vm._s(dish.price) + "€")])])], 1);
+    }), _vm._v(" "), _c("h3", [_vm._v(_vm._s(dish.name))]), _vm._v(" "), _c("span", [_vm._v("Price: " + _vm._s(dish.price) + "€")])]);
   }), 0)])]) : _vm._e()]);
 };
 var staticRenderFns = [];
@@ -27647,7 +27638,7 @@ var routes = [{
 
 //TODO MODIFICARE QUESTA ROTTA
 {
-  path: '/:user/:dish',
+  path: '/:slug/:dish',
   name: 'Dish',
   component: _pages_dishes_DishShow__WEBPACK_IMPORTED_MODULE_6__["default"],
   props: true
