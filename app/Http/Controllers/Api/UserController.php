@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $user = User::all();
+        $user = User::with(['dishes', 'categories'])->get();
         return response()->json([
             'success' => true,
             'results' => $user,
@@ -24,8 +24,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //Al momento disattivo questo
-        //$user = User::where('slug', $user)->with('category')->first();
+        $user = User::where('id', $user->id)->with(['dishes','categories'])->first();
         return response()->json([
             'success' => true,
             'results' => $user,

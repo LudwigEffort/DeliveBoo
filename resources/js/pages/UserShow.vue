@@ -1,7 +1,7 @@
 <template>
     <div>
-        <Page404 v-if="is404" />
-        <div v-else-if="objUser" class="container-fluid post-div">
+        <!--<Page404 v-if="is404" />-->
+        <div v-if="objUser" class="container-fluid post-div">
             <img :src="'storage/' + objUser.uploaded_img" class="card-img-top" :alt="objUser.name">
             <div class="card-body d-flex flex-column">
                 <h5 class="card-title">Name: {{ objUser.name }}</h5>
@@ -10,6 +10,9 @@
                 <h5 class="card-title">Opening Time: {{ objUser.opening_time }}</h5>
                 <h5 class="card-title">Closing Time: {{ objUser.closing_time }}</h5>
                 <h5 class="card-title">Opened now: {{ objUser.is_opened }}</h5>
+
+                <!--TODO: QUI VANNO RENDERIZZATI TUTTI I PIATTI DEL SINGOLO RISTORANTE -->
+                <DishIndex />
             </div>
         </div>
         <div v-else>Loading... {{ objUser.name }}</div>
@@ -17,9 +20,13 @@
 </template>
 
 <script>
-import Page404 from './Page404.vue'
+// import Page404 from './Page404.vue'
+import DishIndex from './dishes/DishIndex.vue'
 export default {
-    components:{Page404},
+    components:{
+        //Page404,
+        DishIndex
+    },
     props:['slug'],
     data() {
         return {

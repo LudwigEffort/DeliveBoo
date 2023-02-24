@@ -21,7 +21,7 @@
 <script>
 export default {
     name: 'DishIndex',
-    props:['user'],
+    props:['name'],
     data() {
         return {
             arrDishes: null,
@@ -29,7 +29,8 @@ export default {
     },
     methods: {
         getDishes() {
-            axios.get(`/api/${this.user}/dishes`).then(response => this.arrDishes = response.data.results);
+            axios.get(`/api/users/${this.name}/dishes`).then(response => this.arrDishes = response.data.results);
+            console.log(arrDishes);
         },
 
     },

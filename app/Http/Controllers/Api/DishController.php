@@ -15,8 +15,8 @@ class DishController extends Controller
      */
     public function index()
     {
-        $dish = Dish::where('id', 'user_id'); //?COME RICHIEDERE TUTTI I PIATTI DI UN SINGOLO RISTORANTE
-        //! NON TUTTI DAL DATABASE
+        $dish = Dish::all(); //?COME RICHIEDERE TUTTI I PIATTI DI UN SINGOLO RISTORANTE
+        //! NON TUTTI I DISHES DAL DATABASE
         return response()->json([
             'success' => true,
             'results' => $dish,
@@ -30,8 +30,6 @@ class DishController extends Controller
      */
     public function show(Dish $dish)
     {
-
-        //Al momento disattivo questo
         return response()->json([
             'success' => true,
             'results' => $dish,
