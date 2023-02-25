@@ -2,41 +2,59 @@
     <div>
           <!--  -->
         <!--<Page404 v-if="is404" />-->
-        <div v-if="objUser" class="container-fluid post-div">
-            <img :src="'storage/' + objUser.uploaded_img" class="card-img-top" :alt="objUser.name">
+        <div v-if="data" class="container-fluid post-div"
+        :data="data">
+            <img :src="'storage/' + data[0].uploaded_img" class="card-img-top" :alt="data[0].name">
             <div class="card-body d-flex flex-column">
 
                 <!--todo LE CATEGORIES DEVONO ESSERE ASSOCIATE ALLO USER, AL MOMENTO L'ARRAY É VUOTO-->
-                <!--<h4 v-if="objUser.categories">Categories: {{ objUser.categories.name }}</h4> -->
-                <h5 class="card-title">Name: {{ objUser.name }}</h5>
-                <h5 class="card-title">Email: {{ objUser.email }}</h5>
-                <h5 class="card-title">Vat Number: {{ objUser.vat_number }}</h5>
-                <h5 class="card-title">Opening Time: {{ objUser.opening_time }}</h5>
-                <h5 class="card-title">Closing Time: {{ objUser.closing_time }}</h5>
-                <h5 class="card-title">Opened now: {{ objUser.is_opened }}</h5>
+                <!--<h4 v-if="data.categories">Categories: {{ data.categories.name }}</h4> -->
+                <h5 class="card-title">Name: {{ data.name }}</h5>
+                <h5 class="card-title">Email: {{ data[0].email }}</h5>
+                <h5 class="card-title">Vat Number: {{ data[0].vat_number }}</h5>
+                <h5 class="card-title">Opening Time: {{ data[0].opening_time }}</h5>
+                <h5 class="card-title">Closing Time: {{ data[0].closing_time }}</h5>
+                <h5 class="card-title">Opened now: {{ data[0].is_opened }}</h5>
+                {{ data[0].dishes[0].name }}
+                <ul class="restaurant-list">
+                    <li v-for="(restaurant, index) in data" :key="index">
+                        <h3>{{ restaurant.name }}</h3>
+                        <ul class="dish-list">
+                        <li v-for="(dish, i) in restaurant.dishes" :key="i">
+                            <h5 class="dish-title">{{ dish.name }}</h5>
+                            <h5 class="dish-text">Description: {{ dish.description }}</h5>
+                            <h5 class="dish-text">Price: {{ dish.price }}€</h5>
+                            <h5 class="dish-text">Available: {{ dish.available }}</h5>
+                        </li>
+                        </ul>
+                    </li>
+                    </ul>
+                <!--<ul class="dish-index" v-for="(restaurant, i) in data" :key="i"></ul>-->
+                    <!--{{ restaurants.dishes.name }}-->
+                    <!--<li>{{ restaurants.dishes }}</li>-->
+                    <!--{{ restaurants}}-->
+                    <!--<div v-for="(dish, index) in restaurant.dishes" :key="index">-->
+                    <!--<h5 class="dish-title">{{ dish.name }}</h5>-->
+                    <!--<h5 class="dish-text">Description: {{ dish.description }}</h5>-->
+                    <!--<h5 class="dish-text">Price: {{ dish.price }}€</h5>-->
+                    <!--<h5 class="dish-text">Available: {{ dish.available }}</h5>-->
+                    <!--</div>-->
 
-                <!-- * TEST PER VEDERE SE ARRIVANO I DATI DEI DISHES, PS SI. ESSENDO DISHES UN ARRAY VUOLE L'INDICE-->
-                                {{ objUser.dishes }}
-                                {{ objUser.dishes[0].id }}
-                                {{ objUser.dishes[0].name }}
 
 
-                <!--TODO: QUI VANNO RENDERIZZATI TUTTI I PIATTI DEL SINGOLO RISTORANTE -->
-                <!--<DishIndex />-->
 
-                <!--? OPPURE MOSTRARE I PIATTI DIRETTAMENTE QUI SENZA CREARE IL COMPONENTE DishIndex?-->
-                <div class="dish-index">
-                    <div class="dish-card" v-for="dish in objUser.dishes" :key="dish.id">
+                <!--<div class="dish-index">-->
+                    <!--<div class="dish-card" v-for="dish in objUser.dishes" :key="dish.id">-->
 
-                        <!--* QUESTO É IL LINK DEL SINGOLO PIATTO DEL SINGOLO RISTORANTE, ORA FUNZIONA -->
-                        <router-link
-                        :to="{name: 'Dish', params:{slug: dish.slug}}">
-                            <img :src="'storage/' + dish.uploaded_img" :alt="dish.name">
-                            <h3>{{ dish.name }}</h3>
-                            <span>Price: {{ dish.price }}€</span>
-                        </router-link>
-                    </div>
-                </div>
+                        <!--* QUESTO É IL LINK DEL SINGOLO PIATTO DEL SINGOLO RISTORANTE -->
+                        <!--<router-link-->
+                        <!--:to="{name: 'Dish', params:{slug: dish.slug}}">-->
+                            <!--<img :src="'storage/' + dish.uploaded_img" :alt="dish.name">-->
+                            <!--<h3>{{ dish.name }}</h3>-->
+                            <!--<span>Price: {{ dish.price }}€</span>-->
+                        <!--</router-link>-->
+                    <!--</div>-->
+                <!--</div>-->
 
 
             </div>
@@ -47,18 +65,17 @@
 
 <script>
 //import Page404 from './Page404.vue'
-//import DishIndex from './dishes/DishIndex.vue'
-import DishShow from './dishes/DishShow.vue'
+import Dish from './Dish.vue'
 export default {
     components:{
         //Page404,
-        DishShow
+        Dish
     },
-    props:[
-        'slug',
-        'dish'
-    ],
-    data() {
+    props: {
+        data: Array,
+        slugs: Array
+    },
+    /* data() {
         return {
             objUser: null,
             is404: false,
@@ -71,7 +88,7 @@ export default {
                 } else {
                     this.is404 = true;
                 }
-        });},
+        });}, */
 }
 </script>
 

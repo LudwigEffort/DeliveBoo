@@ -6,15 +6,14 @@ import App from './App';
 import VueRouter from 'vue-router';
 import UserIndex from './pages/UserIndex.vue';
 import UserShow from './pages/UserShow';
-import DishIndex from './pages/dishes/DishIndex.vue';
-import DishShow from './pages/dishes/DishShow';
+import DishShow from './pages/Dish';
 import About from './pages/About.vue';
 import Page404 from './pages/Page404.vue';
 
 
 const routes = [
 //*HOMEPAGE CON TUTTI I RISTORANTI
-    { path: '/', name: 'home', component: UserIndex },
+    { path: '/', name: 'home', component: UserIndex, props:true},
 
  //*SHOW DEL SINGOLO RISTORANTE CHE CONTIENE GIÁ L'INDEX DI TUTTI I SUOI PIATTI
     { path: '/:slug', name: 'UserShow', component: UserShow, props: true },

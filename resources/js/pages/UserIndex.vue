@@ -1,8 +1,8 @@
 <template>
-<div v-if="arrUsers">
+<div v-if="data">
     <div class="row g-3">
         <!--*Per rendere cliccabile tutto il post, forse occorre mettere tutto il div in un tag <router-link> -->
-        <div v-for="user in arrUsers" :key="user.id" class="col-sm-6 col-md-4">
+        <div v-for="user in data" :key="user.id" class="col-sm-6 col-md-4">
             <router-link :to="{name: 'UserShow', params:{slug: user.slug}}" class="user-card">
                 <div class="card h-100">
                     <img :src="'storage/' + user.uploaded_img" class="card-img-top" :alt="user.name">
@@ -24,20 +24,26 @@
 <script>
 export default {
     name: 'UserIndex',
-    data() {
+    props: {
+        data: Array,
+        slugs: Array
+    },
+    /*
+     data() {
         return {
-            arrUsers: null,
+            user: this.data,
         }
+    }
     },
     methods: {
         getUsers() {
-            axios.get('/api/users').then(response => this.arrUsers = response.data.results);
+            axios.get('/api/users').then(response => this.data = response.data.results);
         },
 
     },
     created() {
         this.getUsers();
-    }
+    } */
 }
 </script>
 

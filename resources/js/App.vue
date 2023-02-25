@@ -3,7 +3,10 @@
     <Navbar />
     <main>
         <!--Render del singolo component-->
-        <router-view></router-view>
+        <router-view
+            :data="data"
+            :slugs="slugs">
+        </router-view>
     </main>
     <Footer />
 </div>
@@ -13,11 +16,26 @@
 import Navbar from './components/Navbar.vue';
 import Footer from './components/Footer.vue';
 export default {
-  name: 'App',
-  components: {
-    Navbar,
-    Footer,
-  },
+    name: 'App',
+    components: {
+        Navbar,
+        Footer,
+    },
+    data() {
+            return {
+                data: null,
+                slugs: ['slug', 'dish']
+            }
+        },
+        methods: {
+            getUsers() {
+                axios.get('/api/users').then(response => this.data = response.data.results);
+            },
+
+        },
+        created() {
+            this.getUsers();
+        }
 }
 </script>
 
