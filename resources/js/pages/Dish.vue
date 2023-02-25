@@ -9,7 +9,7 @@
                     <h5 class="card-title">{{ name }}</h5>
                     <h5 class="card-title">Description: {{ description }}</h5>
                     <h5 class="card-title">Price: {{ price }}€</h5>
-                    <h5 class="card-title">Available: {{ available }}</h5>
+                    <h5 class="card-title">Available: {{ ((user.available) ? 'Yes' : 'No')  }}</h5>
                     <button @click="count('-')" :disabled="minDisabled">-</button>
                     <span>{{ counter }}</span>
                     <button @click="count('+')" :disabled="maxDisabled">+</button>

@@ -5206,16 +5206,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     data: Array,
-    slugs: Array
-    /*  name: String,
-     email: String,
-     slug: String,
-     vat_number: String,
-     opening_time: Date,
-     closing_time: Date,
-     is_opened: Boolean,
-     uploaded_img: String,
-     dishes: Array */
+    slugs: Array,
+    name: String,
+    email: String,
+    slug: String,
+    vat_number: String,
+    opening_time: Date,
+    closing_time: Date,
+    is_opened: Boolean,
+    uploaded_img: String,
+    dishes: Array
   }
 });
 
@@ -5485,7 +5485,7 @@ var render = function render() {
     staticClass: "card-title"
   }, [_vm._v("Price: " + _vm._s(_vm.price) + "€")]), _vm._v(" "), _c("h5", {
     staticClass: "card-title"
-  }, [_vm._v("Available: " + _vm._s(_vm.available))]), _vm._v(" "), _c("button", {
+  }, [_vm._v("Available: " + _vm._s(_vm.user.available ? "Yes" : "No"))]), _vm._v(" "), _c("button", {
     attrs: {
       disabled: _vm.minDisabled
     },
@@ -5599,7 +5599,7 @@ var render = function render() {
       staticClass: "card-title"
     }, [_vm._v(_vm._s(user.closing_time))]), _vm._v(" "), _c("h5", {
       staticClass: "card-title"
-    }, [_vm._v(_vm._s(user.is_opened))])])])])], 1);
+    }, [_vm._v(_vm._s(user.is_opened ? "Yes" : "No"))])])])])], 1);
   }), 0)]) : _vm._e();
 };
 var staticRenderFns = [];

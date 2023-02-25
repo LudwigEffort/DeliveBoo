@@ -24,7 +24,7 @@
                         <h5 class="card-title">{{ user.vat_number }}</h5>
                         <h5 class="card-title">{{ user.opening_time }}</h5>
                         <h5 class="card-title">{{ user.closing_time }}</h5>
-                        <h5 class="card-title">{{ user.is_opened }}</h5>
+                        <h5 class="card-title">{{ ((user.is_opened) ? 'Yes' : 'No') }}</h5>
                     </div>
                 </div>
             </router-link>
@@ -43,7 +43,7 @@ export default {
     props: {
         data: Array,
         slugs: Array,
-       /*  name: String,
+        name: String,
         email: String,
         slug: String,
         vat_number: String,
@@ -51,7 +51,7 @@ export default {
         closing_time: Date,
         is_opened: Boolean,
         uploaded_img: String,
-        dishes: Array */
+        dishes: Array
     },
 }
 </script>
