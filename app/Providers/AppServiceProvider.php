@@ -25,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app->singleton(Gateway::class, function($app){
+            // this data should move in .env file (with enviroment variables)
             return new Gateway(
                 [
                     'environment' => 'sandbox',
