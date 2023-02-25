@@ -15,11 +15,8 @@ const routes = [
 //*HOMEPAGE CON TUTTI I RISTORANTI
     { path: '/', name: 'home', component: UserIndex, props:true},
 
- //*SHOW DEL SINGOLO RISTORANTE CHE CONTIENE GIÁ L'INDEX DI TUTTI I SUOI PIATTI
+//*SHOW DEL SINGOLO RISTORANTE CHE CONTIENE GIÁ L'INDEX DI TUTTI I SUOI PIATTI
     { path: '/:slug', name: 'UserShow', component: UserShow, props: true },
-
-//TODO MODIFICARE QUESTA ROTTA (FORSE)
-    { path: '/:slug/:dish', name: 'Dish', component: DishShow, props: true }, //*SINGOLO DISH DEL SINGOLO RISTORANTE
 
 //*ABOUT
     { path: '/about', name: 'about', component: About },
