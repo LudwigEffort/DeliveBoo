@@ -66,12 +66,7 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         $user = Auth::user();
-
-        $dishes = $user->dishes();
-
-        if ($dishes->whereHas('orders', function ($q) use ($order) {
-            $q->where('order_id', $order->id);
-        })->exists()) {
+        if ($order->dishes()->where('user_id', $user->id)->exists()) {
             return view('admin.orders.show', ['order' => $order]);
         } else {
             return redirect()->route('admin.orders.index')->with('unable_show', $order);
