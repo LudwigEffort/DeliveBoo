@@ -1,13 +1,18 @@
 <template>
     <div>
-        <div v-if="data" class="container-fluid post-div"
-        :data="data"
-        >
-                <img :src="'storage/' + data[0].uploaded_img" class="card-img-top" :alt="data[0].name">
+        <div v-if="data" class="container-fluid post-div" :data="data">
+            <GoBack />
+
+
+    <!--? UNICA SOLUZIONE CHE MI VIENTE IN MENTE É FARE UNA CHIAMATA API QUI SPECIFICA PER LO USER -->
+
+
+                <img :src="'storage/' + uploaded_img" class="card-img-top" :alt="name">
                 <div class="card-body d-flex flex-column">
 
                 <!--todo LE CATEGORIES DEVONO ESSERE ASSOCIATE ALLO USER, AL MOMENTO L'ARRAY É VUOTO-->
                 <!--<h4 v-if="data.categories">Categories: {{ data.categories.name }}</h4> -->
+
 
                 <!--!I DATI NON SONO DIMANICI. RENDER SEMPRE DEL PRIMO USER-->
                 <h5 class="card-title">{{ name }}</h5>
@@ -15,7 +20,7 @@
                 <h5 class="card-title">Vat Number: {{ vat_number }}</h5>
                 <h5 class="card-title">Opening Time: {{ opening_time }}</h5>
                 <h5 class="card-title">Closing Time: {{ closing_time }}</h5>
-                <h5 class="card-title">Opened now: {{ is_opened }}</h5>
+                <h5 class="card-title">Opened now: {{ ((is_opened) ? 'Yes' : 'No') }}</h5>
 
                 <!--*SINGOLO DISH ITERATO-->
                 <div class="dish-list">
@@ -38,14 +43,16 @@
 
 <script>
 import Dish from './Dish.vue'
+import GoBack from '../components/GoBack'
 export default {
     components:{
-        Dish
+        Dish,
+        GoBack
     },
     props: {
         data: Array,
         slugs: Array,
-        name: String,
+        /* name: String,
         email: String,
         slug: String,
         vat_number: String,
@@ -53,7 +60,12 @@ export default {
         closing_time: Date,
         is_opened: Boolean,
         uploaded_img: String,
-        dishes: Array
+        dishes: Array */
+    },
+    data() {
+        return {
+
+        }
     },
 }
 /* :name="name"

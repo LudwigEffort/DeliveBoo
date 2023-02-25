@@ -3,13 +3,17 @@
         <!--<Page404 v-if="is404" />-->
         <!--<router-link :to="'/'" class="back-btn">Home</router-link>-->
         <div class="container-fluid post-div">
+
             <div class="card-body d-flex flex-column">
                 <img :src="'storage/' + uploaded_img" class="card-img-top" :alt="name">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">{{ name }}</h5>
-                    <h5 class="card-title">Description: {{ description }}</h5>
-                    <h5 class="card-title">Price: {{ price }}€</h5>
-                    <h5 class="card-title">Available: {{ ((user.available) ? 'Yes' : 'No')  }}</h5>
+                    <h6 class="card-title">Description: {{ description }}</h6>
+                    <h6 class="card-title">Price: {{ decimalPrice }}€</h6>
+                    <h6 class="card-title">
+                    Available: <span :style="((available) ? '' : 'color:red')">
+                        {{ ((available) ? 'Yes' : 'No') }} </span> </h6>
+
                     <button @click="count('-')" :disabled="minDisabled">-</button>
                     <span>{{ counter }}</span>
                     <button @click="count('+')" :disabled="maxDisabled">+</button>
@@ -35,7 +39,8 @@ export default {
             minDisabled:true,
             maxDisabled:false,
             max: 10, //! DATO NON C'É NELL'API, Sto simulando
-            min: 0
+            min: 0,
+            decimalPrice: this.price.toString(),//Converte numero in stringa
         }
     },
     methods:{
@@ -52,7 +57,11 @@ export default {
                 this.minDisabled = false;
                 this.maxDisabled = false;
             }
-        }
+        },
+        /* decimal(){
+            this.decimalPrice = this.price.toString();
+            console.log(this.decimalPrice)
+        } */
     }
 }
 </script>

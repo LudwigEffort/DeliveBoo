@@ -5,7 +5,8 @@
         <!--Render del singolo component-->
         <router-view
             :data="data"
-            :slugs="slugs">
+            :slugs="slugs"
+                   >
         </router-view>
     </main>
     <Footer />
@@ -24,7 +25,7 @@ export default {
     data() {
             return {
                 data: null,
-                slugs: ['slug', 'dish']
+                slugs: ['slug']
             }
         },
         methods: {
