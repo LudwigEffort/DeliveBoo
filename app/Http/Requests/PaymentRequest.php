@@ -13,7 +13,7 @@ class PaymentRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class PaymentRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'token'     => 'required', 
+            'amount'    => 'required' // we should pass calculated amount from backend (pheraps from OrderController?)
         ];
     }
 }
