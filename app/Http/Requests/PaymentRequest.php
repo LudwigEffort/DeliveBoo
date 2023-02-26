@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ValidOrder;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PaymentRequest extends FormRequest
@@ -25,7 +26,10 @@ class PaymentRequest extends FormRequest
     {
         return [
             'token'     => 'required',
-            'order'     => 'required' // this should be a order id (so we should make a rule)
+            'order'     => [        // this should be a order id (so we should make a rule)
+                'required',
+                new ValidOrder()
+            ]
         ];
     }
 }

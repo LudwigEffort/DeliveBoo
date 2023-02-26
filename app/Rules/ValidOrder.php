@@ -2,6 +2,7 @@
 
 namespace App\Rules;
 
+use App\Order;
 use Illuminate\Contracts\Validation\Rule;
 
 class ValidOrder implements Rule
@@ -25,7 +26,10 @@ class ValidOrder implements Rule
      */
     public function passes($attribute, $value)
     {
-        //
+        if(Order::find($value)){
+            return true;
+        }
+        return false;
     }
 
     /**
