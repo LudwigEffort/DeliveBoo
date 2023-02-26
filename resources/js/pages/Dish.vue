@@ -8,11 +8,11 @@
                 <img :src="'storage/' + uploaded_img" class="card-img-top" :alt="name">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">{{ name }}</h5>
-                    <h6 class="card-title">Description: {{ description }}</h6>
-                    <h6 class="card-title">Price: {{ decimalPrice }}€</h6>
-                    <h6 class="card-title">
+                    <span class="card-title">Description: {{ description }}</span>
+                    <span class="card-title">Price: {{ decimalPrice }}€</span>
+                    <span class="card-title">
                     Available: <span :style="((available) ? '' : 'color:red')">
-                        {{ ((available) ? 'Yes' : 'No') }} </span> </h6>
+                        {{ ((available) ? 'Yes' : 'No') }} </span> </span>
 
                     <button @click="count('-')" :disabled="minDisabled">-</button>
                     <span>{{ counter }}</span>
@@ -58,6 +58,7 @@ export default {
                 this.maxDisabled = false;
             }
         },
+        //TODO Funzione per trasformare il numero da intero a decimale con la virgola
         /* decimal(){
             this.decimalPrice = this.price.toString();
             console.log(this.decimalPrice)

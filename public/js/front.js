@@ -5059,23 +5059,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      data: null,
-      userId: null,
-      userName: null,
-      userEmail: null,
-      userSlug: null,
-      userVat: null,
-      userOpeningTime: null,
-      userClosingTime: null,
-      userIsOpened: null,
-      userImage: null
+      data: null
     };
   },
   methods: {
     getUsers: function getUsers() {
       var _this = this;
       axios.get('/api/users').then(function (response) {
-        _this.data = response.data.results, _this.userId = response.data.results.id, _this.userName = response.data.results.name, _this.userEmail = response.data.results.name, _this.userSlug = response.data.results.email, _this.userVat = response.data.results.vat_number, _this.userOpeningTime = response.data.results.opening_time, _this.userClosingTime = response.data.results.closing_time, _this.userIsOpened = response.data.results.is_opened, _this.userImage = response.data.results.uploaded_img;
+        return _this.data = response.data.results;
       });
     }
   },
@@ -5153,16 +5144,7 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("div", [_c("Navbar"), _vm._v(" "), _c("main", [_c("router-view", {
     attrs: {
-      data: _vm.data,
-      userId: _vm.userId,
-      userName: _vm.userName,
-      userEmail: _vm.userEmail,
-      userSlug: _vm.userSlug,
-      userVat: _vm.userVat,
-      userOpeningTime: _vm.userOpeningTime,
-      userClosingTime: _vm.userClosingTime,
-      userIsOpened: _vm.userIsOpened,
-      userImage: _vm.userImage
+      data: _vm.data
     }
   })], 1), _vm._v(" "), _c("Footer")], 1);
 };

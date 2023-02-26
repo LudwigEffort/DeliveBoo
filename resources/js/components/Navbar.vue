@@ -15,7 +15,8 @@
                     <router-link :to="{name: 'contactUs'}" class="nav-link">Contact us</router-link>
                 </li>
                 <li class="nav-item">
-                    <!--Margari va bene anche un'icona invece che il testo-->
+
+                    <!--?Margari va bene anche un'icona invece che il testo-->
                     <router-link :to="{name: 'shoppingCart'}" class="nav-link">Shopping cart</router-link>
                 </li>
             </ul>
