@@ -22,7 +22,7 @@ class OrderController extends Controller
 
             $amountCents = $order->amount;
 
-            $order->amount = number_format(($amountCents / 100), 2, '.', '');
+            $order->amount = Order::amountConvert($amountCents);
 
             return $order;
         });
