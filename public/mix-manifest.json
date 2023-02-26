@@ -9,5 +9,6 @@
     "/dist/fonts/font-awesome/fa-solid-900.ttf": "/dist/fonts/font-awesome/fa-solid-900.ttf",
     "/dist/fonts/font-awesome/fa-solid-900.woff2": "/dist/fonts/font-awesome/fa-solid-900.woff2",
     "/dist/fonts/font-awesome/fa-v4compatibility.ttf": "/dist/fonts/font-awesome/fa-v4compatibility.ttf",
-    "/dist/fonts/font-awesome/fa-v4compatibility.woff2": "/dist/fonts/font-awesome/fa-v4compatibility.woff2"
+    "/dist/fonts/font-awesome/fa-v4compatibility.woff2": "/dist/fonts/font-awesome/fa-v4compatibility.woff2",
+    "/js/about.js": "/js/about.js"
 }

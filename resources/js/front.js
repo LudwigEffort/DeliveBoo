@@ -6,7 +6,7 @@ import App from './App';
 import VueRouter from 'vue-router';
 import UserIndex from './pages/UserIndex.vue';
 import UserShow from './pages/UserShow';
-import About from './pages/About.vue';
+//import About from './pages/About.vue';
 //import Page404 from './pages/Page404.vue';
 
 
@@ -31,7 +31,7 @@ const routes = [
     {
         path: '/about',
         name: 'about',
-        component: About
+        component: () => import(/* webpackChunkName: "about" */"./pages/About.vue")
     },
 
 //!LASCIATELA PER ULTIMA. TUTTE LE ALTRE ROTTE
