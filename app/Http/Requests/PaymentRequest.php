@@ -24,8 +24,8 @@ class PaymentRequest extends FormRequest
     public function rules()
     {
         return [
-            'token'     => 'required', 
-            'amount'    => 'required' // we should pass calculated amount from backend (pheraps from OrderController?)
+            'token'     => 'required',
+            'order'     => 'required' // this should be a order id (so we should make a rule)
         ];
     }
 }
