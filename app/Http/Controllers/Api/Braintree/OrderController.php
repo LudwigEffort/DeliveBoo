@@ -13,7 +13,33 @@ class OrderController extends Controller
 
         $orders = Order::all();
 
+        //$centAmount = $request->query('amount');
+
+        //$tenthsAmount = Order::amountConvert($centAmount);
+
+        $orders = $orders->map(function ($order) {
+            //$user->name = strtoupper($user->name);
+
+            $amountCents = $order->amount;
+
+            $order->amount = number_format(($amountCents / 100), 2, '.', '');
+
+            return $order;
+        });
+
         return OrderResource::collection($orders);
 
     }
 }
+
+// public function slug(Request $request){
+//         // localhost:8000/admin/categories/slug?title=ciao a tutti
+//         $title = $request->query('title');
+
+//         // risponde con il primo slug disponibile restituito in formato JSON per essere usato da JS
+//         $slug = Category::getSlug($title);
+
+//         return response()->json([
+//             'slug' => $slug,
+//         ]);
+//     }
