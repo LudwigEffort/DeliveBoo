@@ -14,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/users',    'Api\UserController@index')->name('users.index');
 Route::get('/users/{user:slug}', 'Api\UserController@show')->name('users.show');
 
-//Api payment
-Route::get('/payment/generate', 'Api\PaymentController@generate');
-Route::post('/payment/make/payment', 'Api\PaymentController@makePayment');
+//Api payment by Braintree
+Route::get('/payment/generate', 'Api\Braintree\PaymentController@generate');
+Route::post('/payment/make/payment', 'Api\Braintree\PaymentController@makePayment');

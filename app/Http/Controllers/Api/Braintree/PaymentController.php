@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Braintree;
 
 use Braintree\Gateway;
 use Illuminate\Http\Request;
@@ -25,7 +25,7 @@ class PaymentController extends Controller
     }
 
     public function makePayment(Request $request, Gateway $gateway){
-        
+
         $result = $gateway->transaction()->sale([
             'amount'                => '10.00',
             'paymentMethodNonce'    => $request->token,
@@ -45,7 +45,7 @@ class PaymentController extends Controller
             $data = [
             'success'   => false,
             'message'     => "Transaction failed!"
-            ];    
+            ];
             return response()->json($data, 401);
         }
 
