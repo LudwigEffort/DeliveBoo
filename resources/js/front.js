@@ -6,20 +6,33 @@ import App from './App';
 import VueRouter from 'vue-router';
 import UserIndex from './pages/UserIndex.vue';
 import UserShow from './pages/UserShow';
-import DishShow from './pages/Dish';
 import About from './pages/About.vue';
-import Page404 from './pages/Page404.vue';
+//import Page404 from './pages/Page404.vue';
 
 
 const routes = [
 //*HOMEPAGE CON TUTTI I RISTORANTI
-    { path: '/', name: 'home', component: UserIndex, props:true},
+    {
+        path: '/',
+        name: 'home',
+        component: UserIndex,
+        props:true
+    },
 
 //*SHOW DEL SINGOLO RISTORANTE CHE CONTIENE GIÁ L'INDEX DI TUTTI I SUOI PIATTI
-    { path: '/:slug', name: 'UserShow', component: UserShow, props: true },
+    {
+        path: '/:slug',
+        name: 'UserShow',
+        component: UserShow,
+        props: true
+    },
 
 //*ABOUT
-    { path: '/about', name: 'about', component: About },
+    {
+        path: '/about',
+        name: 'about',
+        component: About
+    },
 
 //!LASCIATELA PER ULTIMA. TUTTE LE ALTRE ROTTE
     { path: "*", component: UserIndex },

@@ -3,11 +3,10 @@
     <Navbar />
     <main>
         <!--Render del singolo component-->
+        <!--!Vanno passati i dati dell'api tramite le props-->
         <router-view
             :data="data"
-            :slugs="slugs"
-                   >
-        </router-view>
+        />
     </main>
     <Footer />
 </div>
