@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Braintree;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\OrderResource;
 use App\Order;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class OrderController extends Controller
 
         $orders = Order::all();
 
-        return response()->json($orders, 200);
+        return OrderResource::collection($orders);
 
     }
 }
