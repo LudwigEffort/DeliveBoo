@@ -2,7 +2,7 @@
 <div v-if="data">
     <div class="row g-3">
         <div v-for="user in data" :key="user.id" class="col-sm-6 col-md-4">
-            <router-link :to="user.slug" class="user-card">
+            <router-link :to="{name: 'UserShow', params: {slug: user.slug}}" class="user-card">
                 <div class="card h-100">
                     <img :src="'storage/' + user.uploaded_img" class="card-img-top" :alt="user.name">
                     <div class="card-body d-flex flex-column">
@@ -25,22 +25,7 @@ export default {
     name: 'UserIndex',
     props: {
         data: Array,
-        slugs: Array,
-        name: String,
-        email: String,
-        slug: String,
-        vat_number: String,
-        opening_time: Date,
-        closing_time: Date,
-        is_opened: Boolean,
-        uploaded_img: String,
-        dishes: Array
-    },
-/*     data(){
-        return{
-            restaurants: this.data,
-        }
-    } */
+    }
 }
 </script>
 

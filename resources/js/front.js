@@ -5,7 +5,10 @@ import Vue from 'vue';
 import App from './App';
 import VueRouter from 'vue-router';
 import UserIndex from './pages/UserIndex.vue';
-import UserShow from './pages/UserShow';
+
+//*Tramite il lazy load non serve l'import dei componenti
+
+//import UserShow from './pages/UserShow';
 //import About from './pages/About.vue';
 //import Page404 from './pages/Page404.vue';
 
@@ -23,8 +26,8 @@ const routes = [
     {
         path: '/:slug',
         name: 'UserShow',
-        component: UserShow,
-        props: true
+        props: true,
+        component: () => import(/* webpackChunkName: "UserShow" */"./pages/UserShow.vue"),
     },
 
 //*ABOUT
@@ -34,8 +37,11 @@ const routes = [
         component: () => import(/* webpackChunkName: "about" */"./pages/About.vue")
     },
 
-//!LASCIATELA PER ULTIMA. TUTTE LE ALTRE ROTTE
-    { path: "*", component: UserIndex },
+//!LASCIATELA PER ULTIMA! TUTTE LE ALTRE ROTTE SBAGLIATE MOSTRERANNO UserIndex
+    {
+        path: "*",
+        component: UserIndex
+    },
 ];
 
 // Personalizzazione del vue-router
