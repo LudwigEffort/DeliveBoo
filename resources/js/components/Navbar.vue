@@ -17,7 +17,7 @@
                 <li class="nav-item">
 
                     <!--?Margari va bene anche un'icona invece che il testo-->
-                    <router-link :to="{name: 'shoppingCart'}" class="nav-link">Shopping cart</router-link>
+                    <router-link :to="{name: 'Cart'}" class="nav-link">Shopping cart</router-link>
                 </li>
             </ul>
             <form class="d-flex" role="search">

@@ -38,6 +38,7 @@
                         <h6>Available: <span :style="((dish.available) ? 'color:green' : 'color:red')">
                             {{ ((dish.available) ? 'Yes' : 'No') }} </span></h6>
                         </router-link>
+                        <button @click="addToCart(dish.name, dish.price)" >Add to Cart</button>
                     </div>
 
 
@@ -100,6 +101,10 @@ export default {
                 this.minDisabled = false;
                 this.maxDisabled = false;
             }
+        },
+        addToCart(name, price) {
+            this.$emit('addToCart', { name, price });
+            console.log(this.addToCart(name, price));
         }
     }
 }

@@ -1,42 +1,48 @@
 <template>
-<div>
-    <Navbar />
-    <main>
-        <!--Render del singolo component-->
-        <!--!Vanno passati i dati dell'api tramite le props-->
-        <router-view
-            :data="data"
-        />
-    </main>
-    <Footer />
-</div>
-</template>
+    <div>
+        <Navbar />
+        <Cart :addToCart="addToCart" />
+        <main>
+            <!--Render del singolo component-->
+            <!--!Vanno passati i dati dell'api tramite le props-->
+            <router-view
+                :data="data"
+                @cart="addToCart"
+            />
+        </main>
+        <Footer />
+    </div>
+    </template>
 
-<script>
-import Navbar from './components/Navbar.vue';
-import Footer from './components/Footer.vue';
-export default {
-    name: 'App',
-    components: {
-        Navbar,
-        Footer,
-    },
-    data() {
-            return {
-                data: null,
-            }
+    <script>
+    import Navbar from './components/Navbar.vue';
+    import Footer from './components/Footer.vue';
+    import Cart from './pages/Cart.vue';
+
+
+    export default {
+        name: 'App',
+        components: {
+            Navbar,
+            Footer,
+            Cart,
         },
-        methods: {
-            getUsers() {
-                axios.get('/api/users').then(response => this.data = response.data.results);
+        data() {
+                return {
+                    data: null,
+                }
             },
-        },
-        created() {
-            this.getUsers();
-        }
-}
-</script>
+            methods: {
+                getUsers() {
+                    axios.get('/api/users').then(response => this.data = response.data.results);
+                },
+            },
+            created() {
+                this.getUsers();
+            }
+    }
+    </script>
 
-<style lang="scss">
-    @import '~bootstrap/scss/bootstrap';
-</style>
+    <style lang="scss">
+        @import '~bootstrap/scss/bootstrap';
+    </style>

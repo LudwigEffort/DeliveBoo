@@ -6,6 +6,7 @@ import App from './App';
 import VueRouter from 'vue-router';
 import UserIndex from './pages/UserIndex.vue';
 
+
 //*Tramite il lazy load non serve l'import dei componenti
 
 //import UserShow from './pages/UserShow';
@@ -36,6 +37,12 @@ const routes = [
                 component: () => import(/* webpackChunkName: "Dish" */"./pages/Dish.vue")
             }
         ]
+    },
+    {
+        path: '/cart',
+        name: 'Cart',
+        props: true,
+        component: () => import(/* webpackChunkName: "Cart" */"./pages/Cart.vue"),
     },
 
 //*ABOUT
