@@ -29,10 +29,9 @@ class PaymentController extends Controller
 
         $order = Order::find($request->order);
 
-        //$orderTenth = $order->map(function ($orders) {
-        //return $orders * 2;
-        //});
-
+        // in this way, the amount is convert in tenth
+        $amountCents = $order->amount;
+        $order->amount = Order::amountConvert($amountCents);
 
         //dd($order);
 
