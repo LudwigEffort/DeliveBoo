@@ -25,4 +25,22 @@ class Dish extends Model
     {
         return 'slug';
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($dish) {
+            $dish->price *= 100;
+        });
+
+        static::updating(function ($dish) {
+            $dish->price *= 100;
+        });
+    }
+
+    public function getRealPriceAttribute()
+    {
+        return $this->attributes['price'] / 100;
+    }
 }

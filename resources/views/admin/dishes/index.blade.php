@@ -39,7 +39,7 @@
                     <td>{{ $dish->slug }}</td>
                     <td>{{ $dish->name }}</td>
                     <td>{{ $dish->description}}</td>
-                    <td>{{ $dish->price }}</td>
+                    <td>{{ $dish->real_price }}</td>
                     <td>{{ $dish->name }}</td>
                     <td>{{ $dish->available}}</td>
                     <td>{{ $dish->is_visible}}</td>

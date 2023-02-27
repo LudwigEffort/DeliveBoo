@@ -20,7 +20,7 @@ class DishController extends Controller
         'name'          => 'required|string|max:50',
         'uploaded_img'  => 'nullable|image|max:1024',
         'description'   => 'required|string',
-        'price'         => 'required|integer',
+        'price'         => 'required|numeric',
         'available' => 'nullable|boolean',
         'is_visible' => 'nullable|boolean',
     ];

@@ -18,7 +18,7 @@
         <h2>Piatti ordinati</h2>
         <ul>
             @foreach ($order->dishes as $dish)
-            <li>{{$dish->name}} - {{$dish->price}}$</li>
+            <li>{{$dish->name}} - {{$dish->real_price}}$</li>
             @endforeach
         </ul>
 
