@@ -12,11 +12,11 @@ use Illuminate\Support\Facades\Storage;
 class DishController extends Controller
 {
     private $validations = [
-        'slug'          => [
-            'required',
-            'string',
-            'max:100',
-        ],
+        // 'slug'          => [
+        //     'required',
+        //     'string',
+        //     'max:100',
+        // ],
         'name'          => 'required|string|max:50',
         'uploaded_img'  => 'nullable|image|max:1024',
         'description'   => 'required|string',
@@ -72,7 +72,7 @@ class DishController extends Controller
         $img_path = isset($data['uploaded_img']) ? Storage::put('uploads', $data['uploaded_img']) : null;
 
         $dish = new Dish;
-        $dish->slug             = $data['slug'];
+        $dish->slug             = Dish::getSlug($data['name']);
         $dish->user_id          = $request->user()->id;
         $dish->name             = $data['name'];
         $dish->uploaded_img     = $img_path;
@@ -137,7 +137,7 @@ class DishController extends Controller
             $img_path = $dish->uploaded_img;
         }
 
-        $dish->slug             = $data['slug'];
+        $dish->slug             = Dish::getSlug($data['name']);
         $dish->name             = $data['name'];
         $dish->uploaded_img     = $img_path;
         $dish->description      = $data['description'];
@@ -162,15 +162,14 @@ class DishController extends Controller
         return redirect()->route('admin.dishes.index')->with('success_delete', $dish);
     }
 
-    public function slug(Request $request) {
+    // public function slug(Request $request) {
 
-        $name = $request->query('name');
+    //     $name = $request->query('name');
 
-        $slug = Dish::getSlug($name);
+    //     $slug = Dish::getSlug($name);
 
-        return response()->json([
-            'name'  => $slug,
-        ]);
-    }
-
+    //     return response()->json([
+    //         'name'  => $slug,
+    //     ]);
+    // }
 }

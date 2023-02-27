@@ -30,6 +30,6 @@ Route::middleware('auth') //approfondire il middleware
         Route::resource('orders', 'OrderController');
     });
 
-    Route::get('/dishes/{dish}', 'DishController@slug')->name('dishes.slug');
+    // Route::get('/dishes/{dish}', 'DishController@slug')->name('dishes.slug');
 
 

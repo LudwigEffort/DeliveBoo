@@ -34,7 +34,7 @@
                 </div>
             </div>
 
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label for="slug" class="form-label">Slug</label>
                 <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" value="{{ old('slug') }}">
                 <div class="invalid-feedback">
@@ -46,7 +46,7 @@
                         </ul>
                     @enderror
                 </div>
-            </div>
+            </div> --}}
 
             <div class="mb-3">
                 <label for="description" class="form-label">description</label>
