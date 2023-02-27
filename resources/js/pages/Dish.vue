@@ -14,10 +14,11 @@
                     Available: <span :style="((dish.available) ? 'color:' : 'color:red')">
                         {{ ((dish.available) ? 'Yes' : 'No') }} </span> </span>
 
-                    <button @click="count('-')" :disabled="minDisabled">-</button>
-                        <span>{{ counter }}</span>
-                    <button @click="count('+')" :disabled="maxDisabled">+</button>
+                    <!--<button @click="count('-')" :disabled="minDisabled">-</button>-->
+                    <!--<span>{{ counter }}</span>-->
+                    <!--<button @click="count('+')" :disabled="maxDisabled">+</button>-->
                     <button @click="addToCart(dish.id)">Add to Cart</button>
+                    <button @click="removeFromCart(dish.id)">Remove from Cart</button>
                 </div>
             </div>
         </div>
@@ -46,7 +47,6 @@ export default {
             max: 10, //! DATO NON C'É NELL'API, Sto simulando
             min: 0,
             arrDishes: [],
-            //decimalPrice: this.price.toString(),//Converte numero in stringa
         }
     },
     computed: {
@@ -62,7 +62,7 @@ export default {
         }
     },
     methods:{
-        count(number) {
+        /* count(number) {
             if((number === '+') ? this.counter ++ : this.counter --);
 
             if(this.counter >= this.max) {
@@ -75,12 +75,16 @@ export default {
                 this.minDisabled = false;
                 this.maxDisabled = false;
             }
-        },
+        }, */
         addToCart(id) {
-            console.log(id)
             this.arrDishes.push(id);
-            console.log(this.arrDishes)
             return this.$emit('addToCart', this.arrDishes)
+            //TODO: ARRAY SI SVUOTA QUANDO CLICCO NUOVO DISH. DA FIXARE E MANTENERE I DATI
+        },
+        removeFromCart() {
+            this.arrDishes.pop();
+            console.log(this.arrDishes)
+            return this.$emit('removeFromCart', this.arrDishes)
         },
     },
 }

@@ -27,13 +27,14 @@
                 :key="$route.path"
                 :data="data"
                 @addToCart="addToCart"
+                @removeFromCart="removeFromCart"
                 />
                 <div class="dish-card"
                 v-for="dish in restaurant.dishes"
                 :key="dish.slug"
                 >
                 <!--*SINGOLO DISH ITERATO-->
-                    <router-link :to="{ name: 'Dish', params: {dishSlug: dish.slug}}">
+                    <router-link :to="{ name: 'Dish', params: {dishSlug: dish.slug} }">
                         <h3>{{ dish.name }}</h3>
                         <h6>Price: {{ dish.price }}€</h6>
                         <h6>Available: <span :style="((dish.available) ? 'color:green' : 'color:red')">
@@ -85,9 +86,13 @@ export default {
     },
     methods:{
         addToCart(arrDishes) {
-            this.arrDishesId = arrDishes //!UNDEFINED
+            this.arrDishesId = arrDishes
             return console.log(this.arrDishesId)
             //this.$emit('addToCart', { name, price });
+        },
+        removeFromCart(arrDishes) {
+            this.arrDishesId = arrDishes
+            return console.log(this.arrDishesId)
         }
     }
 }
