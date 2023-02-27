@@ -29,6 +29,10 @@ class PaymentController extends Controller
 
         $order = Order::find($request->order);
 
+        //$orderTenth = $order->map(function ($orders) {
+        //return $orders * 2;
+        //});
+
 
         //dd($order);
 
