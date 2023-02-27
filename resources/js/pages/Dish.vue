@@ -5,14 +5,14 @@
         <div class="container-fluid post-div">
 
             <div class="card-body d-flex flex-column">
-                <img :src="'storage/' + uploaded_img" class="card-img-top" :alt="name">
+                <img :src="'storage/' + dish.uploaded_img" class="card-img-top" :alt="dish.name">
                 <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">{{ name }}</h5>
-                    <span class="card-title">Description: {{ description }}</span>
-                    <span class="card-title">Price: {{ price }}€</span>
+                    <h5 class="card-title">{{ dish.name }}</h5>
+                    <span class="card-title">Description: {{ dish.description }}</span>
+                    <span class="card-title">Price: {{ dish.price }}€</span>
                     <span class="card-title">
-                    Available: <span :style="((available) ? '' : 'color:red')">
-                        {{ ((available) ? 'Yes' : 'No') }} </span> </span>
+                    Available: <span :style="((dish.available) ? '' : 'color:red')">
+                        {{ ((dish.available) ? 'Yes' : 'No') }} </span> </span>
 
                     <button @click="count('-')" :disabled="minDisabled">-</button>
                         <span>{{ counter }}</span>
@@ -44,10 +44,10 @@ export default {
             maxDisabled:false,
             max: 10, //! DATO NON C'É NELL'API, Sto simulando
             min: 0,
-            decimalPrice: this.price.toString(),//Converte numero in stringa
+            //decimalPrice: this.price.toString(),//Converte numero in stringa
         }
     },
-    /* computed: {
+    computed: {
         restaurant() {
             return this.data.find(
                 restaurant => restaurant.slug == this.slug
@@ -58,7 +58,7 @@ export default {
                 dish => dish.slug == this.dishSlug
             )
         }
-    }, */
+    },
     methods:{
         count(number) {
             if((number === '+') ? this.counter ++ : this.counter --);

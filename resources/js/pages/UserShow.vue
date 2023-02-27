@@ -21,33 +21,26 @@
             </section>
             <hr>
             <section>
-                <h1>DISHES</h1>
-                <!--<router-view :key="$route.path" :data="data" />-->
-                <!--<router-link :to="{ name: 'Dish', params: {dishSlug: dish.slug}}">-->
-                <!--<Dish  />-->
-                <!--</router-link>-->
+                <h1>DISHES of {{ restaurant.name }}</h1>
+                <router-view
+                :key="$route.path"
+                :data="data"
+                />
 
-
+                <div class="dish-card"
+                v-for="dish in restaurant.dishes"
+                :key="dish.slug"
+                >
                 <!--*SINGOLO DISH ITERATO-->
-                <div class="dishes-card">
-                    <div class="dish-card"
-                        v-for="dish in restaurant.dishes"
-                        :key="dish.slug"
-                    >
-                        <img :src="'storage/' + dish.uploaded_img" :alt="dish.name" class="dish-img">
+                    <router-link :to="{ name: 'Dish', params: {dishSlug: dish.slug}}">
                         <h3>{{ dish.name }}</h3>
                         <h6>Price: {{ dish.price }}€</h6>
-                        <h6>Available: <span :style="((dish.available) ? 'color:green' : 'color:red')">{{ ((dish.available) ? 'Yes' : 'No') }} </span></h6>
-                        <p>Descrition: {{ dish.description }}</p>
-
-                        <!--!Al momento i bottoni sono uguali per tutti i piatti, quando uno cambia, cambiano tutti-->
-                        <!--?Forse devo fare un componente Button singolo-->
-                        <!--<button @click="count('-')" :disabled="minDisabled">-</button>-->
-                        <!--<span>{{ counter }}</span>-->
-                        <!--<button @click="count('+')" :disabled="maxDisabled">+</button>-->
-
+                        <h6>Available: <span :style="((dish.available) ? 'color:green' : 'color:red')">
+                            {{ ((dish.available) ? 'Yes' : 'No') }} </span></h6>
+                        </router-link>
                     </div>
-                </div>
+
+
             </section>
         </div>
     </div>
@@ -67,10 +60,10 @@ export default {
             type: String,
             required: true
         },
-        dishSlug: {
+        /* dishSlug: {
             type: String,
             required: true
-        }
+        } */
     },
     data() {
         return {
@@ -79,7 +72,6 @@ export default {
             maxDisabled:false,
             max: 10, //! DATO NON C'É NELL'API, Sto simulando
             min: 0,
-            //decimalPrice: this.price.toString(),//Converte numero in stringa
         }
     },
     computed: {
@@ -88,11 +80,11 @@ export default {
                 restaurant => restaurant.slug == this.$route.params.slug
             )
         },
-        dish() {
+        /* dish() {
             return this.restaurant.dishes.find(
                 dish => dish.slug == this.dishSlug
             )
-        }
+        } */
     },
     methods:{
         count(number) {
@@ -111,6 +103,25 @@ export default {
         }
     }
 }
+{/* <div class="dishes-card">
+                    <div class="dish-card"
+                        v-for="dish in restaurant.dishes"
+                        :key="dish.slug"
+                    >
+                        <img :src="'storage/' + dish.uploaded_img" :alt="dish.name" class="dish-img">
+                        <h3>{{ dish.name }}</h3>
+                        <h6>Price: {{ dish.price }}€</h6>
+                        <h6>Available: <span :style="((dish.available) ? 'color:green' : 'color:red')">{{ ((dish.available) ? 'Yes' : 'No') }} </span></h6>
+                        <p>Descrition: {{ dish.description }}</p>
+
+                        <!--!Al momento i bottoni sono uguali per tutti i piatti, quando uno cambia, cambiano tutti-->
+                        <!--?Forse devo fare un componente Button singolo-->
+                        <!--<button @click="count('-')" :disabled="minDisabled">-</button>-->
+                        <!--<span>{{ counter }}</span>-->
+                        <!--<button @click="count('+')" :disabled="maxDisabled">+</button>-->
+
+                    </div>
+                </div> */}
 </script>
 
 
