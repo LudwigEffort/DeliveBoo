@@ -22,11 +22,17 @@
             <hr>
             <section>
                 <h1>DISHES</h1>
+                <!--<router-view :key="$route.path" :data="data" />-->
+                <!--<router-link :to="{ name: 'Dish', params: {dishSlug: dish.slug}}">-->
+                <!--<Dish  />-->
+                <!--</router-link>-->
+
+
                 <!--*SINGOLO DISH ITERATO-->
                 <div class="dishes-card">
                     <div class="dish-card"
-                        v-for="(dish, i) in restaurant.dishes"
-                        :key="i"
+                        v-for="dish in restaurant.dishes"
+                        :key="dish.slug"
                     >
                         <img :src="'storage/' + dish.uploaded_img" :alt="dish.name" class="dish-img">
                         <h3>{{ dish.name }}</h3>
@@ -35,10 +41,11 @@
                         <p>Descrition: {{ dish.description }}</p>
 
                         <!--!Al momento i bottoni sono uguali per tutti i piatti, quando uno cambia, cambiano tutti-->
+                        <!--?Forse devo fare un componente Button singolo-->
+                        <!--<button @click="count('-')" :disabled="minDisabled">-</button>-->
+                        <!--<span>{{ counter }}</span>-->
+                        <!--<button @click="count('+')" :disabled="maxDisabled">+</button>-->
 
-                        <button @click="count('-')" :disabled="minDisabled">-</button>
-                            <span>{{ counter }}</span>
-                        <button @click="count('+')" :disabled="maxDisabled">+</button>
                     </div>
                 </div>
             </section>
@@ -47,16 +54,20 @@
 </template>
 
 <script>
-//import Dish from './Dish.vue'
+import Dish from './Dish.vue'
 import GoBack from '../components/GoBack'
 export default {
     components:{
-        //Dish,
+        Dish,
         GoBack
     },
     props: {
         data: Array,
         slug: {
+            type: String,
+            required: true
+        },
+        dishSlug: {
             type: String,
             required: true
         }
@@ -76,11 +87,16 @@ export default {
             return this.data.find(
                 restaurant => restaurant.slug == this.$route.params.slug
             )
+        },
+        dish() {
+            return this.restaurant.dishes.find(
+                dish => dish.slug == this.dishSlug
+            )
         }
     },
     methods:{
         count(number) {
-            if((number === '+') ? this.counter ++ : this.counter --);
+            if((number === '+') ? this.counter++ : this.counter--);
 
             if(this.counter >= this.max) {
                 this.minDisabled = false;

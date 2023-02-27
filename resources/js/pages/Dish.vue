@@ -9,13 +9,13 @@
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">{{ name }}</h5>
                     <span class="card-title">Description: {{ description }}</span>
-                    <span class="card-title">Price: {{ decimalPrice }}€</span>
+                    <span class="card-title">Price: {{ price }}€</span>
                     <span class="card-title">
                     Available: <span :style="((available) ? '' : 'color:red')">
                         {{ ((available) ? 'Yes' : 'No') }} </span> </span>
 
                     <button @click="count('-')" :disabled="minDisabled">-</button>
-                    <span>{{ counter }}</span>
+                        <span>{{ counter }}</span>
                     <button @click="count('+')" :disabled="maxDisabled">+</button>
                 </div>
             </div>
@@ -27,11 +27,15 @@
 export default {
     name: 'Dish',
     props: {
-        name: String,
-        uploaded_img: String,
-        description: String,
-        price: Number,
-        available: Boolean,
+        data: Array,
+        slug: {
+            type: String,
+            required: true
+        },
+        dishSlug: {
+            type: String,
+            required: true
+        }
     },
     data() {
         return {
@@ -43,6 +47,18 @@ export default {
             decimalPrice: this.price.toString(),//Converte numero in stringa
         }
     },
+    /* computed: {
+        restaurant() {
+            return this.data.find(
+                restaurant => restaurant.slug == this.slug
+            )
+        },
+        dish() {
+            return this.restaurant.dishes.find(
+                dish => dish.slug == this.dishSlug
+            )
+        }
+    }, */
     methods:{
         count(number) {
             if((number === '+') ? this.counter ++ : this.counter --);

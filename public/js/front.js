@@ -26799,6 +26799,7 @@ Vue.compile = compileToFunctions;
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
 /******/ 			if ({"UserShow":1,"about":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if (chunkId === "Dish") return "js/Dish.js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
@@ -27027,7 +27028,15 @@ var routes = [
   props: true,
   component: function component() {
     return __webpack_require__.e(/*! import() | UserShow */ "UserShow").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/UserShow.vue */ "./resources/js/pages/UserShow.vue"));
-  }
+  },
+  children: [{
+    path: ':dishSlug',
+    name: 'Dish',
+    props: true,
+    component: function component() {
+      return __webpack_require__.e(/*! import() | Dish */ "Dish").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/Dish.vue */ "./resources/js/pages/Dish.vue"));
+    }
+  }]
 },
 //*ABOUT
 {

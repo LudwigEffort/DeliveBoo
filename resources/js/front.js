@@ -28,6 +28,14 @@ const routes = [
         name: 'UserShow',
         props: true,
         component: () => import(/* webpackChunkName: "UserShow" */"./pages/UserShow.vue"),
+        children: [
+            {
+                path: ':dishSlug',
+                name: 'Dish',
+                props: true,
+                component: () => import(/* webpackChunkName: "Dish" */"./pages/Dish.vue")
+            }
+        ]
     },
 
 //*ABOUT
