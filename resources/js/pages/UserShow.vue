@@ -3,7 +3,7 @@
         <div v-if="data" class="container-fluid post-div" :data="data">
             <GoBack />
 
-            <div>Cart items: {{ arrDishesId.length }}</div>
+            <div>Cart items: {{ arrDishes.length }}</div>
     <!--? UNICA SOLUZIONE CHE MI VIENTE IN MENTE É FARE UNA CHIAMATA API QUI SPECIFICA PER LO USER -->
 
             <section class="restaurant-card">
@@ -73,7 +73,7 @@ export default {
             min: 0,
             name: '',
             price: '',
-            arrDishesId: [],
+            arrDishes: [],
             totalPrice: '',
         }
     },
@@ -85,14 +85,16 @@ export default {
         },
     },
     methods:{
-        addToCart(arrDishes) {
-            this.arrDishesId = arrDishes
-            return console.log(this.arrDishesId)
+        addToCart(id) {
+            this.arrDishes.push(id);
+            //this.arrDishesId = arrDishes
+            console.log(this.arrDishes)
             //this.$emit('addToCart', { name, price });
         },
-        removeFromCart(arrDishes) {
-            this.arrDishesId = arrDishes
-            return console.log(this.arrDishesId)
+        removeFromCart() {
+            //this.arrDishesId = arrDishes
+            this.arrDishes.pop();
+            console.log(this.arrDishes)
         }
     }
 }

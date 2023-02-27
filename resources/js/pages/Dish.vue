@@ -46,7 +46,7 @@ export default {
             maxDisabled:false,
             max: 10, //! DATO NON C'É NELL'API, Sto simulando
             min: 0,
-            arrDishes: [],
+            //arrDishes: [],
         }
     },
     computed: {
@@ -77,14 +77,10 @@ export default {
             }
         }, */
         addToCart(id) {
-            this.arrDishes.push(id);
-            return this.$emit('addToCart', this.arrDishes)
-            //TODO: ARRAY SI SVUOTA QUANDO CLICCO NUOVO DISH. DA FIXARE E MANTENERE I DATI
+            return this.$emit('addToCart', id)
         },
-        removeFromCart() {
-            this.arrDishes.pop();
-            console.log(this.arrDishes)
-            return this.$emit('removeFromCart', this.arrDishes)
+        removeFromCart(id) {
+            return this.$emit('removeFromCart', id)
         },
     },
 }

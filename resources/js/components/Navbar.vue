@@ -11,9 +11,9 @@
                 <li class="nav-item">
                     <router-link :to="{name: 'about'}" class="nav-link">About</router-link>
                 </li>
-                <li class="nav-item">
-                    <router-link :to="{name: 'contactUs'}" class="nav-link">Contact us</router-link>
-                </li>
+                <!--<li class="nav-item">-->
+                <!--<router-link :to="{name: 'contactUs'}" class="nav-link">Contact us</router-link>-->
+                <!--</li>-->
                 <li class="nav-item">
 
                     <!--?Margari va bene anche un'icona invece che il testo-->
