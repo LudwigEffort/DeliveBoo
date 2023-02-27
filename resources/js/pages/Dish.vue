@@ -11,12 +11,13 @@
                     <span class="card-title">Description: {{ dish.description }}</span>
                     <span class="card-title">Price: {{ dish.price }}€</span>
                     <span class="card-title">
-                    Available: <span :style="((dish.available) ? '' : 'color:red')">
+                    Available: <span :style="((dish.available) ? 'color:' : 'color:red')">
                         {{ ((dish.available) ? 'Yes' : 'No') }} </span> </span>
 
                     <button @click="count('-')" :disabled="minDisabled">-</button>
                         <span>{{ counter }}</span>
                     <button @click="count('+')" :disabled="maxDisabled">+</button>
+                    <button @click="addToCart(dish.id)">Add to Cart</button>
                 </div>
             </div>
         </div>
@@ -44,6 +45,7 @@ export default {
             maxDisabled:false,
             max: 10, //! DATO NON C'É NELL'API, Sto simulando
             min: 0,
+            arrDishes: [],
             //decimalPrice: this.price.toString(),//Converte numero in stringa
         }
     },
@@ -74,12 +76,13 @@ export default {
                 this.maxDisabled = false;
             }
         },
-        //TODO Funzione per trasformare il numero da intero a decimale con la virgola
-        /* decimal(){
-            this.decimalPrice = this.price.toString();
-            console.log(this.decimalPrice)
-        } */
-    }
+        addToCart(id) {
+            console.log(id)
+            this.arrDishes.push(id);
+            console.log(this.arrDishes)
+            return this.$emit('addToCart', this.arrDishes)
+        },
+    },
 }
 </script>
 

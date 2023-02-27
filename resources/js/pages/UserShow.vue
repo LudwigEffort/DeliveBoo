@@ -3,6 +3,7 @@
         <div v-if="data" class="container-fluid post-div" :data="data">
             <GoBack />
 
+            <div>Cart items: {{ arrDishesId.length }}</div>
     <!--? UNICA SOLUZIONE CHE MI VIENTE IN MENTE É FARE UNA CHIAMATA API QUI SPECIFICA PER LO USER -->
 
             <section class="restaurant-card">
@@ -25,8 +26,8 @@
                 <router-view
                 :key="$route.path"
                 :data="data"
+                @addToCart="addToCart"
                 />
-
                 <div class="dish-card"
                 v-for="dish in restaurant.dishes"
                 :key="dish.slug"
@@ -38,7 +39,7 @@
                         <h6>Available: <span :style="((dish.available) ? 'color:green' : 'color:red')">
                             {{ ((dish.available) ? 'Yes' : 'No') }} </span></h6>
                         </router-link>
-                        <button @click="addToCart(dish.name, dish.price)" >Add to Cart</button>
+                        <!--<button @click="addToCart(dish.name, dish.price)" >Add to Cart</button>-->
                     </div>
 
 
@@ -61,10 +62,6 @@ export default {
             type: String,
             required: true
         },
-        /* dishSlug: {
-            type: String,
-            required: true
-        } */
     },
     data() {
         return {
@@ -73,6 +70,10 @@ export default {
             maxDisabled:false,
             max: 10, //! DATO NON C'É NELL'API, Sto simulando
             min: 0,
+            name: '',
+            price: '',
+            arrDishesId: [],
+            totalPrice: '',
         }
     },
     computed: {
@@ -81,52 +82,15 @@ export default {
                 restaurant => restaurant.slug == this.$route.params.slug
             )
         },
-        /* dish() {
-            return this.restaurant.dishes.find(
-                dish => dish.slug == this.dishSlug
-            )
-        } */
     },
     methods:{
-        count(number) {
-            if((number === '+') ? this.counter++ : this.counter--);
-
-            if(this.counter >= this.max) {
-                this.minDisabled = false;
-                this.maxDisabled = true;
-            } else if (this.counter <= this.min) {
-                this.minDisabled = true;
-                this.maxDisabled = false;
-            } else {
-                this.minDisabled = false;
-                this.maxDisabled = false;
-            }
-        },
-        addToCart(name, price) {
-            this.$emit('addToCart', { name, price });
-            console.log(this.addToCart(name, price));
+        addToCart(arrDishes) {
+            this.arrDishesId = arrDishes //!UNDEFINED
+            return console.log(this.arrDishesId)
+            //this.$emit('addToCart', { name, price });
         }
     }
 }
-{/* <div class="dishes-card">
-                    <div class="dish-card"
-                        v-for="dish in restaurant.dishes"
-                        :key="dish.slug"
-                    >
-                        <img :src="'storage/' + dish.uploaded_img" :alt="dish.name" class="dish-img">
-                        <h3>{{ dish.name }}</h3>
-                        <h6>Price: {{ dish.price }}€</h6>
-                        <h6>Available: <span :style="((dish.available) ? 'color:green' : 'color:red')">{{ ((dish.available) ? 'Yes' : 'No') }} </span></h6>
-                        <p>Descrition: {{ dish.description }}</p>
-
-                        <!--!Al momento i bottoni sono uguali per tutti i piatti, quando uno cambia, cambiano tutti-->
-                        <!--?Forse devo fare un componente Button singolo-->
-                        <!--<button @click="count('-')" :disabled="minDisabled">-</button>-->
-                        <!--<span>{{ counter }}</span>-->
-                        <!--<button @click="count('+')" :disabled="maxDisabled">+</button>-->
-
-                    </div>
-                </div> */}
 </script>
 
 

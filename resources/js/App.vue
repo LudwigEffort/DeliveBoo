@@ -1,13 +1,13 @@
 <template>
     <div>
         <Navbar />
-        <Cart :addToCart="addToCart" />
+        <Cart :name="name" :price="price" />
         <main>
             <!--Render del singolo component-->
             <!--!Vanno passati i dati dell'api tramite le props-->
             <router-view
                 :data="data"
-                @cart="addToCart"
+                @addToCart="addToCart"
             />
         </main>
         <Footer />
@@ -30,12 +30,18 @@
         data() {
                 return {
                     data: null,
+                    name: '',
+                    price: '',
                 }
             },
             methods: {
                 getUsers() {
                     axios.get('/api/users').then(response => this.data = response.data.results);
                 },
+                addToCart(name, price) {
+                    this.name = name;
+                    this.price = price;
+                }
             },
             created() {
                 this.getUsers();
