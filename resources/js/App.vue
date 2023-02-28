@@ -1,52 +1,55 @@
 <template>
-    <div class="container">
-        <div>
-        <h1>Index dei post</h1>
-        <div v-if="results">
-            <div class="row g-3">
-                <div v-for="dish in results.data" :key="dish.id" class="col-sm-6 col-md-4">
-                    <div class="card h-100">
-                        <img :src="'storage/' + dish.uploaded_img" class="card-img-top" :alt="dish.name">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">{{ dish.name }}</h5>
-                            <p class="card-text flex-grow-1">{{ dish.description }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div>
+        <Navbar />
+        <!--<Cart :cart="cart" />-->
+        <!--<lu class="order-list" :v-for="order in orders" :key="order.id">-->
+            <!--<li>{{ order.name }} - {{ order.price }}€</li>-->
+        <!--</lu>-->
+        <main>
+            <router-view
+                :data="data"
+                @moveCart="cartUser"
+            />
+        </main>
+        <Footer />
     </div>
 </template>
 
 <script>
-
-
-
+import Navbar from './components/Navbar.vue';
+import Footer from './components/Footer.vue';
+//import Cart from './pages/Cart.vue';
 export default {
-  name: 'App',
-  components: {
-
-  },
-  data() {
+    name: 'App',
+    components: {
+        Navbar,
+        Footer,
+        //Cart,
+    },
+    data() {
         return {
-            results: null,
-            query: "",
+            data: null,
+            cart: [],
         }
     },
     methods: {
-        getDishes() {
-            axios.get('/api/dishes')
-                .then(response => this.results = response.data.results);
+        getUsers() {
+            axios.get('/api/users').then(response => this.data = response.data.results);
         },
-
+        cartUser(cart) {
+            this.cart = cart;
+            console.log(this.cart)
+        }
     },
     created() {
-        this.getDishes();
+        this.getUsers();
     }
 }
 </script>
 
 <style lang="scss">
-    @import '~bootstrap/scss/bootstrap';
+@import '~bootstrap/scss/bootstrap';
+ul {
+    list-style: none;
+}
 </style>

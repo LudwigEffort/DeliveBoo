@@ -2,24 +2,18 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Dish;
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
 
-class DishController extends Controller
+class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $dish = Dish::all(); //?COME RICHIEDERE TUTTI I PIATTI DI UN SINGOLO RISTORANTE
-        //! NON TUTTI I DISHES DAL DATABASE
+        $user = User::with(['dishes', 'categories'])->get();
         return response()->json([
             'success' => true,
-            'results' => $dish,
+            'results' => $user,
         ]);
     }
     /**
@@ -28,11 +22,12 @@ class DishController extends Controller
      * @param  \App\Dish  $dish
      * @return \Illuminate\Http\Response
      */
-    public function show(Dish $dish)
+    public function show(User $user)
     {
+        $user = User::where('id', $user->id)->with(['dishes','categories'])->first();
         return response()->json([
             'success' => true,
-            'results' => $dish,
+            'results' => $user,
         ]);
     }
 }
