@@ -5112,10 +5112,14 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     getUsers: function getUsers() {
       var _this = this;
+      var params = {};
+      if (this.search) {
+        params.search = this.search;
+      } else {
+        params.limit = 2;
+      }
       axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/users', {
-        params: {
-          search: this.search
-        }
+        params: params
       }).then(function (response) {
         _this.users = response.data.results;
       })["catch"](function (error) {

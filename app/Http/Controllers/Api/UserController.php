@@ -18,25 +18,13 @@ class UserController extends Controller
 
     $users = $query->get();
 
+    if (!$request->has('search')) {
+        $users = $users->take(2);
+    }
+
     return response()->json([
         'success' => true,
         'results' => $users,
     ]);
 }
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Dish  $dish
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        $user = User::where('id', $user->id)->with(['dishes','categories'])->first();
-        return response()->json([
-            'success' => true,
-            'results' => $user,
-        ]);
-    }
 }

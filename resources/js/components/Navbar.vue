@@ -56,10 +56,16 @@
     },
     methods: {
         getUsers() {
+    let params = {};
+
+    if (this.search) {
+      params.search = this.search;
+    } else {
+      params.limit = 2;
+    }
+
     axios.get('/api/users', {
-      params: {
-        search: this.search,
-      },
+      params: params,
     })
     .then(response => {
       this.users = response.data.results;
@@ -68,7 +74,6 @@
       console.error(error);
     });
   },
-
     },
   };
   </script>
