@@ -27,9 +27,9 @@
 
                         <div class="mb-3">
                             <label for="category_id" class="form-label">Categoria</label>
-                            <select multiple class="form-select @error('category_id') is-invalid @enderror" id="category_id" name="category_id[]" @if(is_array(old('category_id')) && in_array($category->id, old('category_id'))) checked @endif>
+                            <select multiple class="form-select @error('category_id') is-invalid @enderror" id="category_id" name="category_id[]">
                                 @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}" @if ($category->id == old('category_id')) selected @endif>{{ $category->name }}</option>
+                                    <option value="{{ $category->id }}" @if ($category->id == old('category_id')) selected @endif>{{ $category->name }} @if(is_array(old('category_id')) && in_array($category->id, old('category_id'))) checked @endif</option>
                                 @endforeach
                             </select>
                             <div class="invalid-feedback">
