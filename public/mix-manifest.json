@@ -3,6 +3,7 @@
     "/js/front.js": "/js/front.js",
     "/js/UserShow.js": "/js/UserShow.js",
     "/js/Dish.js": "/js/Dish.js",
+    "/js/Cart.js": "/js/Cart.js",
     "/js/about.js": "/js/about.js",
     "/css/app.css": "/css/app.css",
     "/dist/fonts/font-awesome/fa-brands-400.ttf": "/dist/fonts/font-awesome/fa-brands-400.ttf",

@@ -1,7 +1,16 @@
 <template>
 <div>
-    <h1>Cart</h1>
+    <h1>Cart COMPONENT</h1>
+    <div v-if="cartItems">
 
+        <ul v-for="(product, i) in cartItems" :key="i" class="card">
+            <li>Dish:{{ product.name }}</li>
+            <li>Price:{{ product.price / 100 }}€</li>
+            <li>Available: <span :style="((product.available) ? 'color:green' : 'color:red')"> {{ ((product.available) ? 'Yes' : 'No') }}</span></li>
+        </ul>
+
+    </div>
+    <hr>
 </div>
 </template>
 
@@ -9,29 +18,16 @@
 export default {
     data() {
         return {
-        cartItems: []
+        cartItems: null,
         }
     },
-    /* mounted() {
-        this.$root.$on('addToCart', ({ name, price }) => {
-        this.cartItems.push({ name, price });
-        });
-    }, */
     props:{
-        // addToCart: Array,
-        // name: String,
-        // price: Number
+        cart: Array,
     },
     methods: {
         cart() {
-            this.cartItems = this.addToCart;
-        }
-    }
-    /* {{ name }} - {{ price }}
-        <ul>
-            <li v-for="(item, index) in cartItems" :key="index">
-                {{ item.name }}  {{ item.price }}
-            </li>
-        </ul> */
+            this.cartItems = this.cart;
+        },
+    },
 }
 </script>

@@ -1,7 +1,6 @@
 <template>
     <div>
         <!--<Page404 v-if="is404" />-->
-        <!--<router-link :to="'/'" class="back-btn">Home</router-link>-->
         <div class="container-fluid post-div">
 
             <div class="card-body d-flex flex-column">
@@ -17,8 +16,8 @@
                     <!--<button @click="count('-')" :disabled="minDisabled">-</button>-->
                     <!--<span>{{ counter }}</span>-->
                     <!--<button @click="count('+')" :disabled="maxDisabled">+</button>-->
-                    <button @click="addToCart(dish.id)">Add to Cart</button>
-                    <button @click="removeFromCart(dish.id)">Remove from Cart</button>
+                    <button @click="$emit('addToCart', dish)">Add to Cart</button>
+                    <button @click="$emit('removeFromCart', dish)">Remove from Cart</button>
                 </div>
             </div>
         </div>
@@ -46,7 +45,6 @@ export default {
             maxDisabled:false,
             max: 10, //! DATO NON C'É NELL'API, Sto simulando
             min: 0,
-            //arrDishes: [],
         }
     },
     computed: {
@@ -76,12 +74,12 @@ export default {
                 this.maxDisabled = false;
             }
         }, */
-        addToCart(id) {
+        /* addToCart(id) {
             return this.$emit('addToCart', id)
         },
         removeFromCart(id) {
             return this.$emit('removeFromCart', id)
-        },
+        }, */
     },
 }
 </script>

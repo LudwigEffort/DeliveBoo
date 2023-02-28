@@ -1,11 +1,14 @@
 <template>
     <div>
         <Navbar />
-        <Cart :name="name" :price="price" />
+        <!--<Cart :cart="cart" />-->
+        <!--<lu class="order-list" :v-for="order in orders" :key="order.id">-->
+            <!--<li>{{ order.name }} - {{ order.price }}€</li>-->
+        <!--</lu>-->
         <main>
             <router-view
                 :data="data"
-                @addToCart="addToCart"
+                @moveCart="cartUser"
             />
         </main>
         <Footer />
@@ -15,38 +18,38 @@
 <script>
 import Navbar from './components/Navbar.vue';
 import Footer from './components/Footer.vue';
-import Cart from './pages/Cart.vue';
-
-
+//import Cart from './pages/Cart.vue';
 export default {
     name: 'App',
     components: {
         Navbar,
         Footer,
-        Cart,
+        //Cart,
     },
     data() {
-            return {
-                data: null,
-                name: '',
-                price: '',
-            }
-        },
-        methods: {
-            getUsers() {
-                axios.get('/api/users').then(response => this.data = response.data.results);
-            },
-            addToCart(name, price) {
-                this.name = name;
-                this.price = price;
-            }
-        },
-        created() {
-            this.getUsers();
+        return {
+            data: null,
+            cart: [],
         }
+    },
+    methods: {
+        getUsers() {
+            axios.get('/api/users').then(response => this.data = response.data.results);
+        },
+        cartUser(cart) {
+            this.cart = cart;
+            console.log(this.cart)
+        }
+    },
+    created() {
+        this.getUsers();
+    }
 }
 </script>
 
 <style lang="scss">
-    @import '~bootstrap/scss/bootstrap';
+@import '~bootstrap/scss/bootstrap';
+ul {
+    list-style: none;
+}
 </style>
