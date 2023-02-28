@@ -8,14 +8,23 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index()
-    {
-        $user = User::with(['dishes', 'categories'])->get();
-        return response()->json([
-            'success' => true,
-            'results' => $user,
-        ]);
+    public function index(Request $request)
+{
+    $query = User::with(['dishes', 'categories']);
+
+    if ($request->has('search')) {
+        $query->where('name', 'like', '%' . $request->input('search') . '%');
     }
+
+    $users = $query->get();
+
+    return response()->json([
+        'success' => true,
+        'results' => $users,
+    ]);
+}
+
+
     /**
      * Display the specified resource.
      *

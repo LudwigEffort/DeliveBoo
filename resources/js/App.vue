@@ -7,8 +7,7 @@
         <!--</lu>-->
         <main>
             <router-view
-                :data="data"
-                @moveCart="cartUser"
+
             />
         </main>
         <Footer />
@@ -33,16 +32,7 @@ export default {
         }
     },
     methods: {
-        getUsers() {
-            axios.get('/api/users').then(response => this.data = response.data.results);
-        },
-        cartUser(cart) {
-            this.cart = cart;
-            console.log(this.cart)
-        }
-    },
-    created() {
-        this.getUsers();
+
     }
 }
 </script>

@@ -20,3 +20,6 @@ Route::post('/payment/make/payment', 'Api\Braintree\PaymentController@makePaymen
 
 // API to generate Orders from db
 Route::get('/orders', 'Api\Braintree\OrderController@index');
+
+//API Search Bar
+Route::get('/api/users', 'Api\UserController@index');

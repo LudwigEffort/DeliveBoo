@@ -5065,21 +5065,7 @@ __webpack_require__.r(__webpack_exports__);
       cart: []
     };
   },
-  methods: {
-    getUsers: function getUsers() {
-      var _this = this;
-      axios.get('/api/users').then(function (response) {
-        return _this.data = response.data.results;
-      });
-    },
-    cartUser: function cartUser(cart) {
-      this.cart = cart;
-      console.log(this.cart);
-    }
-  },
-  created: function created() {
-    this.getUsers();
-  }
+  methods: {}
 });
 
 /***/ }),
@@ -5110,7 +5096,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      users: [],
+      search: ''
+    };
+  },
+  mounted: function mounted() {
+    this.getUsers();
+  },
+  methods: {
+    getUsers: function getUsers() {
+      var _this = this;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/users', {
+        params: {
+          search: this.search
+        }
+      }).then(function (response) {
+        _this.users = response.data.results;
+      })["catch"](function (error) {
+        console.error(error);
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -5149,14 +5162,7 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("Navbar"), _vm._v(" "), _c("main", [_c("router-view", {
-    attrs: {
-      data: _vm.data
-    },
-    on: {
-      moveCart: _vm.cartUser
-    }
-  })], 1), _vm._v(" "), _c("Footer")], 1);
+  return _c("div", [_c("Navbar"), _vm._v(" "), _c("main", [_c("router-view")], 1), _vm._v(" "), _c("Footer")], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -5241,7 +5247,34 @@ var render = function render() {
         name: "Cart"
       }
     }
-  }, [_vm._v("Cart")])], 1)]), _vm._v(" "), _vm._m(1)])], 1)])]);
+  }, [_vm._v("Cart")])], 1)]), _vm._v(" "), _c("form", {
+    staticClass: "d-flex",
+    attrs: {
+      role: "search"
+    }
+  }, [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.search,
+      expression: "search"
+    }],
+    attrs: {
+      type: "text",
+      placeholder: "Cerca utenti..."
+    },
+    domProps: {
+      value: _vm.search
+    },
+    on: {
+      input: [function ($event) {
+        if ($event.target.composing) return;
+        _vm.search = $event.target.value;
+      }, _vm.getUsers]
+    }
+  })])])], 1), _vm._v(" "), _vm._l(_vm.users, function (user) {
+    return _c("div", [_vm._v(_vm._s(user.name))]);
+  })], 2)]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -5259,27 +5292,6 @@ var staticRenderFns = [function () {
   }, [_c("span", {
     staticClass: "navbar-toggler-icon"
   })]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("form", {
-    staticClass: "d-flex",
-    attrs: {
-      role: "search"
-    }
-  }, [_c("input", {
-    staticClass: "form-control me-2",
-    attrs: {
-      type: "search",
-      placeholder: "Search",
-      "aria-label": "Search"
-    }
-  }), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-light",
-    attrs: {
-      type: "submit"
-    }
-  }, [_vm._v("Search")])]);
 }];
 render._withStripped = true;
 
