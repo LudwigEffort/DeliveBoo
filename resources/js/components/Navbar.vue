@@ -36,6 +36,9 @@
           </div>
         </div>
         <div v-for="user in users">{{ user.name }}</div>
+        <div>
+            <button @click="changeValue(), getUsers()">koreano</button>
+        </div>
       </nav>
     </div>
   </template>
@@ -48,6 +51,7 @@
         return {
             users: [],
             search: '',
+            category: false
         };
     },
 
@@ -56,23 +60,32 @@
     },
     methods: {
         getUsers() {
-    let params = {};
+  let params = {};
 
-    if (this.search) {
-      params.search = this.search;
-    } else {
-      params.limit = 2;
-    }
+  if (this.search) {
+    params.search = this.search;
+  } else {
+    params.limit = 2;
+  }
 
-    axios.get('/api/users', {
-      params: params,
-    })
-    .then(response => {
-      this.users = response.data.results;
-    })
-    .catch(error => {
-      console.error(error);
-    });
+  if (this.category) {
+    params.category = 'koreano';
+    this.category=false
+  }
+
+  axios.get('/api/users', {
+    params: params,
+  })
+  .then(response => {
+    this.users = response.data.results;
+  })
+  .catch(error => {
+    console.error(error);
+  });
+},
+  changeValue() {
+    this.category = true;
+    console.log(this.users)
   },
     },
   };

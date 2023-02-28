@@ -5103,7 +5103,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       users: [],
-      search: ''
+      search: '',
+      category: false
     };
   },
   mounted: function mounted() {
@@ -5118,6 +5119,10 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         params.limit = 2;
       }
+      if (this.category) {
+        params.category = 'koreano';
+        this.category = false;
+      }
       axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/users', {
         params: params
       }).then(function (response) {
@@ -5125,6 +5130,10 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.error(error);
       });
+    },
+    changeValue: function changeValue() {
+      this.category = true;
+      console.log(this.users);
     }
   }
 });
@@ -5278,7 +5287,13 @@ var render = function render() {
     }
   })])])], 1), _vm._v(" "), _vm._l(_vm.users, function (user) {
     return _c("div", [_vm._v(_vm._s(user.name))]);
-  })], 2)]);
+  }), _vm._v(" "), _c("div", [_c("button", {
+    on: {
+      click: function click($event) {
+        _vm.changeValue(), _vm.getUsers();
+      }
+    }
+  }, [_vm._v("koreano")])])], 2)]);
 };
 var staticRenderFns = [function () {
   var _vm = this,

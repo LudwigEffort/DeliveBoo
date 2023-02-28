@@ -16,6 +16,12 @@ class UserController extends Controller
         $query->where('name', 'like', '%' . $request->input('search') . '%');
     }
 
+    if ($request->has('category')) {
+        $query->whereHas('categories', function($q) use ($request) {
+            $q->where('name', $request->input('category'));
+        });
+    }
+
     $users = $query->get();
 
     if (!$request->has('search')) {
@@ -27,4 +33,5 @@ class UserController extends Controller
         'results' => $users,
     ]);
 }
+
 }
