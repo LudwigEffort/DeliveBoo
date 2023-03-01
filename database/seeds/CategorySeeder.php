@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use App\Category;
 use Illuminate\Database\Seeder;
 
@@ -24,15 +25,14 @@ class CategorySeeder extends Seeder
         ];
 
         foreach ($categories as $category) {
-            $newCategory = Category::create([
+            $category = Category::create([
                 'slug' => Category::getSlug($category),
                 'name' => $category,
                 'description' => "lorem ipsum blablablablablabla",
             ]);
-
-            $num_categories = rand(1, 3);
-            $category_ids = Category::pluck('id')->shuffle()->take($num_categories)->toArray();
-            $newCategory->users()->sync($category_ids);
+            $num_users = rand(1, 3);
+            $user_ids = User::where('id', '<>', $category->id)->inRandomOrder()->take($num_users)->pluck('id')->toArray();
+            $category->users()->sync($user_ids);
         }
 
 }
