@@ -5120,7 +5120,7 @@ __webpack_require__.r(__webpack_exports__);
         params.limit = 2;
       }
       if (this.category) {
-        params.category = 'koreano';
+        params.category = 'cinese';
         this.category = false;
       }
       axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/users', {
@@ -5293,7 +5293,7 @@ var render = function render() {
         _vm.changeValue(), _vm.getUsers();
       }
     }
-  }, [_vm._v("koreano")])])], 2)]);
+  }, [_vm._v("cinese")])])], 2)]);
 };
 var staticRenderFns = [function () {
   var _vm = this,

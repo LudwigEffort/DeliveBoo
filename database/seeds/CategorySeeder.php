@@ -26,7 +26,7 @@ class CategorySeeder extends Seeder
             Category::create([
                 'slug'          => Category::getSlug($category),
                 'name'          => $category,
-                'description'   => "lorem ipsum blablablablablabla", //da sistemare
+                'description'   => "lorem ipsum blablablablablabla",
             ]);
     }
 }

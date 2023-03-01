@@ -37,7 +37,7 @@
         </div>
         <div v-for="user in users">{{ user.name }}</div>
         <div>
-            <button @click="changeValue(), getUsers()">koreano</button>
+            <button @click="changeValue(), getUsers()">cinese</button>
         </div>
       </nav>
     </div>
@@ -69,7 +69,7 @@
   }
 
   if (this.category) {
-    params.category = 'koreano';
+    params.category = 'cinese';
     this.category=false
   }
 

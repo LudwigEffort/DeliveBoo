@@ -16,9 +16,7 @@ class CreateCategoryUserTable extends Migration
         Schema::create('category_user', function (Blueprint $table) {
 
             $table->foreignId('category_id')->constrained();
-
             $table->foreignId('user_id')->constrained();
-
         });
 
     }

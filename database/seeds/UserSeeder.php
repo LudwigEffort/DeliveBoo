@@ -1,7 +1,9 @@
 <?php
 
 use App\User;
+use App\Category;
 use Illuminate\Database\Seeder;
+use Faker\Generator as Faker;
 use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
@@ -11,8 +13,9 @@ class UserSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
+        $categories = Category::all();
         $users = [
             //kebab
             [
@@ -73,6 +76,7 @@ class UserSeeder extends Seeder
 
         foreach ($users as $user) {
             User::create($user);
+            $user->categories()->attach($categories);
         }
     }
 }
