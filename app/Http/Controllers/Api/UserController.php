@@ -10,6 +10,8 @@ class UserController extends Controller
 {
     public function index(Request $request)
 {
+    $categories = \App\Category::all();
+
     $query = User::with(['dishes', 'categories']);
 
     if ($request->has('search')) {
@@ -31,6 +33,7 @@ class UserController extends Controller
     return response()->json([
         'success' => true,
         'results' => $users,
+        'categories' => $categories,
     ]);
 }
 

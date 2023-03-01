@@ -20,14 +20,20 @@ class CategorySeeder extends Seeder
             'Francese',
             'Cucina internazionale',
             'Koreano',
+            'Marocchina',
         ];
 
         foreach ($categories as $category) {
-            Category::create([
-                'slug'          => Category::getSlug($category),
-                'name'          => $category,
-                'description'   => "lorem ipsum blablablablablabla",
+            $newCategory = Category::create([
+                'slug' => Category::getSlug($category),
+                'name' => $category,
+                'description' => "lorem ipsum blablablablablabla",
             ]);
-    }
+
+            $num_categories = rand(1, 3);
+            $category_ids = Category::pluck('id')->shuffle()->take($num_categories)->toArray();
+            $newCategory->users()->sync($category_ids);
+        }
+
 }
 }

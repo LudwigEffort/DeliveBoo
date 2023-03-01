@@ -5104,7 +5104,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       users: [],
       search: '',
-      category: false
+      category: '',
+      categories: []
     };
   },
   mounted: function mounted() {
@@ -5120,20 +5121,21 @@ __webpack_require__.r(__webpack_exports__);
         params.limit = 2;
       }
       if (this.category) {
-        params.category = 'cinese';
+        params.category = this.category;
         this.category = false;
       }
       axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/users', {
         params: params
       }).then(function (response) {
         _this.users = response.data.results;
+        _this.categories = response.data.categories;
       })["catch"](function (error) {
         console.error(error);
       });
     },
-    changeValue: function changeValue() {
-      this.category = true;
-      console.log(this.users);
+    changeValue: function changeValue(category) {
+      this.category = category;
+      this.getUsers();
     }
   }
 });
@@ -5287,13 +5289,15 @@ var render = function render() {
     }
   })])])], 1), _vm._v(" "), _vm._l(_vm.users, function (user) {
     return _c("div", [_vm._v(_vm._s(user.name))]);
-  }), _vm._v(" "), _c("div", [_c("button", {
-    on: {
-      click: function click($event) {
-        _vm.changeValue(), _vm.getUsers();
+  }), _vm._v(" "), _c("div", _vm._l(_vm.categories, function (category) {
+    return _c("button", {
+      on: {
+        click: function click($event) {
+          return _vm.changeValue(category.name);
+        }
       }
-    }
-  }, [_vm._v("cinese")])])], 2)]);
+    }, [_vm._v(_vm._s(category.name))]);
+  }), 0)], 2)]);
 };
 var staticRenderFns = [function () {
   var _vm = this,

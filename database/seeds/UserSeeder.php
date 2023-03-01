@@ -15,7 +15,6 @@ class UserSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $categories = Category::all();
         $users = [
             //kebab
             [
@@ -75,8 +74,7 @@ class UserSeeder extends Seeder
         ];
 
         foreach ($users as $user) {
-            User::create($user);
-            $user->categories()->attach($categories);
+            $user = User::create($user);
         }
     }
 }

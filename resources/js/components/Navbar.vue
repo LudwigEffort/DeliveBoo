@@ -37,7 +37,7 @@
         </div>
         <div v-for="user in users">{{ user.name }}</div>
         <div>
-            <button @click="changeValue(), getUsers()">cinese</button>
+            <button v-for="category in categories" @click="changeValue(category.name)">{{category.name}}</button>
         </div>
       </nav>
     </div>
@@ -51,7 +51,8 @@
         return {
             users: [],
             search: '',
-            category: false
+            category: '',
+            categories: [],
         };
     },
 
@@ -69,7 +70,7 @@
   }
 
   if (this.category) {
-    params.category = 'cinese';
+    params.category = this.category;
     this.category=false
   }
 
@@ -78,14 +79,15 @@
   })
   .then(response => {
     this.users = response.data.results;
+    this.categories = response.data.categories;
   })
   .catch(error => {
     console.error(error);
   });
 },
-  changeValue() {
-    this.category = true;
-    console.log(this.users)
+  changeValue(category) {
+    this.category = category;
+    this.getUsers();
   },
     },
   };
