@@ -1,9 +1,9 @@
-require('./common.js');
 import Vue from 'vue';
 import App from './App.vue';
 import VueRouter from 'vue-router';
 import UserShow from './pages/UserShow.vue';
 import About from './pages/About.vue';
+require('./common.js')
 
 Vue.use(VueRouter);
 

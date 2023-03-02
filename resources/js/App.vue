@@ -1,14 +1,14 @@
 <template>
     <div>
-        <nav class="navbar navbar-expand-md navbar-dark bg-white border-bottom border-dark">
+      <nav class="navbar navbar-expand-md navbar-dark bg-white border-bottom border-dark">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-3">
-                    <router-link :to="{name: '/'}" class="navbar-brand">
-                        <img  src="/img/logo.jpg" class="logo" alt="">
-                    </router-link>
-                </div>
+          <div class="row">
+            <div class="col-3">
+              <router-link :to="{ path: '/' }" class="navbar-brand">
+                <img src="/img/logo.jpg" class="logo" alt="">
+              </router-link>
             </div>
+          </div>
           <button
             class="navbar-toggler"
             type="button"
@@ -26,7 +26,7 @@
               style="--bs-scroll-height: 100px;"
             >
               <li class="nav-item">
-                <router-link :to="{name: 'about'}" class="nav-link">About</router-link>
+                <router-link :to="{ name: 'about' }" class="nav-link">About</router-link>
               </li>
               <!--<li class="nav-item">-->
               <!--<router-link :to="{name: 'contactUs'}" class="nav-link">Contact us</router-link>-->
@@ -36,7 +36,7 @@
               </li>
             </ul>
             <form class="d-flex" role="search">
-                <input type="text" v-model="search" @input="getUsers" placeholder="Cerca ristoranti...">
+              <input type="text" v-model="search" @input="getUsers" placeholder="Cerca ristoranti...">
             </form>
           </div>
         </div>
@@ -45,35 +45,36 @@
       </nav>
       <section class="mt-5">
         <div class="container">
-            <div class="row">
-                <div v-for="category in categories" class="col">
-                    <button  @click="changeValue(category.name)"><span class="button_top"> {{category.name}}
-  </span></button>
-                </div>
+          <div class="row">
+            <div v-for="category in categories" class="col">
+              <button  @click="changeValue(category.name)"><span class="button_top"> {{category.name}}
+              </span></button>
             </div>
-            <div class="row mt-5">
-                <div v-for="user in users" class="col-4">
-                    <router-link to="/user-show">
-                        <div class="card">
-                        <h1>{{ user.name }}</h1>
-                        <span class="card-title">{{ user.name }}</span>
-                        <span class="card-title">Email:{{ user.email }}</span>
-                        <span class="card-title">Opening Time: {{ user.opening_time }}</span>
-                        <span class="card-title">Closing Time: {{ user.closing_time }}</span>
-                        <span class="card-title">Now open: {{ ((user.is_opened) ? 'Yes' : 'No') }}
-                        </span>
-                        <ul>
-                            <li v-for="categories in user.categories">
-                            {{ categories.name }}</li>
-                        </ul>
-                    </div>
-                    </router-link>
+          </div>
+          <div class="row mt-5">
+            <div v-for="user in users" class="col-4">
+              <router-link :to="{ path: '/user-show' }">
+                <div class="card">
+                  <h1>{{ user.name }}</h1>
+                  <span class="card-title">{{ user.name }}</span>
+                  <span class="card-title">Email:{{ user.email }}</span>
+                  <span class="card-title">Opening Time: {{ user.opening_time }}</span>
+                  <span class="card-title">Closing Time: {{ user.closing_time }}</span>
+                  <span class="card-title">Now open: {{ ((user.is_opened) ? 'Yes' : 'No') }}
+                  </span>
+                  <ul>
+                    <li v-for="categories in user.categories">
+                      {{ categories.name }}
+                    </li>
+                  </ul>
                 </div>
+              </router-link>
             </div>
+          </div>
         </div>
       </section>
     </div>
-</template>
+  </template>
 
 <script>
 
