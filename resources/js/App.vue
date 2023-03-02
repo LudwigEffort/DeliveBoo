@@ -69,7 +69,7 @@ a {
 }
 
 .logo {
-    width: 120%;
+    width: 110%;
 }
 
 button {
