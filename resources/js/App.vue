@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-3">
-                    <router-link :to="{name: 'home'}" class="navbar-brand">
+                    <router-link :to="{name: '/'}" class="navbar-brand">
                         <img  src="/img/logo.jpg" class="logo" alt="">
                     </router-link>
                 </div>
@@ -53,7 +53,8 @@
             </div>
             <div class="row mt-5">
                 <div v-for="user in users" class="col-4">
-                    <div class="card">
+                    <router-link to="/user-show">
+                        <div class="card">
                         <h1>{{ user.name }}</h1>
                         <span class="card-title">{{ user.name }}</span>
                         <span class="card-title">Email:{{ user.email }}</span>
@@ -63,9 +64,10 @@
                         </span>
                         <ul>
                             <li v-for="categories in user.categories">
-                            {{ categories }}</li>
+                            {{ categories.name }}</li>
                         </ul>
                     </div>
+                    </router-link>
                 </div>
             </div>
         </div>

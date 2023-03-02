@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
 <div v-if="data">
     <div class="row g-3">
         <div v-for="user in data" :key="user.id" class="col-sm-6 col-md-4">
@@ -31,4 +31,4 @@ export default {
 
 <style scoped lang="scss">
 
-</style>
+</style> -->
