@@ -34,6 +34,5 @@ class CategorySeeder extends Seeder
             $user_ids = User::where('id', '<>', $category->id)->inRandomOrder()->take($num_users)->pluck('id')->toArray();
             $category->users()->sync($user_ids);
         }
-
 }
 }
