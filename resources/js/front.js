@@ -17,10 +17,11 @@ const routes = [
     component: About
   },
   {
-    path: '/user-show',
-    name: 'user-show',
-    component: UserShow
-  },
+    path: '/users/:slug',
+    name: 'usersShow',
+    component: UserShow,
+    props: true,
+},
   {
     path: '/',
     component: App
