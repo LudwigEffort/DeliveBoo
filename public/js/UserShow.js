@@ -11,10 +11,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+Object(function webpackMissingModule() { var e = new Error("Cannot find module './Dish.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+Object(function webpackMissingModule() { var e = new Error("Cannot find module '../components/GoBack'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    Dish: Dish,
-    GoBack: GoBack
+    Dish: Object(function webpackMissingModule() { var e = new Error("Cannot find module './Dish.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()),
+    GoBack: Object(function webpackMissingModule() { var e = new Error("Cannot find module '../components/GoBack'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())
   },
   data: function data() {
     return {
@@ -28,7 +32,8 @@ __webpack_require__.r(__webpack_exports__);
     slug: {
       type: String,
       required: true
-    }
+    },
+    arrRestaurants: Array
   },
   computed: {
     restaurant: function restaurant() {
@@ -51,24 +56,36 @@ __webpack_require__.r(__webpack_exports__);
       this.page = page;
     },
     arrOrders: function arrOrders() {
+      // SEND API
       this.$emit('arrOrders', cart);
+      axios.post('http://localhost:3000/api/cart', this.cart).then(function (response) {
+        console.log(response.data);
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
-    /* async sendDataToAPI() { //Non funziona perché non é JSON
-        try {
-            const response = await fetch('/orders', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ data: this.cart })
-            });
-            const result = await response.json();
-            console.log(result);
-        } catch (error) {
-            console.error(error);
-        }
-    } */
+  },
+  //Non so se serve questo watch
+  watch: {
+    updateCart: function updateCart() {
+      this.arrOrders();
+    }
   }
+  /* async sendDataToAPI() { //Non funziona perché non é JSON
+      try {
+          const response = await fetch('/orders', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ data: this.cart })
+          });
+          const result = await response.json();
+          console.log(result);
+      } catch (error) {
+          console.error(error);
+      }
+  } */
 });
 
 /***/ }),
@@ -92,7 +109,7 @@ var render = function render() {
     attrs: {
       data: _vm.data
     }
-  }, [_c("div", [_vm._v("Cart items: " + _vm._s(_vm.cart.length))]), _vm._v(" "), _vm.page === "UserShow" ? _c("div", [_c("button", {
+  }, [_c("GoBack"), _vm._v(" "), _vm.page === "UserShow" ? _c("div", [_c("button", {
     on: {
       click: function click($event) {
         _vm.navigateTo("cart"), _vm.$emit("moveCart", _vm.cart);
@@ -154,10 +171,10 @@ var render = function render() {
     return _c("ul", {
       key: i,
       staticClass: "card"
-    }, [_c("li", [_vm._v("Dish:" + _vm._s(product.name))]), _vm._v(" "), _c("li", [_vm._v("Price:" + _vm._s(product.price / 100) + "€")]), _vm._v(" "), _c("li", [_vm._v("Available: "), _c("span", {
+    }, [_c("li", [_vm._v("Dish: " + _vm._s(product.name))]), _vm._v(" "), _c("li", [_vm._v("Price: " + _vm._s(product.price / 100) + "€")]), _vm._v(" "), _c("li", [_vm._v("Available: "), _c("span", {
       style: product.available ? "color:green" : "color:red"
     }, [_vm._v(" " + _vm._s(product.available ? "Yes" : "No"))])])]);
-  })], 2)]) : _vm._e()]);
+  })], 2)], 1) : _vm._e()]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
