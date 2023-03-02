@@ -59,7 +59,12 @@
                         <span class="card-title">Email:{{ user.email }}</span>
                         <span class="card-title">Opening Time: {{ user.opening_time }}</span>
                         <span class="card-title">Closing Time: {{ user.closing_time }}</span>
-                        <span class="card-title">Now open: {{ ((user.is_opened) ? 'Yes' : 'No') }}</span>
+                        <span class="card-title">Now open: {{ ((user.is_opened) ? 'Yes' : 'No') }}
+                        </span>
+                        <ul>
+                            <li v-for="categories in user.categories">
+                            {{ categories }}</li>
+                        </ul>
                     </div>
                 </div>
             </div>
