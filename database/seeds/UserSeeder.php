@@ -18,11 +18,11 @@ class UserSeeder extends Seeder
         $users = [
             //kebab
             [
-                'name'          => 'Kebab Hallah',
-                'email'         => 'kebabhallah@gmail.com',
+                'name'          => 'Kebab Habdul',
+                'email'         => 'kebabhabdul@gmail.com',
                 'password'      =>  Hash::make('123'),
                 'slug'          =>  User::getSlug('Kebab Hallah'),
-                'vat_number'    => 'ciao9',
+                'vat_number'    => '09876543210',
                 'opening_time'  => '12:05:43',
                 'closing_time'  => '12:05:43',
                 'is_opened'     => 1
@@ -30,21 +30,21 @@ class UserSeeder extends Seeder
             // pizza
             [
                 'name'          => 'Pizzeria Napoletana',
-                'email'         => 'pizzerianapoletan@gmail.com',
+                'email'         => 'pizzerianapoletana@gmail.com',
                 'password'      =>  Hash::make('123'),
                 'slug'          =>  User::getSlug('Pizzeria Napoletana'),
-                'vat_number'    => 'ciao4',
+                'vat_number'    => '09876543219',
                 'opening_time'  => '12:05:43',
                 'closing_time'  => '12:05:43',
-                'is_opened'     => 0
+                'is_opened'     => 1
             ],
             // sushi
             [
                 'name'          => 'Sushi Zen',
                 'email'         => 'sushizen@gmail.com',
-                'password'      =>  Hash::make('zxcv'),
+                'password'      =>  Hash::make('123'),
                 'slug'          =>  User::getSlug('Sushi Zen'),
-                'vat_number'    => 'ciao6',
+                'vat_number'    => '09876543218',
                 'opening_time'  => '12:05:43',
                 'closing_time'  => '12:05:43',
                 'is_opened'     => 1
@@ -53,9 +53,9 @@ class UserSeeder extends Seeder
             [
                 'name'          => 'Mario Poke',
                 'email'         => 'mariopoke@gmail.com',
-                'password'      =>  Hash::make('zxcv'),
+                'password'      =>  Hash::make('123'),
                 'slug'          =>  User::getSlug('Mario Poke'),
-                'vat_number'    => 'ciao7',
+                'vat_number'    => '09876543217',
                 'opening_time'  => '12:05:43',
                 'closing_time'  => '12:05:43',
                 'is_opened'     => 1
@@ -64,9 +64,9 @@ class UserSeeder extends Seeder
             [
                 'name'          => 'Grill & Pasta',
                 'email'         => 'grillpasta@gmail.com',
-                'password'      =>  Hash::make('zxcv'),
+                'password'      =>  Hash::make('123'),
                 'slug'          =>  User::getSlug('Grill & Pasta'),
-                'vat_number'    => 'ciao8',
+                'vat_number'    => '09876543216',
                 'opening_time'  => '12:05:43',
                 'closing_time'  => '12:05:43',
                 'is_opened'     => 1
