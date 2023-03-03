@@ -3,6 +3,9 @@
         <div v-if="user">
             <h1>{{ user.name }}</h1>
             <h1>{{ user.opening_time }}</h1>
+            <router-link :to="{ name: 'home'}">
+                <button class="btn btn-danger">Back</button>
+            </router-link>
             <div v-for="dish in dishes" :key="dish.id">
                 <h3>{{ dish.name }}</h3>
                 <p>{{ dish.description }}</p>
