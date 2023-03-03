@@ -55,6 +55,7 @@
             @remove-item="removeItem"
         >
         </Cart>
+        <h3>Totale: {{ calculateTotalPrice }}</h3>
     </nav>
 </template>
 
@@ -66,6 +67,13 @@ export default {
 
     components: {
         Cart,
+    },
+    data() {
+        return {
+            cart: [
+                // Array di oggetti cart
+            ],
+        };
     },
 
     props: {
@@ -86,6 +94,15 @@ export default {
         },
         removeItem(index) {
             this.cart.splice(index, 1);
+        },
+    },
+    computed: {
+        calculateTotalPrice() {
+            let totalPrice = 0;
+            this.cart.forEach((item) => {
+                totalPrice += item.totalPrice;
+            });
+            return totalPrice;
         },
     },
 };
