@@ -51,7 +51,8 @@ class OrderSeeder extends Seeder
             $min_dishes = 1;
             $max_dishes = min(5, count($dish_ids));
             $selected_dishes = $faker->randomElements($dish_ids, $faker->numberBetween($min_dishes, $max_dishes));
+
             $order->dishes()->attach($selected_dishes);
-    };
-}
+        };
+    }
 }
