@@ -36,35 +36,26 @@
         .catch(error => {
           console.error(error);
         });
+      const cartFromStorage = localStorage.getItem('cart');
+      if (cartFromStorage) {
+        this.cart = JSON.parse(cartFromStorage);
+      }
     },
     methods: {
       addToCart(dish) {
         this.$forceUpdate();
         this.cart.push({
-      id: dish.id,
-      name: dish.name,
-      price: dish.price,
-      quantity: 1,
-    })
+          id: dish.id,
+          name: dish.name,
+          price: dish.price,
+          quantity: 1,
+        })
+        localStorage.setItem('cart', JSON.stringify(this.cart));
         this.$emit('cart-updated', this.cart);
         console.log(this.cart);
       },
-//   addToCart(dish) {
-//   const orderedDishIndex = this.cart.findIndex(item => item.id === dish.id);
-//   if (orderedDishIndex > -1) {
-//     this.cart[orderedDishIndex].quantity++;
-//   } else {
-//     this.cart.push({
-//       id: dish.id,
-//       name: dish.name,
-//       price: dish.price,
-//       quantity: 1,
-//     });
-//   }
-//   this.$emit('cart-updated', this.cart);
     },
-  }
-
+  };
   </script>
 
   <style scoped lang="scss"></style>

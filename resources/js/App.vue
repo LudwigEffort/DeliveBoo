@@ -78,7 +78,7 @@ export default {
         },
         updateCart(cart) {
             this.cart = cart;
-        }
+        },
   },
 }
 
