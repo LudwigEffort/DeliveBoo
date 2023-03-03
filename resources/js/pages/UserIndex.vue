@@ -47,50 +47,27 @@ export default {
   props: {
     search: {
       type: String,
-    }
+    },
+    users: {
+      type: Array,
+    },
+    categories: {
+      type: Array,
+    },
+
   },
   data() {
     return {
-      users: [],
-      category: '',
-      categories: [],
-      search: '',
+        category: '',
     }
-  },
-  mounted() {
-        this.getUsers();
-    },
-    methods: {
-        getUsers() {
-            let params = {};
+},
+  methods: {
+    changeValue(category) {
+    this.category = category;
+    this.$emit('category-changed', category);
+   },
 
-            if (this.search) {
-                params.search = this.search;
-            } else {
-                params.limit = 2;
-            }
-
-            if (this.category) {
-                params.category = this.category;
-                this.category = false
-            }
-
-            axios.get('/api/users', {
-                params: params,
-            })
-                .then(response => {
-                    this.users = response.data.results;
-                    this.categories = response.data.categories;
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-        },
-        changeValue(category) {
-            this.category = category;
-            this.getUsers();
-        },
-    }
+}
 }
 </script>
 

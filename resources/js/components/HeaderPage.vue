@@ -32,6 +32,12 @@
                     <input type="text" v-model="search" @input="searchChanged">
                 </form>
               </li>
+              <div>
+                <router-link :to="{ name: 'cart' }">
+                    <h1>cart</h1>
+                    <div v-if="!cart.isEmptyObject">{{ cart }}</div>
+                </router-link>
+              </div>
             </ul>
           </div>
         </div>
@@ -43,6 +49,12 @@
 <script>
 export default {
   name: 'HeaderPage',
+  props: {
+    cart: {
+      type: Object,
+    },
+},
+
   data() {
     return {
       search: ''
@@ -51,7 +63,8 @@ export default {
   methods: {
     searchChanged() {
       this.$emit('search-changed', this.search);
-    }
+      console.log(this.cart)
+    },
   }
 }
 </script>

@@ -1,7 +1,17 @@
 <template>
     <div>
-        <HeaderPage @search-changed="updateSearch"></HeaderPage>
-        <router-view :search="search"></router-view>
+        <HeaderPage
+        @search-changed="updateSearch"
+        :cart="cart"
+        />
+        <router-view
+            :search = "search"
+            :users = "users"
+            :category = "category"
+            :categories = "categories"
+            @category-changed="updateCategory"
+            @cart-updated="updateCart"
+        />
     </div>
 </template>
 
@@ -16,13 +26,58 @@ export default {
     },
     data() {
         return {
+            users: [],
             search: '',
+            category: '',
+            categories: [],
+            cart: {},
         }
     },
+
+    mounted() {
+     this.getUsers();
+
+    },
+
     methods: {
+
     updateSearch(search) {
       this.search = search;
+      this.getUsers();
     },
+
+    getUsers() {
+            let params = {};
+
+            if (this.search) {
+                params.search = this.search;
+            } else {
+                params.limit = 2;
+            }
+
+            if (this.category) {
+                params.category = this.category;
+                this.category = false
+            }
+
+            axios.get('/api/users', {
+                params: params,
+            })
+                .then(response => {
+                    this.users = response.data.results;
+                    this.categories = response.data.categories;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
+        updateCategory(category) {
+        this.category = category;
+        this.getUsers();
+        },
+        updateCart(cart) {
+            this.cart = cart;
+        }
   },
 }
 
