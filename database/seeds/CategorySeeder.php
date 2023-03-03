@@ -71,8 +71,24 @@ class CategorySeeder extends Seeder
             $category = Category::create($category);
         }
 
-            $num_users = rand(1, 3);
-            $user_ids = User::where('id', '<>', $category->id)->inRandomOrder()->take($num_users)->pluck('id')->toArray();
-            $category->users()->sync($user_ids);
+        $user_1 = User::find(1);
+        $category_1 = Category::find([9]);
+        $user_1->categories()->attach($category_1);
+
+        $user_2 = User::find(2);
+        $category_2 = Category::find([1, 4]);
+        $user_2->categories()->attach($category_2);
+
+        $user_3 = User::find(3);
+        $category_3 = Category::find([2, 5]);
+        $user_3->categories()->attach($category_3);
+
+        $user_4 = User::find(4);
+        $category_4 = Category::find([6]);
+        $user_4->categories()->attach($category_4);
+
+        $user_5 = User::find(5);
+        $category_5 = Category::find([1, 8]);
+        $user_5->categories()->attach($category_5);
     }
 }
