@@ -13,6 +13,7 @@
       </div>
       <p>Total amount: {{ totalAmount }}$</p>
       <button class="btn btn-primary" @click="emptyCart()">Empty cart</button>
+      <router-link class="btn btn-danger" :to="{ name: 'home' }">BACK</router-link>
     </div>
   </template>
   <script>
@@ -42,10 +43,12 @@
         }, {});
       },
       totalAmount() {
-        return Object.values(this.itemQuantities).reduce((accumulator, item) => {
-          return accumulator + item.price * item.quantity;
-        }, 0);
-      },
+    const amount = Object.values(this.itemQuantities).reduce((accumulator, item) => {
+      return accumulator + item.price * item.quantity;
+    }, 0);
+    this.$emit('total-amount', amount);
+    return amount;
+  },
     },
     methods: {
       emptyCart() {
@@ -69,6 +72,12 @@
       },
       decreaseQuantity(item) {
   if (item.quantity > 1) {
+    this.cart.pop({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          quantity: 1,
+        })
     item.quantity--;
     this.saveCart();
   } else {

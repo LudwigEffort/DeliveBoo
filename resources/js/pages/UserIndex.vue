@@ -10,8 +10,7 @@
         </div>
         <div class="row mt-5">
             <div v-for="user in users" class="col-4">
-                <router-link :to="{ name: 'userShow', params: { slug: user.slug },
- }">
+                <router-link :to="{ name: 'userShow', params: { slug: user.slug }}">
                     <div class="card">
                         <h1>{{ user.name }}</h1>
                         <span class="card-title">

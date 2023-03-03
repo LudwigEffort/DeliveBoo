@@ -12,6 +12,7 @@
             :categories = "categories"
             @category-changed="updateCategory"
             @cart-updated="updateCart"
+            @total-amount="totalAmount = $event"
         >
         </router-view>
     </div>
@@ -32,6 +33,7 @@ export default {
             category: '',
             categories: [],
             cart: [],
+            totalAmount: 0,
         }
     },
 
