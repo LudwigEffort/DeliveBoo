@@ -45,12 +45,14 @@ export default {
             const orderedDish = this.cart.find((item) => item.id === dish.id);
             if (orderedDish) {
                 orderedDish.quantity++;
+                orderedDish.totalPrice = orderedDish.quantity * dish.price;
             } else {
                 this.cart.push({
                     id: dish.id,
                     name: dish.name,
                     price: dish.price,
                     quantity: 1,
+                    totalPrice: dish.price,
                 });
             }
             this.$emit("cart-updated", this.cart);
