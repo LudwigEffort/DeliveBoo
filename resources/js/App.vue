@@ -10,6 +10,7 @@
             :users = "users"
             :category = "category"
             :categories = "categories"
+            @total_price = "finalPrice"
             @category-changed="updateCategory"
             @cart-updated="updateCart"
         >
@@ -32,6 +33,7 @@ export default {
             category: '',
             categories: [],
             cart: [],
+            finalAmount: '',
         }
     },
 
@@ -78,6 +80,9 @@ export default {
         },
         updateCart(cart) {
             this.cart = cart;
+        },
+        finalPrice(finalAmount) {
+            this.finalAmount = finalAmount;
         }
   },
 }

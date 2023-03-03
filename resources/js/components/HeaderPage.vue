@@ -56,6 +56,9 @@
         >
         </Cart>
         <h3>Totale: {{ calculateTotalPrice }}</h3>
+        <router-link :to="{ name: 'checkout'}">
+                <button class="btn btn-warning">Pay</button>
+        </router-link>
     </nav>
 </template>
 
@@ -99,7 +102,8 @@ export default {
             let totalPrice = 0;
             this.cart.forEach((item) => {
                 totalPrice += item.totalPrice;
-            });
+            })
+            this.$emit('total_price', totalPrice)
             return totalPrice;
         },
     },
