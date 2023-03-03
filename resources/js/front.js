@@ -1,72 +1,45 @@
-Vue.use(VueRouter);
-require('./common');
-
 import Vue from 'vue';
-import App from './App';
+import App from './App.vue';
 import VueRouter from 'vue-router';
+import UserShow from './pages/UserShow.vue';
 import UserIndex from './pages/UserIndex.vue';
+import About from './pages/About.vue';
+import Cart from './pages/Cart.vue';
+require('./common.js')
 
-
-//*Tramite il lazy load non serve l'import dei componenti
-
-//import UserShow from './pages/UserShow';
-//import About from './pages/About.vue';
-//import Page404 from './pages/Page404.vue';
-
+Vue.use(VueRouter);
 
 const routes = [
-//*HOMEPAGE CON TUTTI I RISTORANTI
     {
         path: '/',
         name: 'home',
-        component: UserIndex,
-        props:true
+        component: UserIndex
     },
-
-//*SHOW DEL SINGOLO RISTORANTE CHE CONTIENE GIÁ L'INDEX DI TUTTI I SUOI PIATTI
-    {
-        path: '/:slug',
-        name: 'UserShow',
-        props: true,
-        component: () => import(/* webpackChunkName: "UserShow" */"./pages/UserShow.vue"),
-        children: [
-            {
-                path: ':dishSlug',
-                name: 'Dish',
-                props: true,
-                component: () => import(/* webpackChunkName: "Dish" */"./pages/Dish.vue")
-            }
-        ]
-    },
-    {
-        path: '/cart',
-        name: 'Cart',
-        props: true,
-        component: () => import(/* webpackChunkName: "Cart" */"./pages/Cart.vue"),
-    },
-
-//*ABOUT
     {
         path: '/about',
         name: 'about',
-        component: () => import(/* webpackChunkName: "about" */"./pages/About.vue")
+        component: About
     },
-
-//!LASCIATELA PER ULTIMA! TUTTE LE ALTRE ROTTE SBAGLIATE MOSTRERANNO UserIndex
     {
-        path: "*",
-        component: UserIndex
+        path: '/users/:slug',
+        name: 'userShow',
+        component: UserShow,
+        props: true,
+    },
+    {
+        path: '/cart/',
+        name: 'cart',
+        component: Cart,
     },
 ];
 
-// Personalizzazione del vue-router
 const router = new VueRouter({
     mode: 'history',
-    routes,
+    routes
 });
-// Render dell'App
+
 new Vue({
     el: '#root',
-    render: h => h(App),
-    router
+    router,
+    render: h => h(App)
 });

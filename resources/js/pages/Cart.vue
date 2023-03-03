@@ -1,33 +1,41 @@
 <template>
-<div>
-    <h1>Cart COMPONENT</h1>
-    <div v-if="cartItems">
-
-        <ul v-for="(product, i) in cartItems" :key="i" class="card">
-            <li>Dish:{{ product.name }}</li>
-            <li>Price:{{ product.price / 100 }}€</li>
-            <li>Available: <span :style="((product.available) ? 'color:green' : 'color:red')"> {{ ((product.available) ? 'Yes' : 'No') }}</span></li>
-        </ul>
-
+    <div>
+        <h3>{{ cartItem.name }}</h3>
+        <h3>{{ cartItem.price }}</h3>
+        <h3>{{ cartItem.quantity }}</h3>
+        <div>
+            <button @click="decrementQuantity">-</button>
+            <h3>{{ cartItem.quantity }}</h3>
+            <button @click="incrementQuantity">+</button>
+        </div>
+        <button @click="removeItem">Remove</button>
+        <h3>{{ cartItem.totalPrice }}</h3>
     </div>
-    <hr>
-</div>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-        cartItems: null,
-        }
-    },
-    props:{
-        cart: Array,
+    name: "Cart",
+    props: {
+        cartItem: Object,
     },
     methods: {
-        cart() {
-            this.cartItems = this.cart;
+        incrementQuantity() {
+            this.cartItem.quantity++;
+            this.cartItem.totalPrice =
+                this.cartItem.price * this.cartItem.quantity;
+        },
+        decrementQuantity() {
+            if (this.cartItem.quantity > 1) {
+                this.cartItem.quantity--;
+                this.cartItem.totalPrice =
+                    this.cartItem.price * this.cartItem.quantity;
+            }
+        },
+        removeItem() {
+            this.$emit("remove-item", this.itemIndex);
         },
     },
-}
+};
 </script>
+<style scoped lang="scss"></style>

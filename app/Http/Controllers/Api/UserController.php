@@ -37,4 +37,17 @@ class UserController extends Controller
     ]);
 }
 
+public function show(User $user, Request $request)
+{
+    $dishes = $user->dishes()->get();
+
+    return response()->json([
+        'success' => true,
+        'dishes' => $dishes,
+        'user' => $user,
+    ]);
+
+
+}
+
 }
