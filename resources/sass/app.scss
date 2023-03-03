@@ -1,14 +1,14 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url("https://fonts.googleapis.com/css?family=Nunito");
 
 // Variables
-@import 'variables';
+@import "variables";
 
 // Back scss
-@import 'back';
+@import "back";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 
 // Font awesome
 $fa-font-path: "./fonts/font-awesome" !default;
@@ -20,8 +20,3 @@ $fa-font-path: "./fonts/font-awesome" !default;
 @import "~@fortawesome/fontawesome-free/scss/solid";
 
 @import "~@fortawesome/fontawesome-free/scss/brands";
-
-
-body {
-    background-color: salmon;
-}

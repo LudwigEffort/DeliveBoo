@@ -84,13 +84,21 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "~bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "zurich", sans-serif;
+    background-color: white;
+}
 
 .card {
     border-radius: 30px;
     background: white;
-    box-shadow: 15px 15px 30px rgb(25, 25, 25), -15px -15px 30px rgb(60, 60, 60);
 }
 
 a {

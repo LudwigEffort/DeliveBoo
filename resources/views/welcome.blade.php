@@ -8,14 +8,13 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
-
         {{-- Style --}}
 
         <script src="{{ asset('js/front.js') }}" defer></script>
-        <link rel="stylesheet" href="{{ asset('sass/back.scss')}}">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
         <!-- Styles -->
-        <style lang="scss" scoped>
+        <style>
 
         </style>
     </head>
