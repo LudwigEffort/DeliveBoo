@@ -47,7 +47,6 @@ export default {
   props: {
     search: {
       type: String,
-      default: ''
     }
   },
   data() {
@@ -55,43 +54,43 @@ export default {
       users: [],
       category: '',
       categories: [],
+      search: '',
     }
   },
   mounted() {
-    this.getUsers();
-  },
-
-  methods: {
-    getUsers() {
-      let params = {};
-
-      if (this.search) {
-        params.search = this.search;
-      } else {
-        params.limit = 2;
-      }
-
-      if (this.category) {
-        params.category = this.category;
-        this.category = false
-      }
-
-      axios.get('/api/users', {
-        params: params,
-      })
-        .then(response => {
-          this.users = response.data.results;
-          this.categories = response.data.categories;
-        })
-        .catch(error => {
-          console.error(error);
-        });
+        this.getUsers();
     },
-    changeValue(category) {
-      this.category = category;
-      this.getUsers();
+    methods: {
+        getUsers() {
+            let params = {};
+
+            if (this.search) {
+                params.search = this.search;
+            } else {
+                params.limit = 2;
+            }
+
+            if (this.category) {
+                params.category = this.category;
+                this.category = false
+            }
+
+            axios.get('/api/users', {
+                params: params,
+            })
+                .then(response => {
+                    this.users = response.data.results;
+                    this.categories = response.data.categories;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
+        changeValue(category) {
+            this.category = category;
+            this.getUsers();
+        },
     }
-  }
 }
 </script>
 
