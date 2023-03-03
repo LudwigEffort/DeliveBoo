@@ -11,6 +11,7 @@ Vue.use(VueRouter);
 const routes = [
     {
         path: '/',
+        name: 'home',
         component: UserIndex
     },
     {

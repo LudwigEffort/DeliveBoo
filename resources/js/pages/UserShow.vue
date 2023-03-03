@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container mt-5">
       <div v-if="user.user">
         <h1>{{ user.user.name }}</h1>
         <h1>{{ user.user.opening_time }}</h1>

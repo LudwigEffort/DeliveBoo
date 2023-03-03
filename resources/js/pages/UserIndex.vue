@@ -1,8 +1,5 @@
 <template>
-    <div class="container">
-        <form class="d-flex" role="search">
-            <input type="text" v-model="search" @input="getUsers" placeholder="Cerca ristoranti...">
-        </form>
+    <div class="container mt-5">
         <div class="row">
             <div v-for="category in categories" class="col">
                 <button @click="changeValue(category.name)">
@@ -46,49 +43,55 @@
 
 <script>
 export default {
-    name: 'UserIndex',
-    data() {
-        return {
-            users: [],
-            search: '',
-            category: '',
-            categories: [],
-        }
-    },
-    mounted() {
-        this.getUsers();
-    },
-    methods: {
-        getUsers() {
-            let params = {};
-
-            if (this.search) {
-                params.search = this.search;
-            } else {
-                params.limit = 2;
-            }
-
-            if (this.category) {
-                params.category = this.category;
-                this.category = false
-            }
-
-            axios.get('/api/users', {
-                params: params,
-            })
-                .then(response => {
-                    this.users = response.data.results;
-                    this.categories = response.data.categories;
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-        },
-        changeValue(category) {
-            this.category = category;
-            this.getUsers();
-        },
+  name: 'UserIndex',
+  props: {
+    search: {
+      type: String,
+      default: ''
     }
+  },
+  data() {
+    return {
+      users: [],
+      category: '',
+      categories: [],
+    }
+  },
+  mounted() {
+    this.getUsers();
+  },
+
+  methods: {
+    getUsers() {
+      let params = {};
+
+      if (this.search) {
+        params.search = this.search;
+      } else {
+        params.limit = 2;
+      }
+
+      if (this.category) {
+        params.category = this.category;
+        this.category = false
+      }
+
+      axios.get('/api/users', {
+        params: params,
+      })
+        .then(response => {
+          this.users = response.data.results;
+          this.categories = response.data.categories;
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
+    changeValue(category) {
+      this.category = category;
+      this.getUsers();
+    }
+  }
 }
 </script>
 

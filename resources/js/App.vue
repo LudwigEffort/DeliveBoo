@@ -1,60 +1,34 @@
 <template>
     <div>
-      <nav class="navbar navbar-expand-md navbar-dark bg-white border-bottom border-dark">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-3">
-              <router-link :to="{ path: '/' }" class="navbar-brand">
-                <img src="/img/logo.jpg" class="logo" alt="">
-              </router-link>
-            </div>
-          </div>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarScroll"
-            aria-controls="navbarScroll"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarScroll">
-            <ul
-              class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
-              style="--bs-scroll-height: 100px;"
-            >
-              <li class="nav-item">
-                <router-link :to="{ name: 'about' }" class="nav-link">About</router-link>
-              </li>
-              <!--<li class="nav-item">-->
-              <!--<router-link :to="{name: 'contactUs'}" class="nav-link">Contact us</router-link>-->
-              <!--</li>-->
-              <li class="nav-item">
-                <!--?Margari va bene anche un'icona invece che il testo-->
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div>
-        </div>
-      </nav>
-      <section class="mt-5">
-        <router-view></router-view>
-      </section>
+        <HeaderPage @search-changed="updateSearch"></HeaderPage>
+        <router-view :search="search"></router-view>
     </div>
-  </template>
+</template>
 
 <script>
+import HeaderPage from './components/HeaderPage.vue';
+
 
 export default {
     name: 'App',
+    components: {
+        HeaderPage,
+    },
+    data() {
+        return {
+            search: '',
+        }
+    },
+    methods: {
+    updateSearch(search) {
+      this.search = search;
+    },
+  },
 }
 
 </script>
 
-<style lang="scss" scopeds>
+<style lang="scss">
 @import '~bootstrap/scss/bootstrap';
 
 .card {
@@ -68,9 +42,9 @@ a {
     text-decoration: none;
 }
 
-.logo {
-    width: 110%;
-}
+// .logo {
+//     width: 110%;
+// }
 
 button {
   /* Variables */
