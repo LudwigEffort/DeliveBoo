@@ -1,11 +1,19 @@
     <template>
-        <h1>Cart</h1>
+        <div>
+        <h3>{{ cartItem.name }}</h3>
+        <h3>{{ cartItem.price }}</h3>
+        <h3>{{ cartItem.quantity }}</h3>
+        </div>
     </template>
 
   <script>
 
+
   export default {
-    name: 'UserShow',
+    name: 'Cart',
+    props: {
+        cartItem: Object,
+    },
 
   };
   </script>

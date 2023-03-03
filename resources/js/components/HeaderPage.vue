@@ -33,25 +33,35 @@
                 </form>
               </li>
               <div>
-                <router-link :to="{ name: 'cart' }">
-                    <h1>cart</h1>
-                    <div v-if="!cart.isEmptyObject">{{ cart }}</div>
-                </router-link>
               </div>
             </ul>
           </div>
         </div>
         <div>
         </div>
+        <h1>Cart</h1>
+        <Cart
+        v-for = "objCart in cart" :key = "objCart.slug"
+        :cartItem = "objCart"
+        >
+        </Cart>
       </nav>
 </template>
 
 <script>
+
+import Cart from '../pages/Cart.vue';
+
 export default {
   name: 'HeaderPage',
+
+  components: {
+        Cart,
+    },
+
   props: {
     cart: {
-      type: Object,
+      type: Array,
     },
 },
 

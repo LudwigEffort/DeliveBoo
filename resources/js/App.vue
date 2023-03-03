@@ -2,22 +2,23 @@
     <div>
         <HeaderPage
         @search-changed="updateSearch"
-        :cart="cart"
-        />
+        :cart="cart">
+        </HeaderPage>
         <router-view
+            :cart = "cart"
             :search = "search"
             :users = "users"
             :category = "category"
             :categories = "categories"
             @category-changed="updateCategory"
             @cart-updated="updateCart"
-        />
+        >
+        </router-view>
     </div>
 </template>
 
 <script>
 import HeaderPage from './components/HeaderPage.vue';
-
 
 export default {
     name: 'App',
@@ -30,7 +31,7 @@ export default {
             search: '',
             category: '',
             categories: [],
-            cart: {},
+            cart: [],
         }
     },
 
@@ -136,3 +137,7 @@ button:active .button_top {
 }
 
 </style>
+
+
+
+

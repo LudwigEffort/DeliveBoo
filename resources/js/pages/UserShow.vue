@@ -8,9 +8,7 @@
           <p>{{ dish.description }}</p>
           <p>{{ dish.price }}$</p>
           <div>
-            <button class="text-white" @click="addToCart(dish)">+</button>
-            <span>{{ cart[dish.id] || 0 }}</span>
-            <button class="text-white" @click="removeFromCart(dish)">-</button>
+            <button class="text-white" @click="addToCart(dish)">aggiungi</button>
           </div>
         </div>
       </div>
@@ -25,7 +23,7 @@
     data() {
       return {
         user: {},
-        cart: {},
+        cart: [],
         dishes: [],
       };
     },
@@ -41,22 +39,32 @@
     },
     methods: {
       addToCart(dish) {
-        this.cart[dish.id] = (this.cart[dish.id] || 0) + 1;
         this.$forceUpdate();
-        this.$emit('cart-updated', this.cart[dish.id]);
+        this.cart.push({
+      id: dish.id,
+      name: dish.name,
+      price: dish.price,
+      quantity: 1,
+    })
+        this.$emit('cart-updated', this.cart);
+        console.log(this.cart);
       },
-      removeFromCart(dish) {
-        if (this.cart[dish.id]) {
-          this.cart[dish.id]--;
-          if (this.cart[dish.id] === 0) {
-            delete this.cart[dish.id];
-          }
-        }
-        this.$forceUpdate();
-        this.$emit('cart-updated', this.cart[dish.id]);
-      },
+//   addToCart(dish) {
+//   const orderedDishIndex = this.cart.findIndex(item => item.id === dish.id);
+//   if (orderedDishIndex > -1) {
+//     this.cart[orderedDishIndex].quantity++;
+//   } else {
+//     this.cart.push({
+//       id: dish.id,
+//       name: dish.name,
+//       price: dish.price,
+//       quantity: 1,
+//     });
+//   }
+//   this.$emit('cart-updated', this.cart);
     },
-  };
+  }
+
   </script>
 
   <style scoped lang="scss"></style>
