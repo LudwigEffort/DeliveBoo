@@ -56,10 +56,12 @@
         >
         </Cart>
         <h3>Totale: {{ calculateTotalPrice }}</h3>
+        <button @click="submitPayment">Submit Payment</button>
     </nav>
 </template>
 
 <script>
+import braintree from "braintree-web-drop-in";
 import Cart from "../pages/Cart.vue";
 
 export default {
@@ -73,7 +75,13 @@ export default {
             cart: [
                 // Array di oggetti cart
             ],
+            clientToken: "",
+            paymentMethod: {},
         };
+    },
+    created() {
+        // Inizializza la libreria Braintree
+        this.initializeBraintree();
     },
 
     props: {
@@ -94,6 +102,67 @@ export default {
         },
         removeItem(index) {
             this.cart.splice(index, 1);
+        },
+        async initializeBraintree() {
+            // Genera un token di pagamento dal tuo server
+            const response = await fetch("/api/payment/token");
+            const { token } = await response.json();
+
+            // Inizializza il client Braintree
+            braintree.create(
+                {
+                    authorization: token,
+                    container: this.$refs.dropin,
+                },
+                (error, client) => {
+                    if (error) {
+                        console.error(error);
+                        return;
+                    }
+
+                    // Genera il form di pagamento
+                    braintree.dropin.create(
+                        {
+                            authorization: token,
+                            selector: "#dropin-container",
+                            paypal: {
+                                flow: "vault",
+                            },
+                        },
+                        (error, instance) => {
+                            if (error) {
+                                console.error(error);
+                                return;
+                            }
+
+                            // Salva il metodo di pagamento
+                            this.paymentMethod = instance;
+                        }
+                    );
+                }
+            );
+        },
+        async submitPayment() {
+            // Invia il pagamento
+            const { nonce } = await this.paymentMethod.requestPaymentMethod();
+
+            // Invia il nonce al tuo server per elaborare il pagamento
+            const response = await fetch("/api/payment/submit", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ nonce }),
+            });
+
+            if (response.ok) {
+                // Il pagamento è stato elaborato con successo
+                // Puoi reindirizzare l'utente alla pagina di conferma
+            } else {
+                // Il pagamento ha fallito
+                const { error } = await response.json();
+                console.error(error);
+            }
         },
     },
     computed: {
