@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center" style="margin-top:0px">
+    <div class="row justify-content-center" style="width:100%;">
         <div class="col-md-5">
             {{-- card generale  --}}
             <div class="card" style="border:1px solid blue">
@@ -144,7 +144,6 @@ form {
     display: flex;
     flex-direction: column;
     justify-content: center;
-
     gap: 30px;
 }
 .card-header {
@@ -158,9 +157,15 @@ form {
     text-decoration: none;
 }
 
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-
-/* prova  */
+.card {
+    width: 100%;
+}
 
 
 .inputBox {
@@ -169,7 +174,7 @@ form {
 }
 
 .inputBox input {
-    width: 30vw;
+    width: 20vw;
     padding: 10px;
     outline: none;
     border: none;
@@ -206,11 +211,6 @@ form {
     background-color: blue;
     color: white;
 }
-
-
-
-
-
 
 </style>
 
