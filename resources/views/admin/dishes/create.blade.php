@@ -110,3 +110,6 @@
     </div>
 @endsection
 
+<style lang="scss" scoped>
+
+</style>
