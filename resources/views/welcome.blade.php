@@ -37,37 +37,48 @@
                 text-decoration: none !important;
                 color:  black;
             }
+            .appvue{
+                position: relative;
+            }
+            .backend{
+                position: absolute;
+                z-index: 3;
+                right: 20rem;
+            }
 
         </style>
     </head>
     <body>
-
+          <div class="backend">
             @if (Route::has('login'))
-                <div class="row">
+            <div class="row">
 
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                        <form method="POST" action="/logout">
-                            @csrf <!-- inserisce il token di sicurezza -->
-                            <input type="submit" value="Logout">
-                        </form>
-                    @else
-                    <div class="logbuttons py-2 ps-3">
-                        <div class="col-6">
-                            <button class="mb-3">
-                                <a class="logbuttons" href="{{ route('login') }}"> Log in  Dining</a>
-                            </button>
-                        </div>
-                        <button class="">
-                            @if (Route::has('register'))
-                                <a href="{{ route('register') }}">Apri il tuo ristorante  </a>
+                @auth
+                    <a href="{{ url('/home') }}">Home</a>
+                    <form method="POST" action="/logout">
+                        @csrf <!-- inserisce il token di sicurezza -->
+                        <input type="submit" value="Logout">
+                    </form>
+                @else
+                <div class="logbuttons py-2 ps-3">
+                    <div class="col-6">
+                        <button class="mb-3">
+                            <a class="logbuttons" href="{{ route('login') }}"> Log in  Dining</a>
                         </button>
-                        @endif
-                        @endauth
-                        @endif
                     </div>
-                    </div>
+                    <button class="">
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}">Apri il tuo ristorante  </a>
+                    </button>
+                    @endif
+                    @endauth
+                    @endif
+                </div>
+                </div>
 
-            <div id="root" class="container-fluid"></div>
+
+          </div>
+
+            <div id="root" class="container-fluid appvue"></div>
     </body>
 </html>
