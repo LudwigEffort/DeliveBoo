@@ -1,136 +1,157 @@
 <template>
     <div>
-        <h1>CHECKOUT</h1>
-
-        <div class="login-box">
-            <form>
-                <div class="user-box">
-                    <input type="text" name="f_name">
-                    <label>First Name</label>
-                </div>
-                <div class="user-box">
-                    <input type="text" name="l_name">
-                    <label>Last Name</label>
-                </div>
-                <div class="user-box">
-                    <input type="text" name="address">
-                    <label>address</label>
-                </div>
-                <div class="user-box">
-                    <input type="email" name="email">
-                    <label>Email</label>
-                </div>
-                <div class="user-box">
-                    <input type="tel" name="phone_number">
-                    <label>Phone Number</label>
-                </div>
-                <a href="#">
-                    SEND
-                    <span></span>
-                </a>
-            </form>
+      <form @submit.prevent="salvaDatiForm">
+        <div>
+          <label for="f_name">Nome:</label>
+          <input type="text" id="f_name" name="f_name" v-model="form.f_name" required>
         </div>
-
+        <div>
+          <label for="l_name">Cognome:</label>
+          <input type="text" id="l_name" name="l_name" v-model="form.l_name" required>
+        </div>
+        <div>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" v-model="form.email" required>
+        </div>
+        <div>
+          <label for="phone_number">Numero di telefono:</label>
+          <input type="tel" id="phone_number" name="phone_number" v-model="form.phone_number" required>
+        </div>
+        <div>
+          <label for="address">Indirizzo:</label>
+          <textarea id="address" name="address" v-model="form.address" required></textarea>
+        </div>
+        <div>
+          <label for="amount">Importo:</label>
+          <input value="" type="number" id="amount" name="amount" v-model="form.amount" readonly required>
+        </div>
+        <div>
+          <input type="hidden" id="order_date" name="order_date" v-model="form.order_date">
+        </div>
+        <div>
+          <input type="hidden" id="pickup_date" name="pickup_date" v-model="form.pickup_date">
+        </div>
+        <div>
+          <input type="hidden" id="payment_date" name="payment_date" v-model="form.payment_date">
+          <input type="hidden" name="dishes[]" value="{{ $dish->id }}">
+        </div>
+        <button type="submit">Invia</button>
+      </form>
     </div>
-</template>
+  </template>
 
-<script>
+  <script>
+  import axios from 'axios';
 
+  export default {
+    name: "Checkout",
+    props: {
+      cart: Array,
+      totalAmount: Number,
+    },
+    data() {
+      return {
+        form: {
+          f_name: '',
+          l_name: '',
+          email: '',
+          phone_number: '',
+          address: '',
+          amount: 0,
+          order_date: '',
+          pickup_date: '',
+          payment_date: ''
+        },
+      };
+    },
+    methods: {
+      salvaDatiForm() {
+        this.form.amount = this.totalAmount;
+        this.form.order_date = this.ottieniData();
+        this.form.pickup_date = this.ottieniData();
+        this.form.payment_date = this.ottieniData();
+        axios.post('/makeOrder', this.form)
+          .then(response => {
+            console.log(response.data);
+          })
+          .catch(error => {
+            console.log(error.response.data);
+          });
+      },
+      ottieniData() {
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        let mm = today.getMonth() + 1;
+        let dd = today.getDate();
+        if (dd < 10) {
+          dd = '0' + dd;
+        }
+        if (mm < 10) {
+          mm = '0' + mm;
+        }
+        return yyyy + '-' + mm + '-' + dd;
+      }
+    }
+}
 </script>
 
+
 <style lang="scss" scoped>
-.login-box {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 400px;
-  padding: 40px;
-  transform: translate(-50%, -50%);
-  background: rgba(24, 20, 20, 0.987);
-  box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(0,0,0,.6);
-  border-radius: 10px;
-}
 
-.login-box .user-box {
-  position: relative;
-}
-
-.login-box .user-box input {
-  width: 100%;
-  padding: 10px 0;
+form {
+  max-width: 500px;
+  margin: 0 auto;
   font-size: 16px;
-  color: #fff;
-  margin-bottom: 30px;
-  border: none;
-  border-bottom: 1px solid #fff;
-  outline: none;
-  background: transparent;
+  font-family: Arial, sans-serif;
 }
 
-.login-box .user-box label {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 10px 0;
-  font-size: 16px;
-  color: #fff;
-  pointer-events: none;
-  transition: .5s;
-}
-
-.login-box .user-box input:focus ~ label,
-.login-box .user-box input:valid ~ label {
-  top: -20px;
-  left: 0;
-  color: #bdb8b8;
-  font-size: 12px;
-}
-
-.login-box form a {
-  display: inline-block;
-  padding: 10px 20px;
-  color: #ffffff;
-  font-size: 16px;
-  text-decoration: none;
-  text-transform: uppercase;
-  overflow: hidden;
-  transition: .5s;
-  margin-top: 40px;
-  letter-spacing: 4px
-}
-
-.login-box a:hover {
-  background: #03f40f;
-  color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 0 5px #03f40f,
-              0 0 25px #03f40f,
-              0 0 50px #03f40f,
-              0 0 100px #03f40f;
-}
-
-.login-box a span {
-  position: absolute;
+label {
   display: block;
+  margin-bottom: 5px;
 }
 
-@keyframes btn-anim1 {
-  0% {
-    left: -100%;
-  }
-
-  50%,100% {
-    left: 100%;
-  }
-}
-
-.login-box a span:nth-child(1) {
-  bottom: 2px;
-  left: -100%;
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+  display: block;
   width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #03f40f);
-  animation: btn-anim1 2s linear infinite;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
 }
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+input[type="text"]:read-only,
+input[type="email"]:read-only,
+input[type="tel"]:read-only {
+  background-color: #f5f5f5;
+}
+
+input[type="submit"] {
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #0062cc;
+}
+
 </style>

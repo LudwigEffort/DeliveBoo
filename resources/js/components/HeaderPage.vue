@@ -33,7 +33,7 @@
               </form>
             </li>
             <div>
-                <div class="counter d-flex justify-content-center align-items-center">
+                <div class="counter d-flex justify-content-center align-items-center" v-if="$route.name !== 'cart' && $route.name !== 'checkout'">
                     {{ cart.length }}
                 </div>
               <router-link :to="{ name: 'cart'}">

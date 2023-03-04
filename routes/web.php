@@ -18,6 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::post('/makeOrder', 'MakeOrderController@store');
+
 Auth::routes();
 
 Route::middleware('auth') //approfondire il middleware

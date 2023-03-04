@@ -7,6 +7,7 @@
             :users="users"
             :category="category"
             :categories="categories"
+            :total-amount = 'totalAmount'
             @total_price="finalPrice"
             @category-changed="updateCategory"
             @update:cart="updateCart"
