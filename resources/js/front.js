@@ -5,7 +5,10 @@ import UserShow from './pages/UserShow.vue';
 import UserIndex from './pages/UserIndex.vue';
 import About from './pages/About.vue';
 import Cart from './pages/Cart.vue';
-require('./common.js')
+import Checkout from './pages/Checkout.vue';
+
+
+require('./common.js');
 
 Vue.use(VueRouter);
 
@@ -31,12 +34,18 @@ const routes = [
         name: 'cart',
         component: Cart,
     },
+    {
+        path: '/checkout/',
+        name: 'checkout',
+        component: Checkout,
+    },
 ];
 
 const router = new VueRouter({
     mode: 'history',
     routes
 });
+
 
 new Vue({
     el: '#root',

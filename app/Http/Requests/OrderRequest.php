@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\ValidOrder;
+use App\Rules\ValidDish;
 use Illuminate\Foundation\Http\FormRequest;
 
-class PaymentRequest extends FormRequest
+class OrderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +25,11 @@ class PaymentRequest extends FormRequest
     public function rules()
     {
         return [
-            'token'     => 'required',
-            'order'     => [        // this should be a order id (so we should make a rule)
+            'token' => 'required',
+            'dish' => [
                 'required',
-                new ValidOrder()
-            ]
+                new ValidDish(),
+            ],
         ];
     }
 }

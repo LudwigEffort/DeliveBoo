@@ -2,10 +2,10 @@
 
 namespace App\Rules;
 
-use App\Order;
+use App\Dish;
 use Illuminate\Contracts\Validation\Rule;
 
-class ValidOrder implements Rule
+class ValidDish implements Rule
 {
     /**
      * Create a new rule instance.
@@ -26,7 +26,7 @@ class ValidOrder implements Rule
      */
     public function passes($attribute, $value)
     {
-        if(Order::find($value)){
+        if(Dish::find($value)) {
             return true;
         }
         return false;
@@ -39,6 +39,6 @@ class ValidOrder implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return 'Il piatto non esiste';
     }
 }

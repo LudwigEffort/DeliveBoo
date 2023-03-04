@@ -14,6 +14,7 @@
       <p>Total amount: {{ totalAmount }}$</p>
       <button class="btn btn-primary" @click="emptyCart()">Empty cart</button>
       <router-link class="btn btn-danger" :to="{ name: 'home' }">BACK</router-link>
+      <router-link class="btn btn-warning" :to="{ name: 'checkout' }">CHECKOUT</router-link>
     </div>
   </template>
   <script>
