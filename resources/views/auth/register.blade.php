@@ -132,3 +132,46 @@
     </div>
 </div>
 @endsection
+
+
+
+
+{{-- nuovo form  --}}
+
+
+
+<div class="container">
+    <div class="card">
+        {{-- form  --}}
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
+            {{-- email  --}}
+            <a class="login">Log in</a>
+            <div class="inputBox">
+                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus >
+                @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror>
+                <span class="user">Username</span>
+            </div>
+
+
+
+            {{-- password  --}}
+            <div class="inputBox">
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror>
+                <span>Password</span>
+            </div>
+            <button class="enter">Enter</button>
+        </form>
+    </div>
+</div>
+
+
