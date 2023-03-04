@@ -27,7 +27,7 @@ class UserController extends Controller
     $users = $query->get();
 
     if (!$request->has('search')) {
-        $users = $users->take(2);
+        $users = $users->all();
     }
 
     return response()->json([

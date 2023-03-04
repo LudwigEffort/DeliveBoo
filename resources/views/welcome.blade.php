@@ -17,7 +17,26 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
         <!-- Styles -->
-        <style>
+        <style lang="scss">
+
+            .logbuttons {
+
+            }
+            .logbuttons button {
+                font-weight: bold;
+                color: black;
+                border: none;
+                background-color: #3653F8;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-variant: small-caps
+            }
+
+            a {
+                text-decoration: none !important;
+                color:  black;
+            }
 
         </style>
     </head>
@@ -33,17 +52,16 @@
                             <input type="submit" value="Logout">
                         </form>
                     @else
-                    <div class="logbuttons">
+                    <div class="logbuttons py-2 ps-3">
                         <div class="col-6">
-                            <button class="bg-light">
+                            <button class="mb-3">
                                 <a class="logbuttons" href="{{ route('login') }}"> Log in  Dining</a>
                             </button>
                         </div>
-                        <button class="bg-light">
+                        <button class="">
                             @if (Route::has('register'))
                                 <a href="{{ route('register') }}">Apri il tuo ristorante  </a>
                         </button>
-
                         @endif
                         @endauth
                         @endif
