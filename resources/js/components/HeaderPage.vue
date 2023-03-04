@@ -3,49 +3,35 @@
         class="navbar navbar-expand-md navbar-dark bg-white border-bottom border-dark"
     >
         <div class="container-fluid">
-            <div class="row justify-content-between align-items-center">
-                <div class="col">
+            <div class="row d-flex inputs">
+                <div class="col-4">
                     <router-link :to="{ name: 'home' }" class="navbar-brand">
                         <img src="/img/logo.jpg" class="logo" alt="" />
                     </router-link>
                 </div>
-                <div class="col">
+                <div class="col-1">
                     <router-link
                         :to="{ name: 'about' }"
                         class="nav-link text-dark"
                         >About</router-link
                     >
                 </div>
-            </div>
-            <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarScroll"
-                aria-controls="navbarScroll"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-            >
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarScroll">
-                <ul
-                    class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
-                    style="--bs-scroll-height: 100px"
-                >
-                    <li class="nav-item" v-if="$route.name === 'home'">
-                        <form class="d-flex" role="search">
-                            <input
-                                type="text"
-                                v-model="search"
-                                @input="searchChanged"
-                            />
-                        </form>
-                    </li>
-                    <div>
-                        <router-link :to="{ name: 'cart' }">npm </router-link>
-                    </div>
-                </ul>
+                <div class="col-4">
+                    <form role="search">
+                        <input
+                            class="input"
+                            type="text"
+                            v-model="search"
+                            @input="searchChanged"
+                            placeholder="yourdining..."
+                        />
+                    </form>
+                </div>
+                <div class="cart col-3">
+                    <router-link :to="{ name: 'cart' }">
+                        <img src="/img/cartright.jpg" alt="" />
+                    </router-link>
+                </div>
             </div>
         </div>
     </nav>
@@ -77,6 +63,37 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.input::placeholder {
+    font-variant: small-caps;
+    letter-spacing: 0.2rem;
+}
+.input {
+    max-width: 190px;
+    height: 30px;
+    border: 2px solid transparent;
+    outline: none;
+    border-bottom: 2px solid #3f3f3f;
+    caret-color: #3f3f3f;
+    background-color: #ffffff;
+    padding: 5px;
+    transition: 0.5s linear;
+    font-family: monospace;
+    letter-spacing: 1px;
+}
+
+.input:focus {
+    border: 2px solid #ffffff;
+    caret-color: #ffffff;
+    color: #000000;
+}
+
+.input:focus::placeholder {
+    color: rgb(0, 0, 0);
+}
+
+.inputs {
+    align-items: center;
+}
 .card {
     border-radius: 30px;
     background: white;
@@ -123,5 +140,14 @@ button:hover .button_top {
 button:active .button_top {
     /* Push the button downwards when pressed */
     transform: translateY(0);
+}
+.cart {
+    align-self: flex-end;
+    display: flex;
+    justify-content: flex-end;
+}
+.cart img,
+a {
+    width: 40%;
 }
 </style>
