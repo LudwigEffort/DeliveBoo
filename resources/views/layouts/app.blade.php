@@ -21,10 +21,10 @@
 </head>
 <body>
     <div id="app">
-        <nav id='nav' class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav id='nav' class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="display: flex; justify-content:flex-end;">
             <div class="container">
                 {{-- bottone che porta a home  --}}
-                <a href="{{ route('welcome') }}" class="btn btn-primary">Home</a>
+                <a class='button' href="{{ route('welcome') }}">Home</a>
 
                     <img src="{{ asset('/img/logo.jpg') }}" alt="Descrizione immagine">
                 {{-- <a class="navbar-brand" href="{{ url('admin/') }}">
@@ -43,16 +43,17 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
+
+                            @guest
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
-                            @endif
-                        @else
+                                @if (Route::has('register'))
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    </li>
+                                @endif
+                            @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
@@ -60,8 +61,8 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -85,17 +86,41 @@
 
 
 <style lang="scss" scoped>
+
+body {
+    font-family: "zurich", sans-serif;
+}
+
+.button {
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    padding: 10px;
+}
+
+.button:hover {
+    background-color: blue;
+    color: white;
+    width: 100%;
+    border-radius: 10px;
+    transition: 1s;
+}
 img {
     height: 100px;
+}
+
+.container {
+    display: flex;
+    align-items: space-between;
+    gap: 38%;
 }
 
 #nav  {
     display: flex;
     justify-content: center;
-
 }
 .nav-link {
-    font-family: "zurich", sans-serif;
+    color: black;
 }
 
 .nav-link:hover {

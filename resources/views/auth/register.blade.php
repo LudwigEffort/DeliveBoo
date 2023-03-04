@@ -13,13 +13,7 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
-
-
-
-
                         {{-- PROVA  --}}
-
-
                         {{-- nome --}}
                         <div class="inputBox">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('NOME') }}</label>
@@ -32,12 +26,6 @@
                                 @enderror
                             </div>
                         </div>
-
-
-
-
-
-
                         {{-- categoria  --}}
                         <div class="mb-3" style="margin-top: 20px;">
                             <label for="category_id" class="form-label">CATEGORIA</label>
@@ -137,14 +125,13 @@
 
 
 
-<style lang="scss" scoped>
+{{-- <style lang="scss" scoped>
 
 form {
     color: blue;
     display: flex;
     flex-direction: column;
     justify-content: center;
-
     gap: 30px;
 }
 .card-header {
@@ -158,6 +145,10 @@ form {
     text-decoration: none;
 }
 
+.container {
+    display: flex;
+    width: 100%;
+}
 
 
 /* prova  */
@@ -212,7 +203,7 @@ form {
 
 
 
-</style>
+</style> --}}
 
 
 
