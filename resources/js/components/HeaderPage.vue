@@ -33,6 +33,9 @@
               </form>
             </li>
             <div>
+                <div class="counter d-flex justify-content-center align-items-center">
+                    {{ cart.length }}
+                </div>
               <router-link :to="{ name: 'cart'}">
                 Cart
               </router-link>
@@ -55,7 +58,7 @@
 
     data() {
       return {
-        search: ''
+        search: '',
       }
     },
 
@@ -69,6 +72,16 @@
 </script>
 
 <style lang="scss" scoped>
+
+.counter {
+    background-color: red;
+    padding: .5rem;
+    color: white;
+    font-weight: bold;
+    clip-path: circle();
+}
+
+
 .card {
     border-radius: 30px;
     background: white;

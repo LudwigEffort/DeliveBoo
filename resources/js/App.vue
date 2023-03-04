@@ -9,7 +9,7 @@
             :categories="categories"
             @total_price="finalPrice"
             @category-changed="updateCategory"
-            @cart-updated="updateCart"
+            @update:cart="updateCart"
             @total-amount="totalAmount = $event"
         >
         </router-view>
