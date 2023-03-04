@@ -125,7 +125,7 @@
 
                         {{-- BOTTONE  --}}
                         <div>
-                            <button class="enter">submit</button>
+                            <button type="submit" class="enter">submit</button>
                         </div>
                     </form>
                 </div>

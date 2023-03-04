@@ -12,11 +12,11 @@
             <a class="login">Login</a>
             <div class="inputBox">
                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus >
-                @error('email')
+                {{-- @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
-                @enderror
+                @enderror --}}
                 <span class="user">Username</span>
             </div>
 
@@ -32,11 +32,16 @@
                 @enderror
                 <span>Password</span>
             </div>
-            <button class="enter">login</button>
+            <button type="submit" class="enter">login</button>
         </form>
     </div>
 </div>
 @endsection
+
+
+
+
+
 
 
 
