@@ -23,9 +23,10 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('admin/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
+                    <img src="{{ asset('/img/logo.jpg') }}" alt="Descrizione immagine">
+                {{-- <a class="navbar-brand" href="{{ url('admin/') }}">
+                    {{ config('app.name', 'fui') }}
+                </a> --}}
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -78,3 +79,11 @@
     </div>
 </body>
 </html>
+
+
+<style lang="scss" scoped>
+img {
+    height: 100px;
+}
+
+</style>
