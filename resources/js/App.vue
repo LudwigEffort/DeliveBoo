@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid">
+    <div class="">
         <HeaderPage @search-changed="updateSearch" :cart="cart"> </HeaderPage>
         <router-view
             :cart="cart"
@@ -84,7 +84,7 @@ export default {
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/bootstrap";
 @import url("https://fonts.googleapis.com/css?family=Nunito");
 

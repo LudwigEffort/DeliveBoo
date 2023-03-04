@@ -67,7 +67,6 @@
                         @endif
                     </div>
                     </div>
-
-            <div id="root" class="container-fluid"></div>
+            <div id="root" class=""></div>
     </body>
 </html>
