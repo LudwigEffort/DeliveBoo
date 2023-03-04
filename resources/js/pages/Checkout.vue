@@ -33,7 +33,7 @@
         </div>
         <div>
           <input type="hidden" id="payment_date" name="payment_date" v-model="form.payment_date">
-          <input type="hidden" name="dishes[]" value="{{ $dish->id }}">
+          <!-- <input type="hidden" name="dishes[]" value="{{ $dish->id }}"> -->
         </div>
         <button type="submit">Invia</button>
       </form>
@@ -90,7 +90,7 @@
           mm = '0' + mm;
         }
         return yyyy + '-' + mm + '-' + dd;
-      }
+      },
     }
 }
 </script>
