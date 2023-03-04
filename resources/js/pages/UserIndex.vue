@@ -8,7 +8,36 @@
             </div>
         </div>
         <div class="row g-2 p-5">
-            <div v-for="user in users" class="col-3 card">
+            <div v-for="user in users" class="">
+                <div class="card">
+                    <router-link  :to="{ name: 'userShow', params: { slug: user.slug } }">
+                        <img :src="user.uploaded_img" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h1 class="card-title">{{ user.name }}</h1>
+                                <span class="card-title">
+                        Time: {{ user.opening_time }} -
+                        {{ user.closing_time }}
+                    </span>
+
+                    <span class="closed" v-if="user.is_opened == false">
+                        closed
+                    </span>
+                    <span class="open" v-if="user.is_opened == true">
+                        Open
+                    </span>
+                    <ul>
+                        <li v-for="categories in user.categories">
+                            {{ categories.name }}
+                        </li>
+                    </ul>
+                            </div>
+                    </router-link>
+                </div>
+           </div>
+        </div>
+
+        <!-- <div class="row g-2 p-5">
+            <div :class="background" :style="{ backgroundImage: 'url(' + user.uploaded_img + ')' }" v-for="user in users" class="col-3 card">
                 <router-link
                     :to="{ name: 'userShow', params: { slug: user.slug } }"
                     class="routerlink"
@@ -32,7 +61,7 @@
                     </ul>
                 </router-link>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -65,6 +94,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+.background {
+    background-size: cover !important;
+}
 .routerlink {
     text-decoration: none;
     color: black;
@@ -72,10 +105,9 @@ export default {
     flex-direction: column;
 }
 .card {
-    background: rgba(217, 217, 217, 0.58);
+    background: rgba(217, 217, 217, 1);
     border: 1px solid white;
     box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
-    backdrop-filter: blur(6px);
     border-radius: 17px;
     cursor: pointer;
     transition: all 0.5s;
