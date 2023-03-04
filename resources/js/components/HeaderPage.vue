@@ -1,113 +1,71 @@
 <template>
-    <nav
-        class="navbar navbar-expand-md navbar-dark bg-white border-bottom border-dark"
-    >
-        <div class="container-fluid">
-            <div class="row justify-content-between align-items-center">
-                <div class="col">
-                    <router-link :to="{ name: 'home' }" class="navbar-brand">
-                        <img src="/img/logo.jpg" class="logo" alt="" />
-                    </router-link>
-                </div>
-                <div class="col">
-                    <router-link
-                        :to="{ name: 'about' }"
-                        class="nav-link text-dark"
-                        >About</router-link
-                    >
-                </div>
-            </div>
-            <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarScroll"
-                aria-controls="navbarScroll"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-            >
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarScroll">
-                <ul
-                    class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
-                    style="--bs-scroll-height: 100px"
-                >
-                    <li class="nav-item">
-                        <form class="d-flex" role="search">
-                            <input
-                                type="text"
-                                v-model="search"
-                                @input="searchChanged"
-                            />
-                        </form>
-                    </li>
-                    <div></div>
-                </ul>
-            </div>
+    <nav class="navbar navbar-expand-md navbar-dark bg-white border-bottom border-dark">
+      <div class="container-fluid">
+        <div class="row justify-content-between align-items-center">
+          <div class="col">
+            <router-link :to="{ name: 'home' }" class="navbar-brand">
+              <img src="/img/logo.jpg" class="logo" alt="">
+            </router-link>
+          </div>
+          <div class="col">
+            <router-link :to="{ name: 'about' }" class="nav-link text-dark">About</router-link>
+          </div>
         </div>
-        <div></div>
-        <h1>Cart</h1>
-        <Cart
-            v-for="objCart in cart"
-            :key="objCart.slug"
-            :cartItem="objCart"
-            @remove-item="removeItem"
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarScroll"
+          aria-controls="navbarScroll"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
-        </Cart>
-        <h3>Totale: {{ calculateTotalPrice }}</h3>
-        <router-link :to="{ name: 'checkout' }">
-            <button class="btn btn-warning">Pay</button>
-        </router-link>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+          <ul
+            class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
+            style="--bs-scroll-height: 100px;"
+          >
+            <li class="nav-item" v-if="$route.name === 'home'">
+              <form class="d-flex" role="search">
+                <input type="text" v-model="search" @input="searchChanged">
+              </form>
+            </li>
+            <div>
+              <router-link :to="{ name: 'cart'}">
+                Cart
+              </router-link>
+            </div>
+          </ul>
+        </div>
+      </div>
     </nav>
 </template>
 
 <script>
-import Cart from "../pages/Cart.vue";
-
-export default {
-    name: "HeaderPage",
-
-    components: {
-        Cart,
-    },
-    data() {
-        return {
-            cart: [],
-        };
-    },
+  export default {
+    name: 'HeaderPage',
 
     props: {
-        cart: {
-            type: Array,
-        },
+      cart: {
+        type: Array,
+      },
     },
 
     data() {
-        return {
-            search: "",
-        };
+      return {
+        search: ''
+      }
     },
+
     methods: {
-        searchChanged() {
-            this.$emit("search-changed", this.search);
-            console.log(this.cart);
-        },
-        removeItem(index) {
-            this.cart.splice(index, 1);
-        },
-    },
-    computed: {
-        calculateTotalPrice() {
-            let totalPrice = 0;
-            this.cart.forEach((item) => {
-                totalPrice += item.totalPrice;
-            });
-            this.$emit("total_price", totalPrice);
-            return totalPrice;
-        },
-    },
-};
+      searchChanged() {
+        this.$emit('search-changed', this.search);
+        console.log(this.cart)
+      },
+    }
+  }
 </script>
 
 <style lang="scss" scoped>

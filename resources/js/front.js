@@ -6,7 +6,9 @@ import UserIndex from './pages/UserIndex.vue';
 import About from './pages/About.vue';
 import Cart from './pages/Cart.vue';
 import Checkout from './pages/Checkout.vue';
+
 require('./common.js')
+
 
 Vue.use(VueRouter);
 
@@ -44,6 +46,7 @@ const router = new VueRouter({
     mode: 'history',
     routes
 });
+
 
 new Vue({
     el: '#root',

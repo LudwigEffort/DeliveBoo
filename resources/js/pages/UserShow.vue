@@ -33,50 +33,34 @@ export default {
         };
     },
     mounted() {
-        axios
-            .get(`/api/users/${this.$route.params.slug}`)
-            .then((response) => {
-                this.dishes = response.data.dishes;
-                this.user = response.data.user;
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+
+      axios.get(`/api/users/${this.$route.params.slug}`)
+        .then(response => {
+          this.dishes = response.data.dishes;
+          this.user = response.data.user;
+        })
+        .catch(error => {
+          console.error(error);
+        });
+      const cartFromStorage = localStorage.getItem('cart');
+      if (cartFromStorage) {
+        this.cart = JSON.parse(cartFromStorage);
+      }
     },
     methods: {
-        addToCart(dish) {
-            const orderedDish = this.cart.find((item) => item.id === dish.id);
-            if (orderedDish) {
-                orderedDish.quantity++;
-                orderedDish.totalPrice = orderedDish.quantity * dish.price;
-            } else {
-                this.cart.push({
-                    id: dish.id,
-                    name: dish.name,
-                    price: dish.price,
-                    quantity: 1,
-                    totalPrice: dish.price,
-                });
-            }
-            this.$emit("cart-updated", this.cart);
-            console.log(this.cart);
-            //   addToCart(dish) {
-            //   const orderedDishIndex = this.cart.findIndex(item => item.id === dish.id);
-            //   if (orderedDishIndex > -1) {
-            //     this.cart[orderedDishIndex].quantity++;
-            //   } else {
-            //     this.cart.push({
-            //       id: dish.id,
-            //       name: dish.name,
-            //       price: dish.price,
-            //       quantity: 1,
-            //     });
-            //   }
-            //   this.$emit('cart-updated', this.cart);
-        },
+      addToCart(dish) {
+        this.$forceUpdate();
+        this.cart.push({
+          id: dish.id,
+          name: dish.name,
+          price: dish.price,
+          quantity: 1,
+        })
+        localStorage.setItem('cart', JSON.stringify(this.cart));
+        this.$emit('cart-updated', this.cart);
+        console.log(this.cart);
+      },
     },
-};
-</script>
-
-<style scoped lang="scss"></style>
+  };
+  </script>
 

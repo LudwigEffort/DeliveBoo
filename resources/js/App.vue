@@ -10,6 +10,7 @@
             @total_price="finalPrice"
             @category-changed="updateCategory"
             @cart-updated="updateCart"
+            @total-amount="totalAmount = $event"
         >
         </router-view>
     </div>
@@ -30,8 +31,8 @@ export default {
             category: "",
             categories: [],
             cart: [],
-            finalAmount: "",
-        };
+            totalAmount: 0,
+        }
     },
 
     mounted() {
@@ -77,11 +78,10 @@ export default {
         updateCart(cart) {
             this.cart = cart;
         },
-        finalPrice(finalAmount) {
-            this.finalAmount = finalAmount;
-        },
-    },
-};
+
+  },
+}
+
 </script>
 
 <style lang="scss" scoped>

@@ -28,6 +28,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "braintree-web-drop-in": "^1.35.0"
+        "braintree-web-drop-in": "^1.35.0",
+        "vue-braintree": "^2.1.0"
     }
 }

@@ -1,41 +1,113 @@
 <template>
     <div>
-        <h3>{{ cartItem.name }}</h3>
-        <h3>{{ cartItem.price }}</h3>
-        <h3>{{ cartItem.quantity }}</h3>
-        <div>
-            <button @click="decrementQuantity">-</button>
-            <h3>{{ cartItem.quantity }}</h3>
-            <button @click="incrementQuantity">+</button>
-        </div>
-        <button @click="removeItem">Remove</button>
-        <h3>{{ cartItem.totalPrice }}</h3>
+      <h1>My cart</h1>
+      <div v-for="(item, index) in itemQuantities" :key="index">
+        <h3>{{ item.name }}</h3>
+        <p>
+          Quantity:
+          <button class="btn btn-primary" @click="decreaseQuantity(item)">-</button>
+          {{ item.quantity }}
+          <button class="btn btn-primary" @click="increaseQuantity(item)">+</button>
+        </p>
+        <p>Price: {{ item.price * item.quantity }}$</p>
+      </div>
+      <p>Total amount: {{ totalAmount }}$</p>
+      <button class="btn btn-primary" @click="emptyCart()">Empty cart</button>
+      <router-link class="btn btn-danger" :to="{ name: 'home' }">BACK</router-link>
+      <router-link class="btn btn-warning" :to="{ name: 'checkout' }">CHECKOUT</router-link>
     </div>
 </template>
 
 <script>
-export default {
+  export default {
     name: "Cart",
     props: {
-        cartItem: Object,
+      cart: Array,
+    },
+    data() {
+      return {
+        cartData: this.cart,
+      };
+    },
+    computed: {
+      itemQuantities() {
+        return this.cartData.reduce((accumulator, item) => {
+          if (accumulator[item.name]) {
+            accumulator[item.name].quantity += 1;
+          } else {
+            accumulator[item.name] = {
+              name: item.name,
+              quantity: 1,
+              price: item.price,
+            };
+          }
+          return accumulator;
+        }, {});
+      },
+      totalAmount() {
+    const amount = Object.values(this.itemQuantities).reduce((accumulator, item) => {
+      return accumulator + item.price * item.quantity;
+    }, 0);
+    this.$emit('total-amount', amount);
+    return amount;
+  },
     },
     methods: {
-        incrementQuantity() {
-            this.cartItem.quantity++;
-            this.cartItem.totalPrice =
-                this.cartItem.price * this.cartItem.quantity;
-        },
-        decrementQuantity() {
-            if (this.cartItem.quantity > 1) {
-                this.cartItem.quantity--;
-                this.cartItem.totalPrice =
-                    this.cartItem.price * this.cartItem.quantity;
-            }
-        },
-        removeItem() {
-            this.$emit("remove-item", this.itemIndex);
-        },
+      emptyCart() {
+        this.cartData = [];
+        localStorage.setItem("cart", JSON.stringify(this.cartData));
+      },
+      loadCart() {
+        const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+        this.cartData.splice(0, this.cartData.length, ...cart);
+      },
+      increaseQuantity(item) {
+        this.$forceUpdate();
+        this.cart.push({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          quantity: 1,
+        })
+        item.quantity++;
+        this.saveCart();
+      },
+      decreaseQuantity(item) {
+  if (item.quantity > 1) {
+    this.cart.pop({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          quantity: 1,
+        })
+    item.quantity--;
+    this.saveCart();
+  } else {
+    const index = this.cart.findIndex(cartItem => cartItem.id === item.id);
+    if (index !== -1) {
+      this.cart.splice(index, 1);
+      this.saveCart();
+    }
+  }
+},
+      saveCart() {
+        localStorage.setItem("cart", JSON.stringify(this.cartData));
+      },
     },
+    mounted() {
+      this.loadCart();
+    },
+    watch: {
+      cartData: {
+        handler(newVal) {
+          this.$emit("update:cart", newVal);
+          localStorage.setItem("cart", JSON.stringify(newVal));
+        },
+        deep: true,
+      },
+    },
+
 };
 </script>
-<style scoped lang="scss"></style>
+
+  <style scoped lang="scss"></style>

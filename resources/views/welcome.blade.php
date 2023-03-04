@@ -10,6 +10,9 @@
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
         {{-- Style --}}
 
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <script src="https://unpkg.com/vue-braintree/dist/vue-braintree.umd.min.js"></script>
+
         <script src="{{ asset('js/front.js') }}" defer></script>
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 

@@ -25,15 +25,17 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app->singleton(Gateway::class, function($app){
-            // this data should move in .env file (with enviroment variables)
-            return new Gateway(
-                [
-                    'environment' => 'sandbox',
-                    'merchantId' => 'spx9zbh42swtm46q',
-                    'publicKey' => 'nxsncsnfw3fpwvg2',
-                    'privateKey' => '09e84d6733908754678240f76f928e7a'
-                ]
-            );
+
+            return new Gateway (
+                    [
+                        'environment' => 'sandbox',
+                        'merchantId'  => 'c8ssqb7yw6hr9sqk',
+                        'publicKey'   => 'vgh72xk5wgcm3v2t',
+                        'privateKey'  => 'acb71b18d582570a518596e4559585b2',
+                    ]
+                );
+
         });
+
     }
 }

@@ -7,6 +7,7 @@
                 </button>
             </div>
         </div>
+
         <div class="row g-2 p-5">
             <div v-for="user in users" :key="user.slug" class="">
                 <div class="card">
@@ -36,32 +37,6 @@
            </div>
         </div>
 
-        <!-- <div class="row g-2 p-5">
-            <div :class="background" :style="{ backgroundImage: 'url(' + user.uploaded_img + ')' }" v-for="user in users" class="col-3 card">
-                <router-link
-                    :to="{ name: 'userShow', params: { slug: user.slug } }"
-                    class="routerlink"
-                >
-                    <h1>{{ user.name }}</h1>
-                    <span class="card-title">
-                        Time: {{ user.opening_time }} -
-                        {{ user.closing_time }}
-                    </span>
-
-                    <span class="closed" v-if="user.is_opened == false">
-                        closed
-                    </span>
-                    <span class="open" v-if="user.is_opened == true">
-                        Open
-                    </span>
-                    <ul>
-                        <li v-for="categories in user.categories">
-                            {{ categories.name }}
-                        </li>
-                    </ul>
-                </router-link>
-            </div>
-        </div> -->
     </div>
 </template>
 
