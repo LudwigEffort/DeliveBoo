@@ -1,71 +1,79 @@
 <template>
-    <nav class="navbar navbar-expand-md navbar-dark bg-white border-bottom border-dark">
-      <div class="container-fluid">
-        <div class="row justify-content-between align-items-center">
-          <div class="col">
-            <router-link :to="{ name: 'home' }" class="navbar-brand">
-              <img src="/img/logo.jpg" class="logo" alt="">
-            </router-link>
-          </div>
-          <div class="col">
-            <router-link :to="{ name: 'about' }" class="nav-link text-dark">About</router-link>
-          </div>
-        </div>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarScroll"
-          aria-controls="navbarScroll"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarScroll">
-          <ul
-            class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
-            style="--bs-scroll-height: 100px;"
-          >
-            <li class="nav-item" v-if="$route.name === 'home'">
-              <form class="d-flex" role="search">
-                <input type="text" v-model="search" @input="searchChanged">
-              </form>
-            </li>
-            <div>
-              <router-link :to="{ name: 'cart'}">
-                Cart
-              </router-link>
+    <nav
+        class="navbar navbar-expand-md navbar-dark bg-white border-bottom border-dark"
+    >
+        <div class="container-fluid">
+            <div class="row justify-content-between align-items-center">
+                <div class="col">
+                    <router-link :to="{ name: 'home' }" class="navbar-brand">
+                        <img src="/img/logo.jpg" class="logo" alt="" />
+                    </router-link>
+                </div>
+                <div class="col">
+                    <router-link
+                        :to="{ name: 'about' }"
+                        class="nav-link text-dark"
+                        >About</router-link
+                    >
+                </div>
             </div>
-          </ul>
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarScroll"
+                aria-controls="navbarScroll"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul
+                    class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
+                    style="--bs-scroll-height: 100px"
+                >
+                    <li class="nav-item" v-if="$route.name === 'home'">
+                        <form class="d-flex" role="search">
+                            <input
+                                type="text"
+                                v-model="search"
+                                @input="searchChanged"
+                            />
+                        </form>
+                    </li>
+                    <div>
+                        <router-link :to="{ name: 'cart' }">npm </router-link>
+                    </div>
+                </ul>
+            </div>
         </div>
-      </div>
     </nav>
 </template>
 
 <script>
-  export default {
-    name: 'HeaderPage',
+export default {
+    name: "HeaderPage",
 
     props: {
-      cart: {
-        type: Array,
-      },
+        cart: {
+            type: Array,
+        },
     },
 
     data() {
-      return {
-        search: ''
-      }
+        return {
+            search: "",
+        };
     },
 
     methods: {
-      searchChanged() {
-        this.$emit('search-changed', this.search);
-        console.log(this.cart)
-      },
-    }
-  }
+        searchChanged() {
+            this.$emit("search-changed", this.search);
+            console.log(this.cart);
+        },
+    },
+};
 </script>
 
 <style lang="scss" scoped>

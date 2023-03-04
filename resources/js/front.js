@@ -1,55 +1,52 @@
-import Vue from 'vue';
-import App from './App.vue';
-import VueRouter from 'vue-router';
-import UserShow from './pages/UserShow.vue';
-import UserIndex from './pages/UserIndex.vue';
-import About from './pages/About.vue';
-import Cart from './pages/Cart.vue';
-import Checkout from './pages/Checkout.vue';
+import Vue from "vue";
+import App from "./App.vue";
+import VueRouter from "vue-router";
+import UserShow from "./pages/UserShow.vue";
+import UserIndex from "./pages/UserIndex.vue";
+import About from "./pages/About.vue";
+import Cart from "./pages/Cart.vue";
+import Checkout from "./pages/Checkout.vue";
 
-require('./common.js')
-
+require("./common.js");
 
 Vue.use(VueRouter);
 
 const routes = [
     {
-        path: '/',
-        name: 'home',
-        component: UserIndex
+        path: "/",
+        name: "home",
+        component: UserIndex,
     },
     {
-        path: '/about',
-        name: 'about',
-        component: About
+        path: "/about",
+        name: "about",
+        component: About,
     },
     {
-        path: '/users/:slug',
-        name: 'userShow',
+        path: "/users/:slug",
+        name: "userShow",
         component: UserShow,
         props: true,
     },
     {
-        path: '/cart/',
-        name: 'cart',
+        path: "/cart/",
+        name: "cart",
         component: Cart,
     },
     {
-        path: '/checkout/',
-        name: 'checkout',
+        path: "/checkout/",
+        name: "checkout",
         component: Checkout,
     },
-
 ];
 
 const router = new VueRouter({
-    mode: 'history',
-    routes
+    mode: "history",
+    routes,
 });
 
-
 new Vue({
-    el: '#root',
+    el: "#root",
     router,
-    render: h => h(App)
+    render: (h) => h(App),
 });

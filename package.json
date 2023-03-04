@@ -29,6 +29,7 @@
     },
     "dependencies": {
         "braintree-web-drop-in": "^1.35.0",
+        "fortawesome": "^0.0.1-security",
         "vue-braintree": "^2.1.0"
     }
 }

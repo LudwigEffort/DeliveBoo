@@ -1,7 +1,11 @@
 <template>
     <div class="container mt-5">
         <div class="row">
-            <div v-for="category in categories" :key="category.slug" class="col-2 gy-1">
+            <div
+                v-for="category in categories"
+                :key="category.slug"
+                class="col-2 gy-1"
+            >
                 <button @click="changeValue(category.name)">
                     <span class="button_top"> {{ category.name }} </span>
                 </button>
@@ -9,35 +13,40 @@
         </div>
 
         <div class="row g-2 p-5">
-            <div v-for="user in users" :key="user.slug" class="">
-                <div class="card">
-                    <router-link  :to="{ name: 'userShow', params: { slug: user.slug } }">
-                        <img :src="user.uploaded_img" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h1 class="card-title">{{ user.name }}</h1>
-                                <span class="card-title">
-                        Time: {{ user.opening_time }} -
-                        {{ user.closing_time }}
-                    </span>
+            <div v-for="user in users" :key="user.slug" class="card col-3">
+                <router-link
+                    :to="{ name: 'userShow', params: { slug: user.slug } }"
+                >
+                    <img
+                        :src="user.uploaded_img"
+                        class="card-img-top"
+                        alt="..."
+                    />
+                    <div class="card-body">
+                        <h1 class="card-title">{{ user.name }}</h1>
+                        <span class="card-title">
+                            Time: {{ user.opening_time }} -
+                            {{ user.closing_time }}
+                        </span>
 
-                    <span class="closed" v-if="user.is_opened == false">
-                        closed
-                    </span>
-                    <span class="open" v-if="user.is_opened == true">
-                        Open
-                    </span>
-                    <ul>
-                        <li v-for="categories in user.categories" :key="categories.slug">
-                            {{ categories.name }}
-                        </li>
-                    </ul>
-                            </div>
-                    </router-link>
-                </div>
-           </div>
-
+                        <span class="closed" v-if="user.is_opened == false">
+                            closed
+                        </span>
+                        <span class="open" v-if="user.is_opened == true">
+                            Open
+                        </span>
+                        <ul>
+                            <li
+                                v-for="categories in user.categories"
+                                :key="categories.slug"
+                            >
+                                {{ categories.name }}
+                            </li>
+                        </ul>
+                    </div>
+                </router-link>
+            </div>
         </div>
-
     </div>
 </template>
 
@@ -70,7 +79,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
 .background {
     background-size: cover !important;
 }
