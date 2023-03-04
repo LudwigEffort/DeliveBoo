@@ -21,11 +21,15 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav id='nav' class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('admin/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
+                {{-- bottone che porta a home  --}}
+                <a href="{{ route('welcome') }}" class="btn btn-primary">Home</a>
+
+                    <img src="{{ asset('/img/logo.jpg') }}" alt="Descrizione immagine">
+                {{-- <a class="navbar-brand" href="{{ url('admin/') }}">
+                    {{ config('app.name', 'fui') }}
+                </a> --}}
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -78,3 +82,29 @@
     </div>
 </body>
 </html>
+
+
+<style lang="scss" scoped>
+img {
+    height: 100px;
+}
+
+#nav  {
+    display: flex;
+    justify-content: center;
+
+}
+.nav-link {
+    font-family: "zurich", sans-serif;
+}
+
+.nav-link:hover {
+    background-color: blue;
+    color: white;
+    width: 100%;
+    border-radius: 10px;
+    transition: 1s;
+}
+
+
+</style>

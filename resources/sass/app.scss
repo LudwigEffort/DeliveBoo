@@ -20,3 +20,7 @@ $fa-font-path: "./fonts/font-awesome" !default;
 @import "~@fortawesome/fontawesome-free/scss/solid";
 
 @import "~@fortawesome/fontawesome-free/scss/brands";
+
+body {
+    font-family: "zurich", sans-serif;
+}
