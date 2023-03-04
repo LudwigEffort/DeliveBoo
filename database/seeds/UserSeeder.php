@@ -25,7 +25,8 @@ class UserSeeder extends Seeder
                 'vat_number'    => '09876543210',
                 'opening_time'  => '12:05:43',
                 'closing_time'  => '12:05:43',
-                'is_opened'     => 1
+                'is_opened'     => 1,
+                'uploaded_img'   => 'img/kebab_habdul.webp'
             ],
             // pizza
             [
@@ -36,7 +37,8 @@ class UserSeeder extends Seeder
                 'vat_number'    => '09876543219',
                 'opening_time'  => '12:05:43',
                 'closing_time'  => '12:05:43',
-                'is_opened'     => 1
+                'is_opened'     => 1,
+                'uploaded_img'   => 'img/pizza_ciro.jpg'
             ],
             // sushi
             [
@@ -47,7 +49,8 @@ class UserSeeder extends Seeder
                 'vat_number'    => '09876543218',
                 'opening_time'  => '12:05:43',
                 'closing_time'  => '12:05:43',
-                'is_opened'     => 1
+                'is_opened'     => 1,
+                'uploaded_img'   => 'img/sushi.jpg'
             ],
             // poke
             [
@@ -58,7 +61,8 @@ class UserSeeder extends Seeder
                 'vat_number'    => '09876543217',
                 'opening_time'  => '12:05:43',
                 'closing_time'  => '12:05:43',
-                'is_opened'     => 1
+                'is_opened'     => 1,
+                'uploaded_img'   => 'img/poke.webp'
             ],
             // grill e pasta
             [
@@ -69,7 +73,8 @@ class UserSeeder extends Seeder
                 'vat_number'    => '09876543216',
                 'opening_time'  => '12:05:43',
                 'closing_time'  => '12:05:43',
-                'is_opened'     => 1
+                'is_opened'     => 1,
+                'uploaded_img'   => 'img/grill_pasta.jpg'
             ],
         ];
 
