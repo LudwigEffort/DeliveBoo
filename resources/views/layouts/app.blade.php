@@ -21,8 +21,11 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav id='nav' class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
+                {{-- bottone che porta a home  --}}
+                <a href="{{ route('welcome') }}" class="btn btn-primary">Home</a>
+
                     <img src="{{ asset('/img/logo.jpg') }}" alt="Descrizione immagine">
                 {{-- <a class="navbar-brand" href="{{ url('admin/') }}">
                     {{ config('app.name', 'fui') }}
@@ -85,5 +88,23 @@
 img {
     height: 100px;
 }
+
+#nav  {
+    display: flex;
+    justify-content: center;
+
+}
+.nav-link {
+    font-family: "zurich", sans-serif;
+}
+
+.nav-link:hover {
+    background-color: blue;
+    color: white;
+    width: 100%;
+    border-radius: 10px;
+    transition: 1s;
+}
+
 
 </style>
