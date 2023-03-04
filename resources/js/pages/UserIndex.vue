@@ -1,14 +1,14 @@
 <template>
     <div class="container mt-5">
         <div class="row">
-            <div v-for="category in categories" class="col-2 gy-1">
+            <div v-for="category in categories" :key="category.slug" class="col-2 gy-1">
                 <button @click="changeValue(category.name)">
                     <span class="button_top"> {{ category.name }} </span>
                 </button>
             </div>
         </div>
         <div class="row g-2 p-5">
-            <div v-for="user in users" class="">
+            <div v-for="user in users" :key="user.slug" class="">
                 <div class="card">
                     <router-link  :to="{ name: 'userShow', params: { slug: user.slug } }">
                         <img :src="user.uploaded_img" class="card-img-top" alt="...">
@@ -26,7 +26,7 @@
                         Open
                     </span>
                     <ul>
-                        <li v-for="categories in user.categories">
+                        <li v-for="categories in user.categories" :key="categories.slug">
                             {{ categories.name }}
                         </li>
                     </ul>
