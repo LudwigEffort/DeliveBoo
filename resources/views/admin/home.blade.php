@@ -2,8 +2,12 @@
 
 @section('content')
 <div class="container">
+        @if ($user->id <= 5)
+            <img src="{{ asset($user->uploaded_img) }}" alt="{{$user->id}}">
+        @else
+            <img src="{{ asset('storage/' . $user->uploaded_img) }}" alt="{{$user->id}}">
+        @endif
         <h1>{{$user->name}}</h1>
-        <img src="{{ asset('storage/' . $user->uploaded_img) }}" alt="{{$user->id}}">
         <p>{{$user->description}}</p>
         <div>{{$user->email}}</div>
         <div>{{$user->vat_number}}</div>
@@ -19,6 +23,10 @@
         <td>
             <a href="{{ route('admin.orders.index', ['orders' => $orders]) }}" class="btn btn-warning">Ordini</a>
         </td>
-</div>
 @endsection
 
+<style lang="scss" scoped>
+* {
+    color: red;
+}
+</style>
