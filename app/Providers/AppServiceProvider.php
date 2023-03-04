@@ -32,7 +32,6 @@ class AppServiceProvider extends ServiceProvider
                         'merchantId'  => 'c8ssqb7yw6hr9sqk',
                         'publicKey'   => 'vgh72xk5wgcm3v2t',
                         'privateKey'  => 'acb71b18d582570a518596e4559585b2',
-
                     ]
                 );
 
