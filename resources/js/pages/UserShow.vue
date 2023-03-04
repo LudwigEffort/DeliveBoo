@@ -61,6 +61,15 @@ export default {
         console.log(this.cart);
       },
     },
+    watch: {
+  cart: {
+    handler(newCart) {
+      this.$emit("update:cart", newCart);
+    },
+    deep: true
+  }
+},
+
   };
   </script>
 
