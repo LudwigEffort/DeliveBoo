@@ -15,13 +15,15 @@
                         <div class="col-12">
                             <h3 class="name">{{ dish.name }}</h3>
                         </div>
+                        <!-- <div class="col-12">
+                            <img :src="dish.uploaded_img" alt="" />
+                        </div> -->
                         <div class="col-12 dish-dev">
                             <p>{{ dish.description }}</p>
                         </div>
                         <div class="col-12">
                             <button class="text-white" @click="addToCart(dish)">
                                 <span> {{ dish.price }}$ </span>
-                                <img :src="dish.uploaded_img" alt="" />
                             </button>
                         </div>
                     </div>
@@ -131,5 +133,8 @@ button:active {
 }
 hr {
     width: 80%;
+}
+img {
+    width: 100%;
 }
 </style>

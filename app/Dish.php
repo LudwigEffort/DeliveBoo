@@ -12,13 +12,15 @@ class Dish extends Model
 
     use SoftDeletes;
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function orders() {
+    public function orders()
+    {
         return $this->belongsToMany('App\Order')
-        ->withTimestamps();
+            ->withTimestamps();
     }
 
     public function getRouteKeyName()
@@ -31,11 +33,11 @@ class Dish extends Model
         parent::boot();
 
         static::creating(function ($dish) {
-            $dish->price *= 100;
+
         });
 
         static::updating(function ($dish) {
-            $dish->price *= 100;
+
         });
     }
 
