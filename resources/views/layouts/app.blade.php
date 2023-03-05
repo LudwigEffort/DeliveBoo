@@ -87,7 +87,7 @@
 
 <style lang="scss" scoped>
 
-body {
+/* body {
     font-family: "zurich", sans-serif;
 }
 
@@ -130,6 +130,31 @@ img {
     border-radius: 10px;
     transition: 1s;
 }
+ */
+
+img {
+    height: 100px;
+}
+
+.img-fluid {
+    margin: 50px;
+    height: 120px;
+    border-radius: 50px;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* .container {
+    display: flex;
+    gap: 40px;;
+    flex-direction: column;
+} */
+
+
 
 
 </style>

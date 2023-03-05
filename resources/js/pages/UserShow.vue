@@ -85,6 +85,8 @@ export default {
   </script>
 
 <style lang="scss">
+
+
 button {
     appearance: none;
     background-color: transparent;
@@ -140,4 +142,11 @@ button:active {
 hr {
     width: 80%;
 }
+
+.row {
+    display: flex;
+    gap:20px;
+}
+
+
 </style>

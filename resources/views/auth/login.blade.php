@@ -97,14 +97,13 @@ form {
     color: blue;
     font-size: 1em;
     background: transparent;
-    border-left: 2px solid blue;
-    border-bottom: 2px solid blue;
+    border: 2px solid blue;
     transition: 0.1s;
     border-bottom-left-radius: 8px;
 }
 
 .inputBox span {
-    margin-top: -45px;
+    margin-top: -40px;
     position: absolute;
     left: 0;
     transform: translateY(-4px);

@@ -36,6 +36,7 @@
           <!-- <input type="hidden" name="dishes[]" value="{{ $dish->id }}"> -->
         </div>
         <button type="submit">Invia</button>
+
       </form>
     </div>
   </template>
