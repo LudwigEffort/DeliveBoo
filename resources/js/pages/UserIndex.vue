@@ -89,7 +89,7 @@ export default {
     flex-direction: column;
 }
 .card {
-    background: rgb(255, 255, 255);
+    background: rgba(217, 217, 217, 1);
     border: 1px solid white;
     box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
     border-radius: 17px;
@@ -103,14 +103,12 @@ export default {
     margin: 2em;
     padding: 2em;
 }
-
 .card:hover {
-    border: 1px solid blue;
+    border: 1px solid black;
     transform: scale(1.05);
 }
-
-.card-body {
-    margin: 2px solid blue;
+.card:active {
+    transform: scale(0.95) rotateZ(1.7deg);
 }
 .open {
     position: relative;
@@ -143,34 +141,40 @@ export default {
     overflow: hidden;
 }
 button {
-
+    padding: 15px 25px;
+    border: unset;
+    border-radius: 15px;
+    color: #212121;
+    z-index: 1;
+    background: #e8e8e8;
+    position: relative;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    transition: all 250ms;
+    overflow: hidden;
 }
-
-// button::before {
-//     content: "";
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     height: 100%;
-//     width: 0;
-//     border-radius: 15px;
-//     background-color: #212121;
-//     z-index: -1;
-//     -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
-//     box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
-//     transition: all 250ms;
-// }
-// button:hover {
-//     color: #e8e8e8;
-// }
-// button::after {
-//     background-color: #212121;
-//     z-index: 2;
-// }
-
-// button:hover::before {
-//     width: 100%;
-// }
-
-
+button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    border-radius: 15px;
+    background-color: #212121;
+    z-index: -1;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    transition: all 250ms;
+}
+button:hover {
+    color: #e8e8e8;
+}
+button::after {
+    background-color: #212121;
+    z-index: 2;
+}
+button:hover::before {
+    width: 100%;
+}
 </style>

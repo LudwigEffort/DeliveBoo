@@ -1,5 +1,5 @@
 <template>
-    <div class="">
+    <div class="container-fluid">
         <HeaderPage @search-changed="updateSearch" :cart="cart"> </HeaderPage>
         <router-view
             :cart="cart"
@@ -7,10 +7,9 @@
             :users="users"
             :category="category"
             :categories="categories"
-            :total-amount = 'totalAmount'
             @total_price="finalPrice"
             @category-changed="updateCategory"
-            @update:cart="updateCart"
+            @cart-updated="updateCart"
             @total-amount="totalAmount = $event"
         >
         </router-view>
@@ -19,7 +18,6 @@
 
 <script>
 import HeaderPage from "./components/HeaderPage.vue";
-
 export default {
     name: "App",
     components: {
@@ -35,31 +33,25 @@ export default {
             totalAmount: 0,
         }
     },
-
     mounted() {
         this.getUsers();
     },
-
     methods: {
         updateSearch(search) {
             this.search = search;
             this.getUsers();
         },
-
         getUsers() {
             let params = {};
-
             if (this.search) {
                 params.search = this.search;
             } else {
                 params.limit = 2;
             }
-
             if (this.category) {
                 params.category = this.category;
                 this.category = false;
             }
-
             axios
                 .get("/api/users", {
                     params: params,
@@ -79,16 +71,13 @@ export default {
         updateCart(cart) {
             this.cart = cart;
         },
-
   },
 }
-
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "~bootstrap/scss/bootstrap";
 @import url("https://fonts.googleapis.com/css?family=Nunito");
-
 * {
     margin: 0;
     padding: 0;
@@ -96,20 +85,16 @@ export default {
     font-family: "zurich", sans-serif;
     background-color: white;
 }
-
 .card {
     border-radius: 30px;
     background: white;
 }
-
 a {
     text-decoration: none;
 }
-
 // .logo {
 //     width: 110%;
 // }
-
 button {
     /* Variables */
     --button_radius: 0.75em;
@@ -121,7 +106,6 @@ button {
     border-radius: var(--button_radius);
     background: var(--button_outline_color);
 }
-
 .button_top {
     display: block;
     box-sizing: border-box;
@@ -133,12 +117,10 @@ button {
     transform: translateY(-0.2em);
     transition: transform 0.1s ease;
 }
-
 button:hover .button_top {
     /* Pull the button upwards when hovered */
     transform: translateY(-0.33em);
 }
-
 button:active .button_top {
     /* Push the button downwards when pressed */
     transform: translateY(0);
