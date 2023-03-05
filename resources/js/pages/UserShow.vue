@@ -21,6 +21,7 @@
                         <div class="col-12">
                             <button class="text-white" @click="addToCart(dish)">
                                 <span> {{ dish.price }}$ </span>
+                                <img :src="dish.uploaded_img" alt="" />
                             </button>
                         </div>
                     </div>
